@@ -211,7 +211,7 @@ export default function PrivacyPolicy() {
                 Please note that opting out of certain data processing activities may
                 limit your ability to use some features of our platform. To exercise any
                 of these rights, please contact us at{" "}
-                <span className="text-green-600">support@VerdeTrades.com</span>.
+                <span className="text-green-600">support@verdetrades.com</span>.
               </p>
             </section>
 

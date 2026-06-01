@@ -220,7 +220,7 @@ export default function DeclarationOfConsent() {
                 consents may affect our ability to provide services to you and may result
                 in the closure of your account. To withdraw your consent, please contact
                 our support team at{" "}
-                <span className="text-green-600">support@VerdeTrades.com</span>. We will
+                <span className="text-green-600">support@verdetrades.com</span>. We will
                 process your request in accordance with applicable laws and inform you of
                 any consequences of the withdrawal.
               </p>

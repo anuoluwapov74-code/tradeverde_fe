@@ -377,10 +377,10 @@ export default function BrokerPartnership() {
               hours.
             </p>
             <Link
-              href="mailto:partnerships@VerdeTrades.com"
+              href="mailto:support@verdetrades.com"
               className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium transition"
             >
-              support@VerdeTrades.com
+              support@verdetrades.com
             </Link>
           </div>
         </section>

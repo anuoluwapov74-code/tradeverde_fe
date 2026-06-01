@@ -123,7 +123,7 @@ export default function RootLayout({
         {/* LiveChat - Jovo */}
 
         <Script
-          src="//code.jivosite.com/widget/jZikVtEDhl"
+          src="//code.jivosite.com/widget/wJDi5CwGBq"
           strategy="afterInteractive"
         />
       </body>

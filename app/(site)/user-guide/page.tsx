@@ -275,7 +275,7 @@ export default function UserGuide() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>
-                  <span><strong>Email support</strong> — Reach us at support@VerdeTrades.com</span>
+                  <span><strong>Email support</strong> — Reach us at support@verdetrades.com</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>

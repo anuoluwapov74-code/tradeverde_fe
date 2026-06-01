@@ -184,7 +184,7 @@ export default function CookiesPolicy() {
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 To opt out or manage your cookie preferences, please email us at{" "}
-                <span className="text-green-600">support@VerdeTrades.com</span>. Our team
+                <span className="text-green-600">support@verdetrades.com</span>. Our team
                 will assist you with updating your preferences promptly.
               </p>
             </section>

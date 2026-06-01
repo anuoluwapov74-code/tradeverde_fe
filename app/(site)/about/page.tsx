@@ -229,10 +229,10 @@ export default function AboutPage() {
                 Have questions about VerdeTrades? We&apos;d love to hear from
                 you. Reach out to our team at{" "}
                 <a
-                  href="mailto:support@VerdeTrades.com"
+                  href="mailto:support@verdetrades.com"
                   className="text-green-600 hover:text-green-700 underline"
                 >
-                  support@VerdeTrades.com
+                  support@verdetrades.com
                 </a>{" "}
                 or start a conversation through our live chat.
               </p>
