@@ -18,11 +18,11 @@ const Footer = () => {
           <div className="lg:col-span-3">
             <div className="mb-4">
               <span className="text-2xl font-bold">
-                Trade<span className="text-[var(--primary)]">Verde</span>
+                <span className="text-[var(--primary)]">Verde</span>Trades
               </span>
             </div>
             <p className="mb-4 text-sm text-[var(--foreground-muted)]">
-              Copy trade with TradeVerde
+              Copy trade with VerdeTrades
             </p>
         {/* Google and Apple store here */}
           </div>
@@ -74,7 +74,7 @@ const Footer = () => {
                 title="CONTACT"
                 links={[
                   { label: "+1 (929) 512-0241", href: "#" },
-                  { label: "support@tradeverde.com", href: "mailto:support@tradeverde.com" },
+                  { label: "support@verdetrades.com", href: "mailto:support@verdetrades.com" },
                 ]}
               />
             </div>

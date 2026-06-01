@@ -182,7 +182,7 @@ export default function BalanceCard({
             <div className="mb-5">
               <div className="flex flex-col gap-1.5">
                 <span className="text-[9px] font-black text-white uppercase tracking-[0.25em]">
-                  ScopsTrade
+                  VerdeTrades
                 </span>
                 <span
                   className={`inline-flex items-center gap-1.5 text-[9px] font-semibold px-2 py-0.5 rounded-full border w-fit ${

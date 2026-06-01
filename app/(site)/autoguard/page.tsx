@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "AutoGuard™ — TradeVerde Risk Management",
-  description: "AutoGuard™ by TradeVerde automatically applies stop-loss, trailing stops, and position-size limits to every copied trade. Protect your capital while you copy the best traders.",
-  alternates: { canonical: "https://tradeverde.com/autoguard" },
+  title: "AutoGuard™ — VerdeTrades Risk Management",
+  description: "AutoGuard™ by VerdeTrades automatically applies stop-loss, trailing stops, and position-size limits to every copied trade. Protect your capital while you copy the best traders.",
+  alternates: { canonical: "https://verdetrades.com/autoguard" },
   openGraph: {
-    title: "AutoGuard™ — TradeVerde Risk Management",
-    description: "Automatic risk protection built into every copied trade on TradeVerde.",
-    url: "https://tradeverde.com/autoguard",
+    title: "AutoGuard™ — VerdeTrades Risk Management",
+    description: "Automatic risk protection built into every copied trade on VerdeTrades.",
+    url: "https://verdetrades.com/autoguard",
   },
 };
 

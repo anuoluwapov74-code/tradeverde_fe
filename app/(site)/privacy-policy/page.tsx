@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — TradeVerde",
-  description: "Read the TradeVerde Privacy Policy to understand how we collect, use, and protect your personal data when you use our copy trading platform.",
-  alternates: { canonical: "https://tradeverde.com/privacy-policy" },
+  title: "Privacy Policy — VerdeTrades",
+  description: "Read the VerdeTrades Privacy Policy to understand how we collect, use, and protect your personal data when you use our copy trading platform.",
+  alternates: { canonical: "https://verdetrades.com/privacy-policy" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Privacy Policy — TradeVerde",
-    description: "How TradeVerde collects, uses, and protects your personal data.",
-    url: "https://tradeverde.com/privacy-policy",
+    title: "Privacy Policy — VerdeTrades",
+    description: "How VerdeTrades collects, uses, and protects your personal data.",
+    url: "https://verdetrades.com/privacy-policy",
   },
 };
 
@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
                 1. Personal Information We Collect
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                TradeVerde is committed to protecting your privacy. This Privacy Policy
+                VerdeTrades is committed to protecting your privacy. This Privacy Policy
                 explains how we collect, use, disclose, and safeguard your information
                 when you use our platform and services. We collect the following types of
                 personal information:
@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
                 Application Information
               </h3>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                When you open an account with TradeVerde, we collect personal information
+                When you open an account with VerdeTrades, we collect personal information
                 such as your full name, date of birth, residential address, email address,
                 phone number, nationality, employment status, annual income, net worth,
                 and trading experience. This information is required to comply with
@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
                 2. Security Technology
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                TradeVerde employs industry-standard security measures to protect your
+                VerdeTrades employs industry-standard security measures to protect your
                 personal information from unauthorized access, alteration, disclosure, or
                 destruction. Our security measures include:
               </p>
@@ -122,7 +122,7 @@ export default function PrivacyPolicy() {
                 3. Sharing Information with Our Affiliates
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                TradeVerde may share your personal information with our affiliated
+                VerdeTrades may share your personal information with our affiliated
                 companies and subsidiaries for the purposes of providing and improving our
                 services, ensuring regulatory compliance across jurisdictions, conducting
                 internal analytics and research, and managing risk across our group of
@@ -171,7 +171,7 @@ export default function PrivacyPolicy() {
                 5. Regulatory Disclosure
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                TradeVerde may be required to disclose your personal information to
+                VerdeTrades may be required to disclose your personal information to
                 regulatory authorities, law enforcement agencies, or other governmental
                 bodies in response to lawful requests, subpoenas, court orders, or as
                 otherwise required by applicable law. We will only disclose the minimum
@@ -211,7 +211,7 @@ export default function PrivacyPolicy() {
                 Please note that opting out of certain data processing activities may
                 limit your ability to use some features of our platform. To exercise any
                 of these rights, please contact us at{" "}
-                <span className="text-green-600">support@TradeVerde.com</span>.
+                <span className="text-green-600">support@VerdeTrades.com</span>.
               </p>
             </section>
 

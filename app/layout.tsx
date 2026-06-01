@@ -19,16 +19,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tradeverde.com"),
+  metadataBase: new URL("https://verdetrades.com"),
   title: {
-    default: "TradeVerde — Copy Futures, Options & Contracts with Precision",
-    template: "%s | TradeVerde",
+    default: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
+    template: "%s | VerdeTrades",
   },
   description:
-    "TradeVerde is the premier copy trading platform for futures, options, and contracts. Mirror real-time trades from top-performing experts with AutoGuard™ risk management, AI signals, and zero commission.",
+    "VerdeTrades is the premier copy trading platform for futures, options, and contracts. Mirror real-time trades from top-performing experts with AutoGuard™ risk management, AI signals, and zero commission.",
   keywords: [
-    "TradeVerde",
-    "TradeVerde copy trading",
+    "VerdeTrades",
+    "VerdeTrades copy trading",
     "copy trading platform",
     "copy futures trading",
     "copy options contracts",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     "futures copy trading",
     "options copy trading",
   ],
-  authors: [{ name: "TradeVerde", url: "https://tradeverde.com" }],
-  creator: "TradeVerde",
-  publisher: "TradeVerde",
+  authors: [{ name: "VerdeTrades", url: "https://verdetrades.com" }],
+  creator: "VerdeTrades",
+  publisher: "VerdeTrades",
   category: "Finance",
   robots: {
     index: true,
@@ -60,33 +60,33 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://tradeverde.com",
+    canonical: "https://verdetrades.com",
   },
   openGraph: {
     type: "website",
-    url: "https://tradeverde.com",
-    siteName: "TradeVerde",
-    title: "TradeVerde — Copy Futures, Options & Contracts with Precision",
+    url: "https://verdetrades.com",
+    siteName: "VerdeTrades",
+    title: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
     images: [
       {
-        url: "https://tradeverde.com/opengraph-image.png",
+        url: "https://verdetrades.com/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "TradeVerde — Copy Trading Platform",
+        alt: "VerdeTrades — Copy Trading Platform",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@TradeVerde",
-    creator: "@TradeVerde",
-    title: "TradeVerde — Copy Futures, Options & Contracts with Precision",
+    site: "@VerdeTrades",
+    creator: "@VerdeTrades",
+    title: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
-    images: ["https://tradeverde.com/opengraph-image.png"],
+    images: ["https://verdetrades.com/opengraph-image.png"],
   },
   icons: {
     icon: [

@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "End User License Agreement — TradeVerde",
-  description: "Read the TradeVerde EULA governing your licence to use the TradeVerde copy trading application, including permitted uses and restrictions.",
-  alternates: { canonical: "https://tradeverde.com/end-user-license-agreement" },
+  title: "End User License Agreement — VerdeTrades",
+  description: "Read the VerdeTrades EULA governing your licence to use the VerdeTrades copy trading application, including permitted uses and restrictions.",
+  alternates: { canonical: "https://verdetrades.com/end-user-license-agreement" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "End User License Agreement — TradeVerde",
-    description: "The EULA governing your licence to use the TradeVerde application.",
-    url: "https://tradeverde.com/end-user-license-agreement",
+    title: "End User License Agreement — VerdeTrades",
+    description: "The EULA governing your licence to use the VerdeTrades application.",
+    url: "https://verdetrades.com/end-user-license-agreement",
   },
 };
 
@@ -41,8 +41,8 @@ export default function EndUserLicenseAgreement() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 This End User License Agreement (&ldquo;EULA&rdquo;) is a legal agreement between
-                you (&ldquo;User,&rdquo; &ldquo;you,&rdquo; or &ldquo;your&rdquo;) and TradeVerde (&ldquo;Company,&rdquo; &ldquo;we,&rdquo;
-                &ldquo;us,&rdquo; or &ldquo;our&rdquo;) governing your use of the TradeVerde software
+                you (&ldquo;User,&rdquo; &ldquo;you,&rdquo; or &ldquo;your&rdquo;) and VerdeTrades (&ldquo;Company,&rdquo; &ldquo;we,&rdquo;
+                &ldquo;us,&rdquo; or &ldquo;our&rdquo;) governing your use of the VerdeTrades software
                 applications, including our web platform, mobile applications, desktop
                 applications, APIs, and any related software and services (collectively,
                 the &ldquo;Software&rdquo;).
@@ -61,11 +61,11 @@ export default function EndUserLicenseAgreement() {
                 2. License Grant
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Subject to the terms and conditions of this EULA, TradeVerde grants you a
+                Subject to the terms and conditions of this EULA, VerdeTrades grants you a
                 limited, non-exclusive, non-transferable, revocable license to download,
                 install, and use the Software on devices that you own or control, solely
                 for your personal, non-commercial use in connection with the trading
-                services provided by TradeVerde. This license does not grant you any
+                services provided by VerdeTrades. This license does not grant you any
                 ownership rights in the Software and is subject to the restrictions set
                 forth in this EULA.
               </p>
@@ -121,13 +121,13 @@ export default function EndUserLicenseAgreement() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 The Software and all copies thereof are the intellectual property of
-                TradeVerde and are protected by copyright, trademark, patent, and other
-                intellectual property laws. TradeVerde retains all right, title, and
+                VerdeTrades and are protected by copyright, trademark, patent, and other
+                intellectual property laws. VerdeTrades retains all right, title, and
                 interest in and to the Software, including all intellectual property
                 rights therein. This EULA does not convey to you any rights of ownership
                 in or related to the Software, and nothing in this EULA should be
                 construed as granting any license or right to use any trademarks, service
-                marks, or logos of TradeVerde without prior written consent.
+                marks, or logos of VerdeTrades without prior written consent.
               </p>
             </section>
 
@@ -137,11 +137,11 @@ export default function EndUserLicenseAgreement() {
                 5. Software Updates and Modifications
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                TradeVerde may from time to time release updates, patches, bug fixes,
+                VerdeTrades may from time to time release updates, patches, bug fixes,
                 enhancements, or new versions of the Software. Such updates may be
                 installed automatically or may require your action. You agree that
-                TradeVerde may update the Software at its sole discretion, and you
-                acknowledge that this EULA applies to all such updates. TradeVerde
+                VerdeTrades may update the Software at its sole discretion, and you
+                acknowledge that this EULA applies to all such updates. VerdeTrades
                 reserves the right to modify, suspend, or discontinue the Software or any
                 part thereof at any time without prior notice.
               </p>
@@ -176,11 +176,11 @@ export default function EndUserLicenseAgreement() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 The Software may include or integrate with third-party software
                 components, libraries, or services. Such third-party components are
-                subject to their own license agreements and terms of use. TradeVerde does
+                subject to their own license agreements and terms of use. VerdeTrades does
                 not assume any responsibility or liability for any third-party software or
                 services, and your use of such components is at your own risk. The
                 inclusion of third-party components does not imply endorsement by
-                TradeVerde.
+                VerdeTrades.
               </p>
             </section>
 
@@ -193,13 +193,13 @@ export default function EndUserLicenseAgreement() {
                 THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; WITHOUT WARRANTY
                 OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
                 IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-                TITLE, AND NON-INFRINGEMENT. TradeVerde DOES NOT WARRANT THAT THE
+                TITLE, AND NON-INFRINGEMENT. VerdeTrades DOES NOT WARRANT THAT THE
                 SOFTWARE WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF VIRUSES
-                OR OTHER HARMFUL COMPONENTS. TradeVerde DOES NOT WARRANT THE ACCURACY,
+                OR OTHER HARMFUL COMPONENTS. VerdeTrades DOES NOT WARRANT THE ACCURACY,
                 COMPLETENESS, OR RELIABILITY OF ANY CONTENT, DATA, OR INFORMATION
                 PROVIDED THROUGH THE SOFTWARE. YOUR USE OF THE SOFTWARE IS AT YOUR SOLE
                 RISK. NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU
-                FROM TradeVerde SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THIS
+                FROM VerdeTrades SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THIS
                 EULA.
               </p>
             </section>
@@ -211,13 +211,13 @@ export default function EndUserLicenseAgreement() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed uppercase font-medium">
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL
-                TradeVerde, ITS DIRECTORS, OFFICERS, EMPLOYEES, AGENTS, OR AFFILIATES BE
+                VerdeTrades, ITS DIRECTORS, OFFICERS, EMPLOYEES, AGENTS, OR AFFILIATES BE
                 LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE
                 DAMAGES, INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF PROFITS, DATA,
                 USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR IN
                 CONNECTION WITH YOUR USE OF OR INABILITY TO USE THE SOFTWARE, EVEN IF
-                TradeVerde HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-                TradeVerde&rsquo;S TOTAL AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT
+                VerdeTrades HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+                VerdeTrades&rsquo;S TOTAL AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT
                 OF OR RELATING TO THIS EULA OR THE SOFTWARE SHALL NOT EXCEED THE AMOUNT
                 PAID BY YOU, IF ANY, FOR THE SOFTWARE DURING THE TWELVE (12) MONTHS
                 PRECEDING THE CLAIM.
@@ -230,7 +230,7 @@ export default function EndUserLicenseAgreement() {
                 10. Indemnification
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                You agree to indemnify, defend, and hold harmless TradeVerde, its
+                You agree to indemnify, defend, and hold harmless VerdeTrades, its
                 directors, officers, employees, agents, and affiliates from and against
                 any and all claims, damages, losses, liabilities, costs, and expenses
                 (including reasonable attorneys&rsquo; fees) arising out of or in connection
@@ -246,7 +246,7 @@ export default function EndUserLicenseAgreement() {
                 11. Termination
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                This EULA is effective until terminated. TradeVerde may terminate this
+                This EULA is effective until terminated. VerdeTrades may terminate this
                 EULA at any time, with or without cause and with or without notice. You
                 may terminate this EULA at any time by uninstalling the Software and
                 deleting all copies from your devices.
@@ -286,7 +286,7 @@ export default function EndUserLicenseAgreement() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 This EULA shall be governed by and construed in accordance with the laws
-                of the jurisdiction in which the applicable TradeVerde entity is
+                of the jurisdiction in which the applicable VerdeTrades entity is
                 incorporated, without regard to its conflict of law provisions. Any
                 disputes arising out of or in connection with this EULA shall be submitted
                 to the exclusive jurisdiction of the courts in the relevant jurisdiction.
@@ -308,12 +308,12 @@ export default function EndUserLicenseAgreement() {
                 effect.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                This EULA constitutes the entire agreement between you and TradeVerde
+                This EULA constitutes the entire agreement between you and VerdeTrades
                 with respect to the Software and supersedes all prior or contemporaneous
                 communications, agreements, and understandings, whether oral or written,
-                between you and TradeVerde regarding the subject matter hereof. No
+                between you and VerdeTrades regarding the subject matter hereof. No
                 amendment or modification of this EULA shall be binding unless made in
-                writing and signed by an authorized representative of TradeVerde.
+                writing and signed by an authorized representative of VerdeTrades.
               </p>
             </section>
 
@@ -325,7 +325,7 @@ export default function EndUserLicenseAgreement() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 If you have any questions about this End User License Agreement, please
                 contact us at{" "}
-                <span className="text-green-600">support@TradeVerde.com</span>. Our team
+                <span className="text-green-600">support@VerdeTrades.com</span>. Our team
                 is available to assist you with any inquiries regarding your rights and
                 obligations under this agreement.
               </p>

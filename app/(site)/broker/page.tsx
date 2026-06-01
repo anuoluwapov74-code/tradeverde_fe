@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Broker Integrations — TradeVerde",
-  description: "TradeVerde integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
-  alternates: { canonical: "https://tradeverde.com/broker" },
+  title: "Broker Integrations — VerdeTrades",
+  description: "VerdeTrades integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
+  alternates: { canonical: "https://verdetrades.com/broker" },
   openGraph: {
-    title: "Broker Integrations — TradeVerde",
-    description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on TradeVerde.",
-    url: "https://tradeverde.com/broker",
+    title: "Broker Integrations — VerdeTrades",
+    description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on VerdeTrades.",
+    url: "https://verdetrades.com/broker",
   },
 };
 
@@ -32,7 +32,7 @@ export default function BrokerPartnership() {
             </h1>
             <p className="mt-6 text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto">
               You can be the first brokerage industry innovation. With
-              TradeVerde, alongside your Traders and restart your profits
+              VerdeTrades, alongside your Traders and restart your profits
               manifold.
             </p>
             <div className="mt-10">
@@ -352,7 +352,7 @@ export default function BrokerPartnership() {
             </h2>
             <p className="mt-5 text-gray-600 dark:text-gray-400 leading-relaxed">
               Join the leading brokers who have already partnered with
-              TradeVerde. Let&apos;s grow together.
+              VerdeTrades. Let&apos;s grow together.
             </p>
             <div className="mt-8">
               <Link
@@ -377,10 +377,10 @@ export default function BrokerPartnership() {
               hours.
             </p>
             <Link
-              href="mailto:partnerships@TradeVerde.com"
+              href="mailto:partnerships@VerdeTrades.com"
               className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium transition"
             >
-              support@TradeVerde.com
+              support@VerdeTrades.com
             </Link>
           </div>
         </section>

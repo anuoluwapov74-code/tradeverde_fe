@@ -129,7 +129,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="flex items-center justify-between p-5 border-b border-gray-200 dark:border-white/10">
             <Link href="/portfolio" className="flex items-center">
               <span className="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                Trade<span className="text-green-600 dark:text-green-400">Verde</span>
+                <span className="text-green-600 dark:text-green-400">Verde</span>Trades
               </span>
             </Link>
 

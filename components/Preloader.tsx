@@ -14,7 +14,7 @@ export default function Preloader() {
       {/* Logo */}
       <div className="mb-12">
         <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          Trade<span className="text-green-600 dark:text-green-400">Verde</span>
+          <span className="text-green-600 dark:text-green-400">Verde</span>Trades
         </span>
       </div>
 

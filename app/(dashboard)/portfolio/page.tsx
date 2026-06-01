@@ -239,7 +239,7 @@ export default function PortfolioPage() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-sm font-bold" style={{ color: p.darkText }}>TradeVerde</div>
+                  <div className="text-sm font-bold" style={{ color: p.darkText }}>VerdeTrades</div>
                   <div className="text-[11px] font-medium" style={{ color: p.mutedText }}>Copy Portfolio</div>
                 </div>
               </div>
