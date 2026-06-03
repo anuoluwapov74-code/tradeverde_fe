@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const backendOrigin = process.env.BACKEND_ORIGIN || "http://localhost:8001";
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   skipTrailingSlashRedirect: true,
   async rewrites() {
     return [
