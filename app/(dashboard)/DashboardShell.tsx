@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import Sidebar from "@/components/dashboard/Sidebar";
 import TopNav from "@/components/dashboard/TopNav";
 import { apiFetch } from "@/lib/api";
+import { BACKEND_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import Preloader from "@/components/Preloader";
 
@@ -63,6 +64,36 @@ export default function DashboardShell({ children }: DashboardShellProps) {
       cancelled = true;
     };
   }, [router]);
+
+  // Silent proactive token refresh — keeps the session alive without waiting for a 401.
+  // Fires every 6 hours and also whenever the user returns to a backgrounded tab.
+  useEffect(() => {
+    const silentRefresh = async () => {
+      try {
+        await fetch(`${BACKEND_URL}/token/refresh/`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+        });
+      } catch {
+        // Silent — apiFetch 401-retry is the fallback safety net
+      }
+    };
+
+    // Re-run refresh when the user brings the tab back into focus
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") silentRefresh();
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    // Also refresh on a 6-hour interval for long-running open tabs
+    const interval = setInterval(silentRefresh, 6 * 60 * 60 * 1000);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+      clearInterval(interval);
+    };
+  }, []);
 
   if (authState !== "authenticated") {
     return <Preloader />;
