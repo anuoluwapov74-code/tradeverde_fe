@@ -276,36 +276,35 @@ export default function PortfolioPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* ── Hero card ── */}
+          {/* ── Hero card — always dark regardless of theme ── */}
           <div
             className="overflow-hidden relative"
             style={{
               borderRadius: 28,
-              background: isDark ? "linear-gradient(135deg, #0a1512 0%, #0d1a15 60%, #111e1b 100%)" : p.heroBg,
-              boxShadow: p.cardShadow,
-              border: p.cardBorder,
+              background: "linear-gradient(135deg, #0a1512 0%, #0d1a15 60%, #111e1b 100%)",
+              border: dk.cardBorder,
             }}
           >
-            {/* Top-right spotlight — sits behind LIVE badge */}
-            {isDark && <div className="absolute pointer-events-none" style={{
+            {/* Top-right spotlight */}
+            <div className="absolute pointer-events-none" style={{
               top: -15, right: -15,
               width: 190, height: 150,
               background: "radial-gradient(ellipse at center, rgba(0,201,167,0.2) 0%, transparent 70%)",
               borderRadius: "50%",
-            }} />}
-            {/* Bottom-left spotlight — diagonal opposite */}
-            {isDark && <div className="absolute pointer-events-none" style={{
+            }} />
+            {/* Bottom-left spotlight */}
+            <div className="absolute pointer-events-none" style={{
               bottom: -15, left: -15,
               width: 160, height: 125,
               background: "radial-gradient(ellipse at center, rgba(0,201,167,0.1) 0%, transparent 70%)",
               borderRadius: "50%",
-            }} />}
+            }} />
             <div className="relative px-5 pt-5 pb-5">
               <div className="flex items-center justify-between mb-5">
                 <div className="flex flex-col gap-1">
                   <span className="text-[15px] font-bold leading-none">
                     <span style={{ color: "#00C9A7" }}>Verde</span>
-                    <span style={{ color: p.darkText }}>Trades</span>
+                    <span style={{ color: dk.darkText }}>Trades</span>
                   </span>
                   {isVerified && (
                     <div className="flex items-center gap-1 rounded-full px-2 py-0.5 w-fit" style={{ background: "rgba(0,201,167,0.15)" }}>
@@ -318,19 +317,19 @@ export default function PortfolioPage() {
                 </div>
                 <div
                   className="flex items-center gap-1.5 rounded-lg px-2.5 py-1"
-                  style={{ background: p.pillBg, border: `1px solid ${p.pillBorder}` }}
+                  style={{ background: dk.pillBg, border: `1px solid ${dk.pillBorder}` }}
                 >
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00C9A7] opacity-75" />
                     <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-[#00C9A7]" />
                   </span>
-                  <span className="text-[11px] font-semibold" style={{ color: p.accentDark }}>LIVE</span>
+                  <span className="text-[11px] font-semibold" style={{ color: dk.accentDark }}>LIVE</span>
                 </div>
               </div>
-              <p className="text-[11px] mb-1.5" style={{ color: p.mutedText }}>Total Balance</p>
+              <p className="text-[11px] mb-1.5" style={{ color: dk.mutedText }}>Total Balance</p>
               <p
                 className="text-[32px] sm:text-[38px] font-bold font-mono leading-none mb-3"
-                style={{ color: p.darkText, letterSpacing: "-0.5px" }}
+                style={{ color: dk.darkText, letterSpacing: "-0.5px" }}
               >
                 {fmt(balance)}
               </p>
@@ -338,15 +337,15 @@ export default function PortfolioPage() {
                 <span className="text-[13px] font-bold" style={{ color: isProfitPositive ? "#00C9A7" : "#ef4444" }}>
                   {isProfitPositive ? "↑" : "↓"} {fmt(Math.abs(totalProfits))}
                 </span>
-                <span className="text-[12px]" style={{ color: p.mutedText }}>
+                <span className="text-[12px]" style={{ color: dk.mutedText }}>
                   {isProfitPositive ? "+" : ""}{profitPercent.toFixed(2)}% today
                 </span>
                 <div
                   className="rounded-lg px-2.5 py-1 text-[11px] font-semibold ml-auto"
                   style={{
-                    background: isProfitPositive ? p.pillBg : "rgba(239,68,68,0.08)",
-                    border: isProfitPositive ? `1px solid ${p.pillBorder}` : "1px solid rgba(239,68,68,0.25)",
-                    color: isProfitPositive ? p.accentDark : "#ef4444",
+                    background: isProfitPositive ? dk.pillBg : "rgba(239,68,68,0.08)",
+                    border: isProfitPositive ? `1px solid ${dk.pillBorder}` : "1px solid rgba(239,68,68,0.25)",
+                    color: isProfitPositive ? dk.accentDark : "#ef4444",
                   }}
                 >
                   {isProfitPositive ? "+" : ""}{profitPercent.toFixed(2)}%
@@ -356,14 +355,14 @@ export default function PortfolioPage() {
               {/* Profit / Deposited row */}
               <div className="flex items-start gap-8 py-3 mb-1">
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-wider mb-0.5" style={{ color: p.mutedText }}>Profit</p>
+                  <p className="text-[9px] font-bold uppercase tracking-wider mb-0.5" style={{ color: dk.mutedText }}>Profit</p>
                   <p className="text-[13px] font-bold font-mono" style={{ color: isProfitPositive ? "#00C9A7" : "#ef4444" }}>
                     {fmt(totalProfits)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-wider mb-0.5" style={{ color: p.mutedText }}>Deposited</p>
-                  <p className="text-[13px] font-bold font-mono" style={{ color: p.darkText }}>
+                  <p className="text-[9px] font-bold uppercase tracking-wider mb-0.5" style={{ color: dk.mutedText }}>Deposited</p>
+                  <p className="text-[13px] font-bold font-mono" style={{ color: dk.darkText }}>
                     {fmt(totalDeposits)}
                   </p>
                 </div>

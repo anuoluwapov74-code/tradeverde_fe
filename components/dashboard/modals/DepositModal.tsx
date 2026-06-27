@@ -7,6 +7,7 @@ import {
   Loader2, CreditCard, ArrowLeft, ChevronDown, Wallet,
 } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { BACKEND_URL } from "@/lib/constants";
 import { AdminWallet } from "./types";
@@ -39,6 +40,7 @@ function CloseBtn({ onClick }: { onClick: () => void }) {
 }
 
 export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
+  const router = useRouter();
   const [step, setStep] = useState<DepositStep>("select");
   const [wallets, setWallets] = useState<AdminWallet[]>([]);
   const [loading, setLoading] = useState(true);
@@ -643,7 +645,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 Funds will be credited within 30 minutes to 24 hours after verification.
               </p>
               <button
-                onClick={handleClose}
+                onClick={() => { handleClose(); router.push("/transactions"); }}
                 className="w-full h-11 rounded-xl text-[13px] font-bold transition-opacity hover:opacity-90"
                 style={{ background: TEAL, color: "#001a0f" }}
               >

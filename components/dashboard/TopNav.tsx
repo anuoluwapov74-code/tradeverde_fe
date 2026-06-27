@@ -39,7 +39,8 @@ interface TopNavProps {
 
 export default function TopNav({ onMenuClick, user }: TopNavProps) {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showMore, setShowMore] = useState(false);
@@ -78,7 +79,13 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
   const isMoreActive = moreLinks.some((link) => pathname === link.href);
 
   return (
-    <header className="h-14 backdrop-blur-xl border-b sticky top-0 z-30" style={{ background: "rgba(11,26,18,0.97)", borderColor: "rgba(0,201,167,0.1)" }}>
+    <header
+      className="h-14 backdrop-blur-xl border-b sticky top-0 z-30"
+      style={isDark
+        ? { background: "rgba(11,26,18,0.97)", borderColor: "rgba(0,201,167,0.1)" }
+        : { background: "rgba(255,255,255,0.97)", borderColor: "rgba(0,0,0,0.08)" }
+      }
+    >
       <div className="h-full px-4 lg:px-6 flex items-center justify-between">
         {/* Left side - Logo + Nav */}
         <div className="flex items-center space-x-1 lg:space-x-6">
@@ -145,7 +152,11 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-1 w-48 rounded-xl shadow-xl overflow-hidden py-1" style={{ background: "#0d1a12", border: "1px solid rgba(0,201,167,0.14)" }}
+                    className="absolute top-full left-0 mt-1 w-48 rounded-xl shadow-xl overflow-hidden py-1"
+                    style={isDark
+                      ? { background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }
+                      : { background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }
+                    }
                   >
                     {moreLinks.map((link) => {
                       const isActive = pathname === link.href;

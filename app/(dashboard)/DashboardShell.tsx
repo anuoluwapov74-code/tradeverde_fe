@@ -8,6 +8,7 @@ import { apiFetch } from "@/lib/api";
 import { BACKEND_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import Preloader from "@/components/Preloader";
+import { useTheme } from "next-themes";
 
 export interface AuthUser {
   email: string;
@@ -30,6 +31,8 @@ export default function DashboardShell({ children }: DashboardShellProps) {
   >("loading");
   const [user, setUser] = useState<AuthUser | null>(null);
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   useEffect(() => {
     let cancelled = false;
@@ -100,7 +103,7 @@ export default function DashboardShell({ children }: DashboardShellProps) {
   }
 
   return (
-    <div className="dark min-h-screen dashboard-font" style={{ background: "#0b1a12" }}>
+    <div className="min-h-screen dashboard-font" style={isDark ? { background: "#0b1a12" } : undefined}>
       <div className="flex flex-col h-screen overflow-hidden">
         {/* Top Navigation */}
         <TopNav onMenuClick={() => setIsSidebarOpen(true)} user={user} />
