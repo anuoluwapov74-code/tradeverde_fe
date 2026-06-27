@@ -69,15 +69,14 @@ export default function TransactionHistoryModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl"
-          style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
+          className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-[#0b1a12] border border-gray-200 dark:border-[rgba(0,201,167,0.14)]"
         >
           <div className="p-6">
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                 Transaction History
               </h3>
-              <button onClick={onClose} className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <button onClick={onClose} className="text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-white transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -115,7 +114,7 @@ export default function TransactionHistoryModal({
                 {transactions.map((tx) => (
                   <div
                     key={tx.id}
-                    className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-xl p-4"
+                    className="bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/6 rounded-xl p-4"
                   >
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-2.5">

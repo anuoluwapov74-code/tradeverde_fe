@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,7 +7,6 @@ import {
   AlertCircle,
   Check,
   ChevronDown,
-  Info,
   Loader2,
   CheckCircle,
   Clock,
@@ -189,8 +188,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl"
-          style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
+          className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-[#0b1a12] border border-gray-200 dark:border-[rgba(0,201,167,0.14)]"
         >
           {/* ==================== FORM STEP ==================== */}
           {step === "form" && (
@@ -199,10 +197,9 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Withdrawal</h3>
                 <button
                   onClick={handleClose}
-                  className="w-7 h-7 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
-                  style={{ background: "rgba(255,255,255,0.08)" }}
+                  className="w-7 h-7 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity bg-gray-100 dark:bg-white/8"
                 >
-                  <X className="w-3.5 h-3.5 text-gray-400" />
+                  <X className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
                 </button>
               </div>
 
@@ -215,7 +212,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                   {/* Balance Display */}
                   <div className="flex gap-4">
                     <div className="flex-1">
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Main Balance</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Deposited</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">
                         {profile ? profile.formatted_balance : "$0.00"}
                       </p>
@@ -239,24 +236,28 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                     <div className="relative">
                       <button
                         onClick={() => setIsSourceDropdownOpen(!isSourceDropdownOpen)}
-                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-[rgba(255,255,255,0.05)] border ${
-                          isSourceDropdownOpen ? "border-[#00C9A7]" : "border-[rgba(255,255,255,0.1)]"
+                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-gray-50 dark:bg-white/5 border ${
+                          isSourceDropdownOpen
+                            ? "border-[#00C9A7]"
+                            : "border-gray-200 dark:border-white/10"
                         } text-gray-900 dark:text-white`}
                       >
-                        <span>{withdrawSource === "profit" ? "Profit" : "Main Balance"}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isSourceDropdownOpen ? "rotate-180" : ""}`} />
+                        <span>{withdrawSource === "profit" ? "Profit" : "Deposited"}</span>
+                        <ChevronDown className={`w-4 h-4 text-gray-400 dark:text-gray-500 transition-transform ${isSourceDropdownOpen ? "rotate-180" : ""}`} />
                       </button>
                       {isSourceDropdownOpen && (
-                        <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
+                        <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden bg-white dark:bg-[#0b1a12] border border-gray-200 dark:border-[rgba(0,201,167,0.14)]">
                           {(["balance", "profit"] as const).map((src) => (
                             <button
                               key={src}
                               onClick={() => { setWithdrawSource(src); setIsSourceDropdownOpen(false); setError(""); setAmount(""); }}
-                              className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-gray-100 dark:hover:bg-white/5 ${
-                                withdrawSource === src ? "text-green-700 dark:text-green-400 font-semibold" : "text-gray-900 dark:text-white"
+                              className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-gray-50 dark:hover:bg-white/5 ${
+                                withdrawSource === src
+                                  ? "text-green-700 dark:text-green-400 font-semibold"
+                                  : "text-gray-900 dark:text-white"
                               }`}
                             >
-                              {src === "profit" ? "Profit" : "Main Balance"}
+                              {src === "profit" ? "Profit" : "Deposited"}
                               {profile && (
                                 <span className="ml-2 text-xs text-gray-500">
                                   ({src === "profit" ? profile.formatted_profit : profile.formatted_balance})
@@ -277,16 +278,16 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                     <div className="relative">
                       <button
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-[rgba(255,255,255,0.05)] border ${
-                          isDropdownOpen ? "border-[#00C9A7]" : "border-[rgba(255,255,255,0.1)]"
-                        } ${selectedMethod ? "text-gray-900 dark:text-white" : "text-gray-500"}`}
+                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-gray-50 dark:bg-white/5 border ${
+                          isDropdownOpen ? "border-[#00C9A7]" : "border-gray-200 dark:border-white/10"
+                        } ${selectedMethod ? "text-gray-900 dark:text-white" : "text-gray-400 dark:text-gray-500"}`}
                       >
                         <span>{selectedMethod ? getDisplayName(selectedMethod) : "Select method"}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
+                        <ChevronDown className={`w-4 h-4 text-gray-400 dark:text-gray-500 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
                       </button>
 
                       {isDropdownOpen && (
-                        <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
+                        <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden bg-white dark:bg-[#0b1a12] border border-gray-200 dark:border-[rgba(0,201,167,0.14)]">
                           <div className="px-3 py-2 text-xs font-semibold" style={{ background: "#00C9A7", color: "#001a0f" }}>Select method</div>
                           <div className="max-h-48 overflow-y-auto">
                             {methods.length === 0 ? (
@@ -298,7 +299,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                                 <button
                                   key={method.id}
                                   onClick={() => handleMethodSelect(method.method_type)}
-                                  className="w-full px-3 py-2.5 text-left text-sm text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                                  className="w-full px-3 py-2.5 text-left text-sm text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                                 >
                                   {method.display_name}
                                 </button>
@@ -333,7 +334,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                       placeholder="0.00"
                       min="0"
                       step="0.01"
-                      className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00C9A7] transition-all"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-[#00C9A7] transition-all"
                     />
                     {profile && amount && parseFloat(amount) > parseFloat(withdrawSource === "profit" ? profile.profit : profile.balance) && (
                       <p className="mt-1.5 text-xs text-red-400">
@@ -352,7 +353,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                         type="text"
                         value={withdrawalAddress}
                         readOnly
-                        className="w-full px-4 py-3 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-lg text-gray-500 focus:outline-none cursor-not-allowed opacity-75"
+                        className="w-full px-4 py-3 bg-gray-100 dark:bg-white/3 border border-gray-200 dark:border-white/6 rounded-lg text-gray-500 focus:outline-none cursor-not-allowed opacity-75"
                       />
                       <p className="mt-1 text-[10px] text-gray-500">
                         Saved address for {getDisplayName(selectedMethod)}. Update in settings.
@@ -408,7 +409,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                       </h4>
                       <div className="space-y-2">
                         {transactions.map((tx) => (
-                          <div key={tx.id} className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-lg p-3">
+                          <div key={tx.id} className="bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/6 rounded-lg p-3">
                             <div className="flex justify-between items-start mb-1">
                               <p className="text-xs font-medium text-gray-700 dark:text-gray-300">{tx.reference}</p>
                               <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${getStatusColor(tx.status)}`}>
@@ -447,7 +448,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500 dark:text-gray-400">Source:</span>
-                  <span className="text-gray-900 dark:text-white font-semibold">{withdrawSource === "profit" ? "Profit" : "Main Balance"}</span>
+                  <span className="text-gray-900 dark:text-white font-semibold">{withdrawSource === "profit" ? "Profit" : "Deposited"}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500 dark:text-gray-400">Method:</span>

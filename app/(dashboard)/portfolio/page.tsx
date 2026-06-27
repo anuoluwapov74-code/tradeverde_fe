@@ -26,6 +26,7 @@ interface DashboardData {
   isVerified: boolean;
   firstName: string;
   target: number;
+  showPortfolioGrowth: boolean;
 }
 
 // ── Light palette ──
@@ -85,6 +86,7 @@ export default function PortfolioPage() {
     isVerified: false,
     firstName: "",
     target: 50000,
+    showPortfolioGrowth: false,
   });
 
   const [isLoading, setIsLoading] = useState(true);
@@ -119,7 +121,8 @@ export default function PortfolioPage() {
           totalProfits: parseFloat(user.profit) || 0,
           isVerified: user.is_verified || false,
           firstName: user.first_name || "",
-          target: parseFloat(user.target) || 50000,
+          target: user.target != null ? parseFloat(user.target) : 50000,
+          showPortfolioGrowth: user.show_portfolio_growth || false,
         }));
       }
 
@@ -165,18 +168,26 @@ export default function PortfolioPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { balance, totalDeposits, totalWithdrawals, totalProfits, isVerified, firstName, target } =
+  const { balance, totalDeposits, totalWithdrawals, totalProfits, isVerified, firstName, target, showPortfolioGrowth } =
     dashboardData;
 
   void totalWithdrawals;
 
   // Progress bar: how far completed deposits are toward the admin-set target
   const progressWidth = target > 0 ? Math.min((totalDeposits / target) * 100, 100) : 0;
+  const totalBalance = balance + totalProfits;
   const isProfitPositive = totalProfits >= 0;
-  const profitPercent = totalDeposits > 0 ? (totalProfits / totalDeposits) * 100 : 0;
+  const profitPercent = balance > 0 ? (totalProfits / balance) * 100 : 0;
 
   const fmt = (n: number) =>
     "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const fmtCompact = (n: number) => {
+    if (n >= 1_000_000_000) return "$" + (n / 1_000_000_000).toFixed(n % 1_000_000_000 === 0 ? 0 : 1) + "B";
+    if (n >= 1_000_000) return "$" + (n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + "M";
+    if (n >= 1_000) return "$" + (n / 1_000).toFixed(n % 1_000 === 0 ? 0 : 1) + "k";
+    return "$" + n.toFixed(0);
+  };
 
   const handleDepositClose = () => { setShowDeposit(false); fetchDashboardData(true); };
   const handleWithdrawClose = () => { setShowWithdraw(false); fetchDashboardData(true); };
@@ -331,7 +342,7 @@ export default function PortfolioPage() {
                 className="text-[32px] sm:text-[38px] font-bold font-mono leading-none mb-3"
                 style={{ color: dk.darkText, letterSpacing: "-0.5px" }}
               >
-                {fmt(balance)}
+                {fmt(totalBalance)}
               </p>
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[13px] font-bold" style={{ color: isProfitPositive ? "#00C9A7" : "#ef4444" }}>
@@ -340,16 +351,6 @@ export default function PortfolioPage() {
                 <span className="text-[12px]" style={{ color: dk.mutedText }}>
                   {isProfitPositive ? "+" : ""}{profitPercent.toFixed(2)}% today
                 </span>
-                <div
-                  className="rounded-lg px-2.5 py-1 text-[11px] font-semibold ml-auto"
-                  style={{
-                    background: isProfitPositive ? dk.pillBg : "rgba(239,68,68,0.08)",
-                    border: isProfitPositive ? `1px solid ${dk.pillBorder}` : "1px solid rgba(239,68,68,0.25)",
-                    color: isProfitPositive ? dk.accentDark : "#ef4444",
-                  }}
-                >
-                  {isProfitPositive ? "+" : ""}{profitPercent.toFixed(2)}%
-                </div>
               </div>
 
               {/* Profit / Deposited row */}
@@ -363,7 +364,7 @@ export default function PortfolioPage() {
                 <div>
                   <p className="text-[9px] font-bold uppercase tracking-wider mb-0.5" style={{ color: dk.mutedText }}>Deposited</p>
                   <p className="text-[13px] font-bold font-mono" style={{ color: dk.darkText }}>
-                    {fmt(totalDeposits)}
+                    {fmt(balance)}
                   </p>
                 </div>
               </div>
@@ -375,7 +376,20 @@ export default function PortfolioPage() {
                 Fill gradient runs from curve end-point (288,7) diagonally toward
                 lower-left (80,59), mimicking light that follows the curve's slope.
               */}
-              <div className="-mx-5" style={{ height: 60 }}>
+              <div className="-mx-5 relative" style={{ height: 60 }}>
+                {/* Pill floated to top-right, flush with the curve's peak */}
+                <div className="absolute inset-0 -top-[17px] flex items-start justify-end px-5 z-10 pointer-events-none">
+                  <div
+                    className="pointer-events-auto rounded-lg px-2 py-0.5 text-[11px] font-semibold"
+                    style={{
+                      background: isProfitPositive ? dk.pillBg : "rgba(239,68,68,0.08)",
+                      border: isProfitPositive ? `1px solid ${dk.pillBorder}` : "1px solid rgba(239,68,68,0.25)",
+                      color: isProfitPositive ? dk.accentDark : "#ef4444",
+                    }}
+                  >
+                    {isProfitPositive ? "+" : ""}{profitPercent.toFixed(2)}%
+                  </div>
+                </div>
                 <svg
                   viewBox="-20 -5 328 64"
                   preserveAspectRatio="none"
@@ -492,6 +506,7 @@ export default function PortfolioPage() {
 
         {/* ── Right column ── */}
         <div className="flex flex-col gap-4">
+          {showPortfolioGrowth && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -500,8 +515,8 @@ export default function PortfolioPage() {
             style={{ background: "transparent" }}
           >
             <div className="flex justify-between items-center mb-2">
-              <span className="text-[12px] font-semibold" style={{ color: p.mutedText }}>Portfolio Growth</span>
-              <span className="text-[12px] font-bold" style={{ color: p.accentDark }}>{fmt(target)} target</span>
+              <span className="text-[9px] font-semibold" style={{ color: p.mutedText }}>Portfolio Growth</span>
+              <span className="text-[9px] font-bold" style={{ color: p.accentDark }}>{fmtCompact(target)} target</span>
             </div>
             <div className="h-1.5 rounded-full overflow-hidden" style={{ background: isDark ? "rgba(39,174,96,0.12)" : "rgba(5,150,105,0.1)" }}>
               <motion.div
@@ -512,10 +527,8 @@ export default function PortfolioPage() {
                 style={{ background: "linear-gradient(90deg, #059669, #34d399)" }}
               />
             </div>
-            <div className="mt-1 text-[10px]" style={{ color: p.fadedText }}>
-              {fmt(totalDeposits)} deposited of {fmt(target)}
-            </div>
           </motion.div>
+          )}
           <LiveTradingCard />
           <PortfolioBreakdownCard
             balance={dashboardData.balance}

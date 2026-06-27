@@ -70,14 +70,19 @@ export default function TransactionHistoryPage() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+            className={`flex-1 sm:flex-none px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors text-center ${
               filter !== f
                 ? "bg-white/90 dark:bg-[#0d3320]/80 border border-gray-200/50 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5"
                 : ""
             }`}
             style={filter === f ? { background: "#00C9A7", color: "#001a0f" } : undefined}
           >
-            {f === "all" ? "All Transactions" : f === "deposit" ? "Deposits" : "Withdrawals"}
+            <span className="sm:hidden">
+              {f === "all" ? "All" : f === "deposit" ? "Deposits" : "Withdrawals"}
+            </span>
+            <span className="hidden sm:inline">
+              {f === "all" ? "All Transactions" : f === "deposit" ? "Deposits" : "Withdrawals"}
+            </span>
           </button>
         ))}
       </motion.div>
@@ -106,13 +111,12 @@ export default function TransactionHistoryPage() {
             {transactions.map((tx) => (
               <div
                 key={tx.id}
-                className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
+                className="flex items-start sm:items-center justify-between p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-white/2 transition-colors gap-3"
               >
-                <div className="flex items-center gap-3">
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center ${
-                    tx.transaction_type === "deposit"
-                      ? "bg-green-500/15"
-                      : "bg-red-500/15"
+                {/* Left: icon + details */}
+                <div className="flex items-start sm:items-center gap-2 sm:gap-3 min-w-0">
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 ${
+                    tx.transaction_type === "deposit" ? "bg-green-500/15" : "bg-red-500/15"
                   }`}>
                     {tx.transaction_type === "deposit" ? (
                       <ArrowDownRight className="w-4 h-4 text-green-400" />
@@ -120,31 +124,36 @@ export default function TransactionHistoryPage() {
                       <ArrowUpRight className="w-4 h-4 text-red-400" />
                     )}
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate">
                       {tx.transaction_type_display}
                     </p>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <p className="text-[10px] text-gray-500 font-mono">{tx.reference}</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <p className="text-[10px] text-gray-500 font-mono truncate max-w-22.5 sm:max-w-none">{tx.reference}</p>
                       {tx.currency && (
-                        <span className="text-[9px] px-1.5 py-0.5 bg-gray-200 dark:bg-white/5 rounded text-gray-600 dark:text-gray-400">
+                        <span className="text-[9px] px-1.5 py-0.5 bg-gray-200 dark:bg-white/5 rounded text-gray-600 dark:text-gray-400 shrink-0">
                           {tx.currency}
                         </span>
                       )}
                     </div>
+                    {/* Date shown inline on mobile, below reference */}
+                    <p className="text-[10px] text-gray-400 mt-0.5 sm:hidden">{formatDate(tx.created_at)}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <p className="text-[10px] text-gray-500 hidden sm:block">{formatDate(tx.created_at)}</p>
-                  <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${getStatusColor(tx.status)}`}>
-                    {tx.status_display}
-                  </span>
-                  <p className={`text-sm font-bold min-w-[80px] text-right ${
+                {/* Right: status + amount stacked on mobile */}
+                <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-4 shrink-0">
+                  <p className={`text-xs sm:text-sm font-bold whitespace-nowrap ${
                     tx.transaction_type === "deposit" ? "text-green-500 dark:text-green-400" : "text-red-500 dark:text-red-400"
                   }`}>
                     {tx.transaction_type === "deposit" ? "+" : "-"}${parseFloat(tx.amount).toFixed(2)}
                   </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[10px] text-gray-500 hidden sm:block whitespace-nowrap">{formatDate(tx.created_at)}</p>
+                    <span className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] font-medium whitespace-nowrap ${getStatusColor(tx.status)}`}>
+                      {tx.status_display}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}

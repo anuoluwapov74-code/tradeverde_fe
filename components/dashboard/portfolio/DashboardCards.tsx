@@ -9,7 +9,7 @@ export function LiveTradingCard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="w-full rounded-2xl p-3 tv-card"
+      className="w-full rounded-2xl p-3 tv-card flex justify-center"
     >
       <motion.a
         href="/live-trading"

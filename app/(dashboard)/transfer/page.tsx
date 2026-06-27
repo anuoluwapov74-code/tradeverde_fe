@@ -19,8 +19,8 @@ export default function TransferPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
-  const fromLabel = direction === "balance_to_profit" ? "Balance" : "Profit";
-  const toLabel = direction === "balance_to_profit" ? "Profit" : "Balance";
+  const fromLabel = direction === "balance_to_profit" ? "Deposited" : "Profit";
+  const toLabel = direction === "balance_to_profit" ? "Profit" : "Deposited";
   const fromValue = direction === "balance_to_profit" ? balance : profit;
   const toValue = direction === "balance_to_profit" ? profit : balance;
 
