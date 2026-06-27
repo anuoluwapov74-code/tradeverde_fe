@@ -43,10 +43,11 @@ export default function UserProfileMenu({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10, scale: 0.95 }}
         transition={{ duration: 0.2 }}
-        className="absolute right-0 mt-2 w-64 bg-white/95 dark:bg-[#0d3320]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200/50 dark:border-white/10 overflow-hidden z-50"
+        className="absolute right-0 mt-2 w-64 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden z-50"
+        style={{ background: "rgba(13,26,18,0.97)", border: "1px solid rgba(0,201,167,0.14)" }}
       >
         {/* User Info */}
-        <div className="px-4 py-4 border-b border-gray-100 dark:border-white/5">
+        <div className="px-4 py-4 border-b border-[rgba(0,201,167,0.1)]">
           <div className="flex items-center space-x-3 mb-3">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center text-white font-semibold text-xs">
               {user
@@ -79,7 +80,7 @@ export default function UserProfileMenu({
             onClick={() => {
               router.push("/");
             }}
-            className="w-full px-4 py-2.5 flex items-center space-x-2.5 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+            className="w-full px-4 py-2.5 flex items-center space-x-2.5 text-gray-700 dark:text-gray-300 hover:bg-[rgba(0,201,167,0.04)] transition-colors"
           >
             <Info className="w-3.5 h-3.5" />
             <span className="text-xs font-medium">About VerdeTrades</span>

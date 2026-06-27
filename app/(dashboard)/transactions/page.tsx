@@ -71,10 +71,11 @@ export default function TransactionHistoryPage() {
             key={f}
             onClick={() => setFilter(f)}
             className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
-              filter === f
-                ? "bg-green-600 text-white shadow-sm"
-                : "bg-white/90 dark:bg-[#0d3320]/80 border border-gray-200/50 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5"
+              filter !== f
+                ? "bg-white/90 dark:bg-[#0d3320]/80 border border-gray-200/50 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5"
+                : ""
             }`}
+            style={filter === f ? { background: "#00C9A7", color: "#001a0f" } : undefined}
           >
             {f === "all" ? "All Transactions" : f === "deposit" ? "Deposits" : "Withdrawals"}
           </button>
@@ -86,7 +87,7 @@ export default function TransactionHistoryPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="bg-white/90 dark:bg-[#0d3320]/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl shadow-sm overflow-hidden"
+        className="tv-card backdrop-blur-xl rounded-2xl overflow-hidden"
       >
         {loading ? (
           <div className="flex items-center justify-center py-16">

@@ -100,7 +100,7 @@ export default function DashboardShell({ children }: DashboardShellProps) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="dark min-h-screen dashboard-font" style={{ background: "#0b1a12" }}>
       <div className="flex flex-col h-screen overflow-hidden">
         {/* Top Navigation */}
         <TopNav onMenuClick={() => setIsSidebarOpen(true)} user={user} />

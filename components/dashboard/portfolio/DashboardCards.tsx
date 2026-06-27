@@ -9,19 +9,20 @@ export function LiveTradingCard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
+      className="w-full rounded-2xl p-3"
     >
       <motion.a
         href="/live-trading"
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
-        className="w-full flex items-center justify-center gap-2.5 py-3 px-4 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 border border-gray-200/60 dark:border-white/10 rounded-2xl transition-all shadow-sm"
+        className="inline-flex items-center gap-2.5 py-2.5 px-4 rounded-xl transition-all bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/40"
       >
         <span className="relative flex h-2.5 w-2.5 shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
           <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
         </span>
-        <BarChart2 className="w-4 h-4 text-gray-700 dark:text-white" />
-        <span className="text-sm font-semibold text-gray-800 dark:text-white">
+        <BarChart2 className="w-4 h-4 text-red-400" />
+        <span className="text-sm font-semibold text-white">
           Go to Live Trading
         </span>
       </motion.a>
@@ -88,19 +89,18 @@ export function PortfolioBreakdownCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="rounded-2xl bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-emerald-900/30 shadow-sm overflow-hidden"
+      className="rounded-2xl tv-card shadow-sm overflow-hidden"
     >
       {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-100 dark:border-emerald-900/20">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-          Portfolio Breakdown
-        </span>
+      <div className="px-4 py-3 border-b border-[rgba(0,201,167,0.1)] flex items-center gap-2">
+        <Layers className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+        <h3 className="text-xs font-semibold text-gray-900 dark:text-white">Portfolio Breakdown</h3>
       </div>
 
       {/* Rows + Bar chart side by side */}
       <div className="flex items-end gap-3 px-4 py-3">
         {/* Rows */}
-        <div className="flex-1 space-y-0 divide-y divide-gray-50 dark:divide-emerald-900/20">
+        <div className="flex-1 space-y-0 divide-y divide-[rgba(255,255,255,0.06)]">
           {rows.map((row) => {
             const Icon = row.icon;
             return (

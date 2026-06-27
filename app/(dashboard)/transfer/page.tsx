@@ -131,7 +131,7 @@ export default function TransferPage() {
         <label className="text-xs text-gray-500 dark:text-gray-400 mb-1.5 block">
           From
         </label>
-        <div className="flex items-center justify-between px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/8">
+        <div className="flex items-center justify-between px-4 py-3.5 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)]">
           <span className="text-sm font-medium text-gray-900 dark:text-white">
             {fromLabel} Account
           </span>
@@ -145,7 +145,7 @@ export default function TransferPage() {
       <div className="flex justify-center -my-2 relative z-10">
         <button
           onClick={handleSwap}
-          className="w-10 h-10 rounded-full bg-white dark:bg-[#0d3320] border-2 border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-green-500 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-600/10 transition-all shadow-sm"
+          className="w-10 h-10 rounded-full tv-card border-2 flex items-center justify-center hover:border-[#00C9A7] hover:bg-[rgba(0,201,167,0.08)] transition-all shadow-sm"
         >
           <ArrowDownUp className="w-4 h-4 text-gray-600 dark:text-gray-300" />
         </button>
@@ -156,7 +156,7 @@ export default function TransferPage() {
         <label className="text-xs text-gray-500 dark:text-gray-400 mb-1.5 block">
           To
         </label>
-        <div className="flex items-center justify-between px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/8">
+        <div className="flex items-center justify-between px-4 py-3.5 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)]">
           <span className="text-sm font-medium text-gray-900 dark:text-white">
             {toLabel} Account
           </span>
@@ -171,7 +171,7 @@ export default function TransferPage() {
         <label className="text-xs text-gray-500 dark:text-gray-400 mb-1.5 block">
           Amount
         </label>
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/8 focus-within:border-green-600 dark:focus-within:border-green-600 transition-colors">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] focus-within:border-green-600 dark:focus-within:border-green-600 transition-colors">
           <input
             type="number"
             inputMode="decimal"
@@ -216,7 +216,7 @@ export default function TransferPage() {
       <button
         onClick={handleConfirm}
         disabled={submitting || !amount || parseFloat(amount) <= 0}
-        className="w-full py-3.5 rounded-xl bg-green-700 hover:bg-green-800 disabled:bg-gray-300 dark:disabled:bg-white/10 disabled:cursor-not-allowed text-white text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+        className="w-full py-3.5 rounded-xl bg-[#00C9A7] hover:opacity-90 disabled:bg-gray-300 dark:disabled:bg-white/10 disabled:cursor-not-allowed text-[#001a0f] text-sm font-semibold transition-colors flex items-center justify-center gap-2"
       >
         {submitting ? (
           <Loader2 className="w-4 h-4 animate-spin" />

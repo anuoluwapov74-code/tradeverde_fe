@@ -219,7 +219,7 @@ export default function ReferralPage() {
               fetchReferralData();
               fetchReferrals();
             }}
-            className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all"
+            className="w-full px-4 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-medium transition-all"
           >
             Try Again
           </button>
@@ -290,7 +290,7 @@ export default function ReferralPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-8"
+          className="tv-card rounded-xl sm:rounded-2xl p-5 sm:p-8"
         >
           <div className="flex items-center gap-3 mb-6">
             <Share2 className="w-6 h-6 text-green-600" />
@@ -301,14 +301,14 @@ export default function ReferralPage() {
 
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row gap-3">
-              <div className="flex-1 bg-gray-50 dark:bg-[#071a0e] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 overflow-x-auto">
+              <div className="flex-1 tv-inner border border-[rgba(255,255,255,0.06)] rounded-lg px-4 py-3 overflow-x-auto">
                 <p className="text-sm text-gray-700 dark:text-gray-300 font-mono whitespace-nowrap">
                   {referralData?.referral_link || ""}
                 </p>
               </div>
               <button
                 onClick={handleCopyLink}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all shadow-sm whitespace-nowrap"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-medium transition-all shadow-sm whitespace-nowrap"
               >
                 {copied ? (
                   <>
@@ -346,7 +346,7 @@ export default function ReferralPage() {
                 <button
                   onClick={generateReferralCode}
                   disabled={generating}
-                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm flex items-center gap-2 whitespace-nowrap"
+                  className="px-4 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm flex items-center gap-2 whitespace-nowrap"
                 >
                   {generating ? (
                     <>
@@ -387,7 +387,7 @@ export default function ReferralPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-8"
+          className="tv-card rounded-xl sm:rounded-2xl p-5 sm:p-8"
         >
           <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-6">
             Complete tasks & earn!!!
@@ -400,7 +400,7 @@ export default function ReferralPage() {
 
           <div className="space-y-4">
             {/* Task 1: Refer a Friend */}
-            <div className="bg-gray-50 dark:bg-[#071a0e] border border-gray-200 dark:border-white/10 rounded-xl p-4 sm:p-6">
+            <div className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-xl p-4 sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-green-100 dark:bg-green-500/20 rounded-full flex-shrink-0">
                   <Users className="w-6 h-6 text-green-700 dark:text-green-400" />
@@ -416,7 +416,7 @@ export default function ReferralPage() {
                   </p>
                   <button
                     onClick={handleShareClick}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg text-sm font-medium transition-all"
                   >
                     <Share2 className="w-4 h-4" />
                     Share Link
@@ -426,7 +426,7 @@ export default function ReferralPage() {
             </div>
 
             {/* Task 2: First Deposit Bonus */}
-            <div className="bg-gray-50 dark:bg-[#071a0e] border border-gray-200 dark:border-white/10 rounded-xl p-4 sm:p-6">
+            <div className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-xl p-4 sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-green-100 dark:bg-green-500/20 rounded-full flex-shrink-0">
                   <DollarSign className="w-6 h-6 text-green-700 dark:text-green-400" />
@@ -442,7 +442,7 @@ export default function ReferralPage() {
 
                   <button
                     onClick={() => setShowDeposit(true)}
-                    className="inline-flex items-center mt-3 gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-all"
+                    className="inline-flex items-center mt-3 gap-2 px-4 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg text-sm font-medium transition-all"
                   >
                     <DownloadCloud className="w-4 h-4" />
                     Deposit
@@ -458,7 +458,7 @@ export default function ReferralPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-8"
+          className="tv-card rounded-xl sm:rounded-2xl p-5 sm:p-8"
         >
           <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-6">
             Your Referrals ({referrals.length})
@@ -542,7 +542,7 @@ export default function ReferralPage() {
                 {referrals.map((referral) => (
                   <div
                     key={referral.id}
-                    className="bg-gray-50 dark:bg-[#071a0e] border border-gray-200 dark:border-white/10 rounded-xl p-4 space-y-3"
+                    className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-xl p-4 space-y-3"
                   >
                     <div className="flex justify-between items-start">
                       <div>
@@ -607,7 +607,7 @@ export default function ReferralPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white dark:bg-[#0d3320] rounded-2xl shadow-2xl max-w-lg w-full p-6 sm:p-8 relative border border-gray-200 dark:border-white/10"
+            className="tv-card rounded-2xl shadow-2xl max-w-lg w-full p-6 sm:p-8 relative"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -641,11 +641,11 @@ export default function ReferralPage() {
                     type="text"
                     value={referralData?.referral_link || ""}
                     readOnly
-                    className="flex-1 px-4 py-3 bg-gray-50 dark:bg-[#071a0e] border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-700 dark:text-gray-300 font-mono focus:outline-none focus:ring-2 focus:ring-green-600"
+                    className="flex-1 px-4 py-3 tv-inner border border-[rgba(255,255,255,0.06)] rounded-lg text-sm text-gray-300 font-mono focus:outline-none focus:ring-2 focus:ring-[#00C9A7]"
                   />
                   <button
                     onClick={handleModalCopy}
-                    className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all shadow-sm flex items-center justify-center gap-2 whitespace-nowrap"
+                    className="px-6 py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-medium transition-all shadow-sm flex items-center justify-center gap-2 whitespace-nowrap"
                   >
                     {modalCopied ? (
                       <>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart2, Users, TrendingUp, TrendingDown, ChevronDown, ChevronUp } from "lucide-react";
+import { BarChart2, Users, TrendingUp, TrendingDown, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/api";
@@ -35,7 +35,11 @@ interface FollowingTrader {
   started_copying_at: string;
 }
 
-// Shared accordion wrapper used by both sections on mobile
+const CHIP = {
+  background: "rgba(0,201,167,0.1)",
+  border: "1px solid rgba(0,201,167,0.2)",
+};
+
 function AccordionSection({
   title,
   icon: Icon,
@@ -50,21 +54,35 @@ function AccordionSection({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="rounded-lg bg-white/80 dark:bg-[#0d3320]/40 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-sm h-full overflow-hidden">
-      {/* Header — always visible, clickable on mobile */}
+    <div
+      className="rounded-xl tv-card h-full overflow-hidden"
+    >
+      {/* Header */}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-5 py-3.5 border-b border-gray-100 dark:border-white/5 lg:cursor-default"
+        className="w-full flex items-center justify-between px-4 py-4 border-b border-[rgba(0,201,167,0.1)] lg:cursor-default"
       >
-        <div className="flex items-center gap-2">
-          <Icon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-          <h3 className="text-xs font-semibold text-gray-900 dark:text-white">{title}</h3>
+        <div className="flex items-center gap-3">
+          {/* Icon chip */}
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+            style={CHIP}
+          >
+            <Icon className="w-[15px] h-[15px] text-[#00C9A7]" />
+          </div>
+          <h3 className="text-[14px] font-semibold text-gray-900 dark:text-white">{title}</h3>
         </div>
-        {/* Chevron only visible on mobile */}
-        <span className="lg:hidden text-gray-400 dark:text-gray-500">
-          {open ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-        </span>
+
+        {/* Chevron chip — always visible; rotates on mobile when open */}
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+          style={CHIP}
+        >
+          <ChevronDown
+            className={`w-4 h-4 text-[#00C9A7] transition-transform lg:!rotate-0 ${open ? "rotate-180" : ""}`}
+          />
+        </div>
       </button>
 
       {/* Body: always open on lg+, accordion on mobile */}
@@ -87,13 +105,47 @@ function AccordionSection({
   );
 }
 
+/* ── Empty state shared component ── */
+function EmptyState({
+  icon: Icon,
+  title,
+  subtitle,
+}: {
+  icon: React.ElementType;
+  title: string;
+  subtitle: string;
+}) {
+  return (
+    <div className="flex flex-col items-center justify-center py-12 px-5 text-center">
+      <div
+        className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-5"
+        style={{ background: "rgba(0,201,167,0.08)" }}
+      >
+        <Icon className="w-8 h-8 text-[#00C9A7] opacity-70" />
+      </div>
+      <h4 className="text-[15px] font-bold text-gray-900 dark:text-white mb-2">{title}</h4>
+      <p className="text-[12px] text-gray-400 dark:text-[rgba(255,255,255,0.4)] max-w-[200px] mb-6 leading-relaxed">
+        {subtitle}
+      </p>
+      <Link href="/explore-traders">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          className="h-11 px-8 rounded-lg text-[13px] font-bold text-[#001011]"
+          style={{ background: "#00C9A7" }}
+        >
+          Explore Traders
+        </motion.button>
+      </Link>
+    </div>
+  );
+}
+
 export function TradeCopiedSection() {
   const [trades, setTrades] = useState<CopiedTrade[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchCopiedTrades();
-  }, []);
+  useEffect(() => { fetchCopiedTrades(); }, []);
 
   const fetchCopiedTrades = async () => {
     try {
@@ -109,48 +161,35 @@ export function TradeCopiedSection() {
     }
   };
 
-  const isEmpty = !loading && trades.length === 0;
-
   const body = loading ? (
     <div className="flex items-center justify-center py-10">
-      <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-[#00C9A7] border-t-transparent rounded-full animate-spin" />
     </div>
-  ) : isEmpty ? (
-    <div className="flex flex-col items-center justify-center py-10 px-5">
-      <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center mb-3">
-        <BarChart2 className="w-6 h-6 text-gray-400 dark:text-gray-500" />
-      </div>
-      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">No trades yet</h4>
-      <p className="text-[10px] text-gray-400 dark:text-gray-500 text-center max-w-xs mb-5">
-        Start copying expert traders to see your trades here
-      </p>
-      <Link href="/explore-traders">
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition-colors"
-        >
-          Explore Traders
-        </motion.button>
-      </Link>
-    </div>
+  ) : trades.length === 0 ? (
+    <EmptyState
+      icon={BarChart2}
+      title="No trades yet"
+      subtitle="Start copying expert traders to see your trades here"
+    />
   ) : (
-    <div className="overflow-x-auto max-h-100 overflow-y-auto">
-      <table className="w-full text-xs min-w-140">
-        <thead className="sticky top-0 bg-white/95 dark:bg-[#0d3320]/95 backdrop-blur-sm">
-          <tr className="border-b border-gray-100 dark:border-white/5">
-            <th className="px-5 py-2.5 text-left text-[10px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">Asset</th>
-            <th className="px-3 py-2.5 text-left text-[10px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">Type</th>
-            <th className="px-3 py-2.5 text-left text-[10px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">Direction</th>
-            <th className="px-3 py-2.5 text-left text-[10px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">Price</th>
-            <th className="px-3 py-2.5 text-left text-[10px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">PNL</th>
-            <th className="px-3 py-2.5 text-left text-[10px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">Status</th>
+    <div className="overflow-x-auto max-h-[400px] overflow-y-auto">
+      <table className="w-full text-xs min-w-[560px]">
+        <thead className="sticky top-0 dark:bg-[#0a1512] backdrop-blur-sm">
+          <tr className="border-b border-gray-100 dark:border-[rgba(0,201,167,0.1)]">
+            {["Asset", "Type", "Direction", "Price", "PNL", "Status"].map((h) => (
+              <th
+                key={h}
+                className="px-5 py-3 text-left text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-[rgba(0,201,167,0.55)]"
+              >
+                {h}
+              </th>
+            ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-50 dark:divide-white/5">
+        <tbody className="divide-y divide-gray-50 dark:divide-[rgba(255,255,255,0.04)]">
           {trades.map((trade) => (
-            <tr key={trade.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors">
-              <td className="px-5 py-2.5 whitespace-nowrap">
+            <tr key={trade.id} className="hover:bg-gray-50/50 dark:hover:bg-white/[0.03] transition-colors">
+              <td className="px-5 py-3 whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   {(trade.custom_image_url ?? trade.market_logo_url) && (
                     <Image
@@ -165,8 +204,8 @@ export function TradeCopiedSection() {
                   <span className="font-medium text-gray-900 dark:text-white">{trade.market_name}</span>
                 </div>
               </td>
-              <td className="px-3 py-2.5 text-gray-600 dark:text-gray-400 whitespace-nowrap">{trade.market}</td>
-              <td className="px-3 py-2.5 whitespace-nowrap">
+              <td className="px-5 py-3 text-gray-600 dark:text-[rgba(255,255,255,0.5)] whitespace-nowrap">{trade.market}</td>
+              <td className="px-5 py-3 whitespace-nowrap">
                 <span
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium ${
                     trade.direction === "buy"
@@ -178,16 +217,16 @@ export function TradeCopiedSection() {
                   {trade.direction.toUpperCase()}
                 </span>
               </td>
-              <td className="px-3 py-2.5 text-gray-900 dark:text-white whitespace-nowrap">
+              <td className="px-5 py-3 text-gray-900 dark:text-white whitespace-nowrap">
                 ${parseFloat(trade.entry_price).toFixed(2)}
               </td>
-              <td className="px-3 py-2.5 whitespace-nowrap">
-                <span className={`font-semibold ${trade.is_profit ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
+              <td className="px-5 py-3 whitespace-nowrap">
+                <span className={`font-semibold ${trade.is_profit ? "text-green-600 dark:text-[#00C9A7]" : "text-red-600 dark:text-red-400"}`}>
                   {trade.is_profit ? "+" : ""}${parseFloat(trade.user_profit_loss).toFixed(2)}
                 </span>
               </td>
-              <td className="px-3 py-2.5 whitespace-nowrap">
-                <span className={`text-[10px] font-medium ${trade.status === "open" ? "text-green-700 dark:text-green-400" : "text-gray-500 dark:text-gray-400"}`}>
+              <td className="px-5 py-3 whitespace-nowrap">
+                <span className={`text-[10px] font-semibold ${trade.status === "open" ? "text-green-700 dark:text-[#00C9A7]" : "text-gray-500 dark:text-[rgba(255,255,255,0.4)]"}`}>
                   {trade.status.toUpperCase()}
                 </span>
               </td>
@@ -218,22 +257,18 @@ export function FollowingSection() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchFollowingTraders();
-  }, []);
+  useEffect(() => { fetchFollowingTraders(); }, []);
 
   useEffect(() => {
-    if (searchQuery.trim() === "") {
-      setFilteredTraders(traders);
-    } else {
-      setFilteredTraders(
-        traders.filter(
-          (t) =>
-            t.trader_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            t.trader_username.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      );
-    }
+    setFilteredTraders(
+      searchQuery.trim() === ""
+        ? traders
+        : traders.filter(
+            (t) =>
+              t.trader_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              t.trader_username.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+    );
   }, [searchQuery, traders]);
 
   const fetchFollowingTraders = async () => {
@@ -253,62 +288,46 @@ export function FollowingSection() {
     }
   };
 
-  const isEmpty = !loading && traders.length === 0;
-
   const getAvatarUrl = (avatarUrl: string | null, name: string) =>
     avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&size=128`;
 
   const body = loading ? (
     <div className="flex items-center justify-center py-10">
-      <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-[#00C9A7] border-t-transparent rounded-full animate-spin" />
     </div>
-  ) : isEmpty ? (
-    <div className="flex flex-col items-center justify-center py-6 px-5">
-      <div className="w-full mb-6">
-        <input
-          type="text"
-          placeholder="Search for trader"
-          className="w-full px-3 py-2 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-xs text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-green-600/50 transition-all"
-          disabled
-        />
-      </div>
-      <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center mb-3">
-        <Users className="w-6 h-6 text-gray-400 dark:text-gray-500" />
-      </div>
-      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">No experts followed</h4>
-      <p className="text-[10px] text-gray-400 dark:text-gray-500 text-center max-w-xs mb-5">
-        Start following expert traders to see them here
-      </p>
-      <Link href="/explore-traders">
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition-colors"
-        >
-          Explore Traders
-        </motion.button>
-      </Link>
+  ) : traders.length === 0 ? (
+    <div className="flex flex-col items-center px-4 pt-4">
+      {/* Search input visible even when empty */}
+      <input
+        type="text"
+        placeholder="Search for trader"
+        disabled
+        className="w-full px-4 py-2.5 mb-2 text-[13px] rounded-lg bg-white dark:bg-[rgba(255,255,255,0.04)] border border-gray-200 dark:border-[rgba(0,201,167,0.15)] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[rgba(255,255,255,0.3)] outline-none"
+      />
+      <EmptyState
+        icon={Users}
+        title="No experts followed"
+        subtitle="Start following expert traders to see them here"
+      />
     </div>
   ) : (
-    <div className="px-5 py-3">
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search for trader"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-3 py-2 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-xs text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-green-600/50 transition-all"
-        />
-      </div>
-      <div className="space-y-3 max-h-87.5 overflow-y-auto">
+    <div className="px-4 py-4">
+      <input
+        type="text"
+        placeholder="Search for trader"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-full px-4 py-2.5 mb-4 text-[13px] rounded-lg bg-white dark:bg-[rgba(255,255,255,0.04)] border border-gray-200 dark:border-[rgba(0,201,167,0.15)] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[rgba(255,255,255,0.3)] outline-none focus:border-[#00C9A7]/50 transition-colors"
+      />
+      <div className="space-y-3 max-h-[350px] overflow-y-auto">
         {filteredTraders.length === 0 ? (
-          <p className="text-xs text-gray-400 dark:text-gray-500 text-center py-4">
+          <p className="text-xs text-gray-400 dark:text-[rgba(255,255,255,0.4)] text-center py-4">
             No traders found matching &quot;{searchQuery}&quot;
           </p>
         ) : (
           filteredTraders.map((trader) => (
             <Link className="inline-block w-full" key={trader.id} href={`/explore-traders/${trader.trader_id}`}>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-green-500/30">
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-[rgba(255,255,255,0.04)] hover:bg-gray-100 dark:hover:bg-[rgba(255,255,255,0.07)] transition-all cursor-pointer border border-transparent dark:hover:border-[rgba(0,201,167,0.2)]">
                 <Image
                   src={getAvatarUrl(trader.trader_avatar_url, trader.trader_name)}
                   alt={trader.trader_name}
@@ -319,13 +338,13 @@ export function FollowingSection() {
                 />
                 <div className="flex-1 min-w-0">
                   <h4 className="text-xs font-semibold text-gray-900 dark:text-white truncate">{trader.trader_name}</h4>
-                  <p className="text-[10px] text-gray-500 dark:text-gray-400 truncate">{trader.trader_username}</p>
+                  <p className="text-[10px] text-gray-500 dark:text-[rgba(255,255,255,0.4)] truncate">{trader.trader_username}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] font-medium text-green-700 dark:text-green-400">
+                  <p className="text-[10px] font-medium text-[#00C9A7]">
                     ${parseFloat(trader.initial_investment).toLocaleString()}
                   </p>
-                  <p className="text-[9px] text-gray-400 dark:text-gray-500">Investment</p>
+                  <p className="text-[9px] text-gray-400 dark:text-[rgba(255,255,255,0.3)]">Investment</p>
                 </div>
               </div>
             </Link>

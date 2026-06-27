@@ -114,7 +114,7 @@ export default function NewsPage() {
               placeholder="Search news..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-3 pl-12 bg-white dark:bg-[#0d3320] text-gray-900 dark:text-white border-2 border-gray-200 dark:border-white/10 rounded-lg focus:outline-none focus:border-green-600 dark:focus:border-green-600 transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500"
+              className="w-full px-4 py-3 pl-12 bg-[rgba(0,201,167,0.04)] text-white border-2 border-[rgba(0,201,167,0.14)] rounded-lg focus:outline-none focus:border-[#00C9A7] transition-colors placeholder:text-gray-500"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
           </div>
@@ -126,10 +126,11 @@ export default function NewsPage() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                  selectedCategory === category
-                    ? "bg-green-600 text-white"
-                    : "bg-white dark:bg-[#0d3320] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-[#0d3320]/50"
+                  selectedCategory !== category
+                    ? "tv-card text-gray-300 hover:opacity-80"
+                    : ""
                 }`}
+              style={selectedCategory === category ? { background: "#00C9A7", color: "#001a0f" } : undefined}
               >
                 {category}
               </button>
@@ -150,7 +151,7 @@ export default function NewsPage() {
             <p className="text-red-500 text-lg mb-4">{error}</p>
             <button
               onClick={fetchNews}
-              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+              className="px-6 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors"
             >
               Retry
             </button>
@@ -175,7 +176,7 @@ export default function NewsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 onClick={() => setSelectedNews(news)}
-                className="bg-white dark:bg-[#0d3320] rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 hover:border-green-600 dark:hover:border-green-600 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-green-600/10"
+                className="tv-card rounded-2xl overflow-hidden hover:border-[#00C9A7] transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
               >
                 {/* Image */}
                 <div className="relative h-48 bg-gray-100 dark:bg-white/5">
@@ -241,7 +242,7 @@ export default function NewsPage() {
               onClick={() => setSelectedNews(null)}
             >
               <div
-                className="bg-white dark:bg-[#0d3320] rounded-2xl max-w-4xl w-full h-[95vh] flex flex-col overflow-hidden"
+                className="rounded-2xl max-w-4xl w-full h-[95vh] flex flex-col overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
@@ -358,7 +359,7 @@ export default function NewsPage() {
                     {/* Close Button */}
                     <button
                       onClick={() => setSelectedNews(null)}
-                      className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors"
+                      className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-colors"
                     >
                       Close
                     </button>

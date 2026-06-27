@@ -81,11 +81,11 @@ function SidebarGrid({
             onClick={onClose}
             className={`
               flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl text-center
-              transition-all duration-200 border
+              transition-all duration-200
               ${
                 isActive
-                  ? "bg-green-600/10 border-green-500/30 text-green-700 dark:text-green-400"
-                  : "bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100 hover:border-gray-300 dark:bg-white/5 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:border-white/20"
+                  ? "text-[#00C9A7] bg-[rgba(0,201,167,0.08)] border border-[rgba(0,201,167,0.2)]"
+                  : "text-gray-400 hover:text-white hover:bg-[rgba(255,255,255,0.05)] border border-transparent"
               }
             `}
           >
@@ -122,11 +122,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         animate={{ x: 0 }}
         exit={{ x: -320 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed inset-y-0 left-0 w-72 bg-white dark:bg-gradient-to-b dark:from-[#071a0e] dark:to-[#071a0e] z-50 shadow-2xl overflow-y-auto"
+        className="fixed inset-y-0 left-0 w-72 z-50 shadow-2xl overflow-y-auto" style={{ background: "#0b1a12" }}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-5 border-b border-gray-200 dark:border-white/10">
+          <div className="flex items-center justify-between p-5 border-b border-[rgba(0,201,167,0.12)]">
             <Link href="/portfolio" className="flex items-center">
               <span className="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">
                 <span className="text-green-600 dark:text-green-400">Verde</span>Trades
@@ -205,8 +205,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
 
           {/* Bottom Section */}
-          <div className="p-3 border-t border-gray-200 dark:border-white/10">
-            <div className="px-3 py-2.5 rounded-lg bg-gray-50 dark:bg-white/5">
+          <div className="p-3 border-t border-[rgba(0,201,167,0.12)]">
+            <div className="px-3 py-2.5 rounded-lg tv-inner">
               <p className="text-[10px] font-medium text-gray-600 dark:text-gray-300 mb-0.5">
                 Need help?
               </p>

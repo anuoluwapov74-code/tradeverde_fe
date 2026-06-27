@@ -179,7 +179,7 @@ export default function WithdrawPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="lg:col-span-1 bg-white/90 dark:bg-[#0d3320]/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl p-6 shadow-sm"
+          className="lg:col-span-1 tv-card backdrop-blur-xl rounded-2xl p-6"
         >
           <div className="space-y-5">
             {/* Balance Display */}
@@ -209,8 +209,8 @@ export default function WithdrawPage() {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute z-10 w-full mt-1.5 bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-lg shadow-lg overflow-hidden">
-                    <div className="px-3 py-2 bg-green-600 text-white text-xs font-semibold">Select method</div>
+                  <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0d1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
+                    <div className="px-3 py-2 text-xs font-semibold" style={{ background: "#00C9A7", color: "#001a0f" }}>Select method</div>
                     <div className="max-h-48 overflow-y-auto">
                       {methods.length === 0 ? (
                         <div className="px-3 py-3 text-xs text-gray-500 dark:text-gray-400">
@@ -256,7 +256,7 @@ export default function WithdrawPage() {
                 placeholder="0.00"
                 min="0"
                 step="0.01"
-                className="w-full px-4 py-3 bg-gray-100 dark:bg-[#071a0e] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-green-600 transition-all text-lg font-semibold"
+                className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-green-600 transition-all text-lg font-semibold"
               />
               {profile && amount && parseFloat(amount) > parseFloat(profile.balance) && (
                 <p className="mt-1.5 text-xs text-red-400">
@@ -275,7 +275,7 @@ export default function WithdrawPage() {
                   type="text"
                   value={withdrawalAddress}
                   readOnly
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-[#071a0e] border border-gray-300 dark:border-white/10 rounded-lg text-gray-500 dark:text-gray-400 focus:outline-none cursor-not-allowed opacity-75"
+                  className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-500 dark:text-gray-400 focus:outline-none cursor-not-allowed opacity-75"
                 />
                 <p className="mt-1 text-[10px] text-gray-500">
                   Saved address for {getDisplayName(selectedMethod)}. Update in settings.
@@ -297,7 +297,7 @@ export default function WithdrawPage() {
             <button
               onClick={handleConfirmWithdrawal}
               disabled={submitting || !selectedMethod || !amount || !withdrawalAddress}
-              className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+              className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
             >
               {submitting ? (
                 <><Loader2 className="w-4 h-4 animate-spin" />Processing...</>
@@ -323,7 +323,7 @@ export default function WithdrawPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="bg-white/90 dark:bg-[#0d3320]/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl p-5 shadow-sm h-fit"
+          className="tv-card backdrop-blur-xl rounded-2xl p-5 h-fit"
         >
           <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">Recent Withdrawals</h3>
 
@@ -332,7 +332,7 @@ export default function WithdrawPage() {
           ) : (
             <div className="space-y-3">
               {transactions.map((tx) => (
-                <div key={tx.id} className="bg-gray-50 dark:bg-[#071a0e]/60 border border-gray-200 dark:border-white/5 rounded-xl p-3">
+                <div key={tx.id} className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-xl p-3">
                   <div className="flex items-start justify-between mb-1.5">
                     <div className="flex items-center gap-2">
                       <div className="w-7 h-7 rounded-full bg-red-500/15 flex items-center justify-center">

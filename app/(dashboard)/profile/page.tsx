@@ -96,7 +96,8 @@ export default function ProfilePage() {
           </div>
           <button
             onClick={() => router.push("/settings")}
-            className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors"
+            className="flex items-center gap-2 px-6 py-3 font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            style={{ background: "#00C9A7", color: "#001a0f" }}
           >
             <Settings className="w-4 h-4" />
             Edit Settings
@@ -166,7 +167,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-[#0d3320] rounded-2xl p-6 border border-gray-200 dark:border-white/10"
+            className="tv-card rounded-2xl p-6"
           >
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
               Personal Information
@@ -249,7 +250,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-white dark:bg-[#0d3320] rounded-2xl p-6 border border-gray-200 dark:border-white/10"
+            className="tv-card rounded-2xl p-6"
           >
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
               Location & Account
@@ -329,14 +330,14 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-6 bg-white dark:bg-[#0d3320] rounded-2xl p-6 border border-gray-200 dark:border-white/10"
+          className="mt-6 tv-card rounded-2xl p-6"
         >
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
             Verification Status
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
+            <div className="p-4 tv-inner rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Email Verification
@@ -353,7 +354,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
+            <div className="p-4 tv-inner rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   KYC Submission
@@ -370,7 +371,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
+            <div className="p-4 tv-inner rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Account Verification
@@ -395,7 +396,8 @@ export default function ProfilePage() {
               </p>
               <button
                 onClick={() => router.push("/kyc")}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                style={{ background: "#00C9A7", color: "#001a0f" }}
               >
                 Complete KYC
               </button>

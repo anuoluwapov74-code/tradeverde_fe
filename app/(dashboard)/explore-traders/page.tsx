@@ -317,7 +317,7 @@ export default function ExploreTraders() {
             placeholder="Type to search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-xl pl-12 pr-10 py-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 dark:focus:border-emerald-400 transition-all"
+            className="w-full bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.14)] rounded-xl pl-12 pr-10 py-3.5 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C9A7]/30 focus:border-[#00C9A7] transition-all"
           />
           {searchQuery && (
             <button
@@ -332,7 +332,7 @@ export default function ExploreTraders() {
 
       {/* ========== TABS ========== */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-8 border-b border-gray-200 dark:border-white/10">
+        <div className="flex gap-8 border-b border-[rgba(255,255,255,0.08)]">
           <button
             onClick={() => setActiveTab("experts")}
             className={`pb-3 text-sm font-semibold transition-all relative ${
@@ -452,7 +452,7 @@ export default function ExploreTraders() {
                         >
                           <Link
                             href={`/explore-traders/${trader.id}`}
-                            className="group block bg-white dark:bg-[#0d3320] rounded-xl overflow-hidden border border-gray-100 dark:border-white/5 hover:shadow-lg transition-all h-full"
+                            className="group block tv-card rounded-xl overflow-hidden hover:shadow-lg hover:border-[#00C9A7] transition-all h-full"
                           >
                             {/* Card Header - Dark top section */}
                             <div className="bg-gray-800 dark:bg-[#071a0e] px-4 py-4">
@@ -562,7 +562,7 @@ export default function ExploreTraders() {
                       <Link
                         key={trader.id}
                         href={`/explore-traders/${trader.id}`}
-                        className="group bg-white dark:bg-[#0d3320] rounded-xl border border-gray-100 dark:border-white/5 hover:shadow-lg transition-all overflow-hidden"
+                        className="group tv-card rounded-xl hover:shadow-lg hover:border-[#00C9A7] transition-all overflow-hidden"
                       >
                         {/* Top section - Avatar and name */}
                         <div className="px-4 pt-4 pb-3">
@@ -598,7 +598,7 @@ export default function ExploreTraders() {
                         </div>
 
                         {/* Stats row - gray background */}
-                        <div className="mx-4 mb-3 bg-gray-50 dark:bg-[#071a0e] rounded-lg px-4 py-3">
+                        <div className="mx-4 mb-3 tv-inner rounded-lg px-4 py-3">
                           <div className="flex items-start justify-between">
                             <div>
                               <p className="text-base font-bold text-gray-900 dark:text-white">
@@ -736,7 +736,7 @@ export default function ExploreTraders() {
                         <Link
                           key={trader.id}
                           href={`/explore-traders/${trader.id}`}
-                          className="group flex items-center gap-3 sm:gap-4 bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-white/5 rounded-xl p-4 sm:p-5 hover:shadow-lg transition-all"
+                          className="group flex items-center gap-3 sm:gap-4 tv-card rounded-xl p-4 sm:p-5 hover:shadow-lg hover:border-[#00C9A7] transition-all"
                         >
                           {/* Rank Number */}
                           <div className="shrink-0 w-8 sm:w-12">
@@ -838,7 +838,7 @@ export default function ExploreTraders() {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-white/5 rounded-xl overflow-hidden"
+                className="tv-card rounded-xl overflow-hidden"
               >
                 <button
                   onClick={() =>

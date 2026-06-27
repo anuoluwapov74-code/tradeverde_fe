@@ -226,7 +226,7 @@ export default function SignalsPage() {
                     key={signal.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white dark:bg-[#0d3320] rounded-2xl p-6 border border-gray-200 dark:border-white/10 hover:border-green-600 dark:hover:border-green-600 transition-all"
+                    className="tv-card rounded-2xl p-6 hover:border-[#00C9A7] transition-all"
                   >
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
@@ -257,7 +257,7 @@ export default function SignalsPage() {
 
                     {/* Metrics */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
-                      <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-3">
+                      <div className="tv-inner rounded-lg p-3">
                         <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                           Strength
                         </div>
@@ -265,7 +265,7 @@ export default function SignalsPage() {
                           {parseFloat(signal.signal_strength).toFixed(0)}%
                         </div>
                       </div>
-                      <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-3">
+                      <div className="tv-inner rounded-lg p-3">
                         <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                           Action
                         </div>
@@ -327,7 +327,7 @@ export default function SignalsPage() {
                       key={purchase.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-white dark:bg-[#0d3320] rounded-2xl p-6 border border-gray-200 dark:border-white/10"
+                      className="tv-card rounded-2xl p-6"
                     >
                       <div className="flex items-start justify-between mb-4">
                         <div>
@@ -349,7 +349,7 @@ export default function SignalsPage() {
                       </div>
 
                       {purchase.current_signal && (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-50 dark:bg-white/5 rounded-lg p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 tv-inner rounded-lg p-4">
                           <div>
                             <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                               Entry Point
@@ -405,12 +405,14 @@ export default function SignalsPage() {
               onClick={() => setShowPurchaseModal(false)}
             >
               <div
-                className="bg-white dark:bg-[#0d3320] rounded-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto"
+                className="rounded-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto"
+                style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={() => setShowPurchaseModal(false)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 rounded-full flex items-center justify-center"
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+                  style={{ background: "rgba(255,255,255,0.08)" }}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -420,7 +422,7 @@ export default function SignalsPage() {
                 </h2>
 
                 <div className="space-y-4 mb-6">
-                  <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-4">
+                  <div className="tv-inner rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-gray-500 dark:text-gray-400">Signal</span>
                       <span className="font-semibold text-gray-900 dark:text-white">
@@ -465,7 +467,8 @@ export default function SignalsPage() {
                     disabled={
                       purchasing || parseFloat(userBalance) < parseFloat(selectedSignal.price)
                     }
-                    className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 py-3 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
+                    style={{ background: "#00C9A7", color: "#001a0f" }}
                   >
                     {purchasing ? "Processing..." : "Confirm Purchase"}
                   </button>
@@ -500,7 +503,7 @@ export default function SignalsPage() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
             >
-              <div className="bg-white dark:bg-[#0d3320] rounded-2xl max-w-md w-full p-6 text-center">
+              <div className="rounded-2xl max-w-md w-full p-6 text-center" style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
                 <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-10 h-10 text-green-500" />
                 </div>
@@ -516,7 +519,8 @@ export default function SignalsPage() {
                     setSelectedSignal(null);
                     setActiveTab("purchased");
                   }}
-                  className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all"
+                  className="w-full py-3 font-semibold rounded-lg transition-all hover:opacity-90"
+                  style={{ background: "#00C9A7", color: "#001a0f" }}
                 >
                   View Purchased Signals
                 </button>

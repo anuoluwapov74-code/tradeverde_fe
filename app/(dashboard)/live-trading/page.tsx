@@ -59,7 +59,8 @@ export default function LiveTradingPage() {
         <div className="mb-8 flex justify-center">
           <motion.button
             onClick={() => setShowModal(true)}
-            className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
+            className="px-8 py-4 text-sm font-bold rounded-xl shadow-lg hover:shadow-xl hover:opacity-90 transition-all duration-300 flex items-center gap-3"
+            style={{ background: "#00C9A7", color: "#001a0f" }}
             animate={{
               y: [0, -10, 0],
             }}
@@ -97,7 +98,7 @@ export default function LiveTradingPage() {
               onClick={() => setShowModal(false)}
             >
               <div
-                className="bg-white dark:bg-[#0d3320] rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                className="rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
@@ -144,7 +145,7 @@ export default function LiveTradingPage() {
 
                     <div className="space-y-3">
                       {/* Requirement 1 */}
-                      <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-[#071a0e] rounded-lg border border-gray-200 dark:border-white/10">
+                      <div className="flex items-start gap-3 p-4 tv-inner rounded-lg border border-[rgba(255,255,255,0.06)]">
                         <div className="w-6 h-6 rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                           1
                         </div>
@@ -162,7 +163,7 @@ export default function LiveTradingPage() {
                       </div>
 
                       {/* Requirement 2 */}
-                      <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-[#071a0e] rounded-lg border border-gray-200 dark:border-white/10">
+                      <div className="flex items-start gap-3 p-4 tv-inner rounded-lg border border-[rgba(255,255,255,0.06)]">
                         <div className="w-6 h-6 rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                           2
                         </div>
@@ -179,7 +180,7 @@ export default function LiveTradingPage() {
                       </div>
 
                       {/* Requirement 3 */}
-                      <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-[#071a0e] rounded-lg border border-gray-200 dark:border-white/10">
+                      <div className="flex items-start gap-3 p-4 tv-inner rounded-lg border border-[rgba(255,255,255,0.06)]">
                         <div className="w-6 h-6 rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                           3
                         </div>

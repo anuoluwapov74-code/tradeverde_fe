@@ -164,10 +164,11 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10, scale: 0.95 }}
         transition={{ duration: 0.2 }}
-        className="fixed sm:absolute left-2 right-2 sm:left-auto sm:right-0 top-16 sm:top-auto sm:mt-2 sm:w-96 bg-white/95 dark:bg-[#0d3320]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200/50 dark:border-white/10 overflow-hidden z-50"
+        className="fixed sm:absolute left-2 right-2 sm:left-auto sm:right-0 top-16 sm:top-auto sm:mt-2 sm:w-96 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden z-50"
+        style={{ background: "rgba(13,26,18,0.97)", border: "1px solid rgba(0,201,167,0.14)" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-white/5">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,201,167,0.1)]">
           <div className="flex items-center space-x-2">
             <h3 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
               Notifications
@@ -220,7 +221,7 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer"
+                  className="px-4 py-3 hover:bg-[rgba(0,201,167,0.04)] transition-colors cursor-pointer"
                   onClick={handleViewAll}
                 >
                   <div className="flex items-start space-x-2.5">
@@ -258,7 +259,7 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2.5 border-t border-gray-100 dark:border-white/5">
+        <div className="px-4 py-2.5 border-t border-[rgba(0,201,167,0.1)]">
           <button
             onClick={handleViewAll}
             className="w-full text-center text-[10px] sm:text-xs text-green-700 hover:text-green-800 dark:text-green-400 dark:hover:text-green-400 font-medium transition-colors"

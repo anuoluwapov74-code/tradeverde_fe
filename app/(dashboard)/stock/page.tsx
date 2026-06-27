@@ -96,7 +96,7 @@ export default function StockListPage() {
               placeholder="Search stocks..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#0d3320] text-gray-900 dark:text-white rounded-lg border-2 border-gray-200 dark:border-white/10 focus:border-green-600 dark:focus:border-green-600 focus:outline-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500"
+              className="w-full pl-10 pr-4 py-3 bg-[rgba(0,201,167,0.04)] text-white rounded-lg border-2 border-[rgba(0,201,167,0.14)] focus:border-[#00C9A7] focus:outline-none transition-colors placeholder:text-gray-500"
             />
           </div>
 
@@ -105,20 +105,22 @@ export default function StockListPage() {
             <button
               onClick={() => setFilterType("all")}
               className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                filterType === "all"
-                  ? "bg-green-600 text-white"
-                  : "bg-white dark:bg-[#0d3320] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-[#0d3320]/50"
+                filterType !== "all"
+                  ? "tv-card text-gray-300 hover:opacity-80"
+                  : ""
               }`}
+              style={filterType === "all" ? { background: "#00C9A7", color: "#001a0f" } : undefined}
             >
               All Stocks
             </button>
             <button
               onClick={() => setFilterType("featured")}
               className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                filterType === "featured"
-                  ? "bg-green-600 text-white"
-                  : "bg-white dark:bg-[#0d3320] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-[#0d3320]/50"
+                filterType !== "featured"
+                  ? "tv-card text-gray-300 hover:opacity-80"
+                  : ""
               }`}
+              style={filterType === "featured" ? { background: "#00C9A7", color: "#001a0f" } : undefined}
             >
               Featured
             </button>
@@ -139,7 +141,7 @@ export default function StockListPage() {
               <div
                 key={stock.id}
                 onClick={() => handleStockClick(stock.symbol)}
-                className="bg-white dark:bg-[#0d3320] p-6 rounded-lg border border-gray-200 dark:border-white/10 hover:border-green-600 dark:hover:border-green-600 transition-all cursor-pointer hover:shadow-lg hover:shadow-green-600/10"
+                className="tv-card p-6 rounded-lg hover:border-[#00C9A7] transition-all cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
               >
                 {/* Stock Header */}
                 <div className="flex items-center gap-3 mb-4">

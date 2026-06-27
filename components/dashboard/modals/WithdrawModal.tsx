@@ -189,15 +189,20 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-[#071a0e] border border-gray-200 dark:border-white/10 shadow-2xl"
+          className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl"
+          style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
         >
           {/* ==================== FORM STEP ==================== */}
           {step === "form" && (
             <div className="p-6">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Withdrawal</h3>
-                <button onClick={handleClose} className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  <X className="w-5 h-5" />
+                <button
+                  onClick={handleClose}
+                  className="w-7 h-7 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+                  style={{ background: "rgba(255,255,255,0.08)" }}
+                >
+                  <X className="w-3.5 h-3.5 text-gray-400" />
                 </button>
               </div>
 
@@ -234,15 +239,15 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                     <div className="relative">
                       <button
                         onClick={() => setIsSourceDropdownOpen(!isSourceDropdownOpen)}
-                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-gray-100 dark:bg-[#0d3320] border ${
-                          isSourceDropdownOpen ? "border-green-600" : "border-gray-300 dark:border-white/10"
+                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-[rgba(255,255,255,0.05)] border ${
+                          isSourceDropdownOpen ? "border-[#00C9A7]" : "border-[rgba(255,255,255,0.1)]"
                         } text-gray-900 dark:text-white`}
                       >
                         <span>{withdrawSource === "profit" ? "Profit" : "Main Balance"}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform ${isSourceDropdownOpen ? "rotate-180" : ""}`} />
                       </button>
                       {isSourceDropdownOpen && (
-                        <div className="absolute z-10 w-full mt-1.5 bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-lg shadow-lg overflow-hidden">
+                        <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
                           {(["balance", "profit"] as const).map((src) => (
                             <button
                               key={src}
@@ -272,8 +277,8 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                     <div className="relative">
                       <button
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-gray-100 dark:bg-[#0d3320] border ${
-                          isDropdownOpen ? "border-green-600" : "border-gray-300 dark:border-white/10"
+                        className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-[rgba(255,255,255,0.05)] border ${
+                          isDropdownOpen ? "border-[#00C9A7]" : "border-[rgba(255,255,255,0.1)]"
                         } ${selectedMethod ? "text-gray-900 dark:text-white" : "text-gray-500"}`}
                       >
                         <span>{selectedMethod ? getDisplayName(selectedMethod) : "Select method"}</span>
@@ -281,8 +286,8 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                       </button>
 
                       {isDropdownOpen && (
-                        <div className="absolute z-10 w-full mt-1.5 bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-lg shadow-lg overflow-hidden">
-                          <div className="px-3 py-2 bg-green-600 text-white text-xs font-semibold">Select method</div>
+                        <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
+                          <div className="px-3 py-2 text-xs font-semibold" style={{ background: "#00C9A7", color: "#001a0f" }}>Select method</div>
                           <div className="max-h-48 overflow-y-auto">
                             {methods.length === 0 ? (
                               <div className="px-3 py-3 text-xs text-gray-500 dark:text-gray-400">
@@ -328,7 +333,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                       placeholder="0.00"
                       min="0"
                       step="0.01"
-                      className="w-full px-4 py-3 bg-gray-100 dark:bg-[#0d3320] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-green-600 transition-all"
+                      className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00C9A7] transition-all"
                     />
                     {profile && amount && parseFloat(amount) > parseFloat(withdrawSource === "profit" ? profile.profit : profile.balance) && (
                       <p className="mt-1.5 text-xs text-red-400">
@@ -347,7 +352,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                         type="text"
                         value={withdrawalAddress}
                         readOnly
-                        className="w-full px-4 py-3 bg-gray-100 dark:bg-[#0d3320] border border-gray-300 dark:border-white/10 rounded-lg text-gray-500 dark:text-gray-400 focus:outline-none cursor-not-allowed opacity-75"
+                        className="w-full px-4 py-3 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-lg text-gray-500 focus:outline-none cursor-not-allowed opacity-75"
                       />
                       <p className="mt-1 text-[10px] text-gray-500">
                         Saved address for {getDisplayName(selectedMethod)}. Update in settings.
@@ -377,7 +382,8 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                     <button
                       onClick={handleConfirmWithdrawal}
                       disabled={submitting || !selectedMethod || !amount || !withdrawalAddress}
-                      className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
+                      className="flex-1 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center justify-center gap-2 text-sm"
+                      style={{ background: "#00C9A7", color: "#001a0f" }}
                     >
                       {submitting ? (
                         <><Loader2 className="w-4 h-4 animate-spin" />Processing...</>
@@ -402,7 +408,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                       </h4>
                       <div className="space-y-2">
                         {transactions.map((tx) => (
-                          <div key={tx.id} className="bg-gray-50 dark:bg-[#0d3320]/80 border border-gray-200 dark:border-white/5 rounded-lg p-3">
+                          <div key={tx.id} className="tv-inner border border-[rgba(255,255,255,0.06)] rounded-lg p-3">
                             <div className="flex justify-between items-start mb-1">
                               <p className="text-xs font-medium text-gray-700 dark:text-gray-300">{tx.reference}</p>
                               <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${getStatusColor(tx.status)}`}>
@@ -459,7 +465,7 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
                   <div>
                     <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">Processing Time</p>
                     <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
-                      Withdrawals are processed within 24-48 hours after admin approval.
+                      Withdrawals are processed within 24-48 hours after approval.
                     </p>
                   </div>
                 </div>
@@ -467,7 +473,8 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
 
               <button
                 onClick={handleClose}
-                className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors text-sm"
+                className="w-full py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm"
+                style={{ background: "#00C9A7", color: "#001a0f" }}
               >
                 Got It!
               </button>

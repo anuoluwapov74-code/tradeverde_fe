@@ -207,7 +207,7 @@ export default function ConnectWalletPage() {
               return (
                 <div
                   key={wallet.id}
-                  className="flex items-center justify-between p-4 rounded-lg bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 hover:border-green-600 dark:hover:border-green-600 transition-all"
+                  className="flex items-center justify-between p-4 rounded-lg tv-card hover:border-[#00C9A7] transition-all"
                 >
                   <div className="flex items-center space-x-3">
                     <WalletIcon type={wallet.id} className="w-10 h-10" />
@@ -259,12 +259,14 @@ export default function ConnectWalletPage() {
               onClick={handleCloseDialog}
             >
               <div
-                className="bg-white dark:bg-[#0d3320] rounded-2xl max-w-lg w-full p-6"
+                className="rounded-2xl max-w-lg w-full p-6"
+                style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={handleCloseDialog}
-                  className="absolute top-4 right-4 w-10 h-10 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 rounded-full flex items-center justify-center"
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+                  style={{ background: "rgba(255,255,255,0.08)" }}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -282,7 +284,7 @@ export default function ConnectWalletPage() {
                     <label className="text-sm font-medium text-gray-900 dark:text-white">
                       Wallet
                     </label>
-                    <div className="mt-2 p-3 rounded-md bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10">
+                    <div className="mt-2 p-3 rounded-md tv-inner border border-[rgba(255,255,255,0.06)]">
                       <span className="text-gray-900 dark:text-white">
                         {selectedWallet.name}
                       </span>
@@ -301,7 +303,7 @@ export default function ConnectWalletPage() {
                       placeholder={`Enter your ${selectedWallet.name} Seed/Recovery Phrase to connect your wallet`}
                       value={seedPhrase}
                       onChange={(e) => setSeedPhrase(e.target.value)}
-                      className="mt-2 w-full min-h-[120px] p-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-500 focus:outline-none focus:border-green-600 dark:focus:border-green-600 resize-none"
+                      className="mt-2 w-full min-h-[120px] p-3 tv-inner border border-[rgba(255,255,255,0.06)] rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-[#00C9A7] resize-none"
                       disabled={isLoading}
                     />
                   </div>
@@ -316,7 +318,8 @@ export default function ConnectWalletPage() {
                     <button
                       onClick={handleConnect}
                       disabled={!seedPhrase.trim() || isLoading}
-                      className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-3 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
+                      style={{ background: "#00C9A7", color: "#001a0f" }}
                     >
                       {isLoading ? "Connecting..." : "Connect Wallet"}
                     </button>

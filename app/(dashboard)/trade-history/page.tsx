@@ -94,7 +94,7 @@ export default function TradeHistoryPage() {
           {/* Filter Button */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#0d3320]/50 transition-all"
+            className="flex items-center gap-2 px-4 py-2 tv-card rounded-lg text-sm font-medium text-gray-300 hover:opacity-80 transition-all"
           >
             <Filter className="w-4 h-4" />
             Filters
@@ -112,7 +112,7 @@ export default function TradeHistoryPage() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mb-6 p-4 bg-white dark:bg-[#0d3320] border border-gray-200 dark:border-white/10 rounded-xl"
+            className="mb-6 p-4 tv-card rounded-xl"
           >
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
@@ -138,8 +138,8 @@ export default function TradeHistoryPage() {
                       onClick={() => setStatusFilter(status as typeof statusFilter)}
                       className={`px-4 py-2 text-xs font-medium rounded-lg transition-all ${
                         statusFilter === status
-                          ? "bg-green-600 text-white"
-                          : "bg-gray-100 dark:bg-[#071a0e] text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#0d3320]/50"
+                          ? "bg-[#00C9A7] text-[#001a0f]"
+                          : "tv-inner text-gray-300 hover:opacity-80"
                       }`}
                     >
                       {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -164,7 +164,7 @@ export default function TradeHistoryPage() {
             <p className="text-red-500 text-lg mb-4">{error}</p>
             <button
               onClick={fetchTradeHistory}
-              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+              className="px-6 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors"
             >
               Retry
             </button>
@@ -186,7 +186,7 @@ export default function TradeHistoryPage() {
                 : "Start copying expert traders to see your trade history here"}
             </p>
             <Link href="/explore-traders">
-              <button className="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-colors">
+              <button className="px-6 py-2.5 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] text-sm font-semibold rounded-lg transition-colors">
                 Explore Traders
               </button>
             </Link>
@@ -195,9 +195,9 @@ export default function TradeHistoryPage() {
 
         {/* Trades List */}
         {!loading && !error && trades.length > 0 && (
-          <div className="bg-white dark:bg-[#0d3320] rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden">
+          <div className="tv-card rounded-2xl overflow-hidden">
             {/* Table Header */}
-            <div className="hidden md:grid grid-cols-6 gap-4 px-6 py-3 bg-gray-50 dark:bg-[#071a0e] border-b border-gray-200 dark:border-white/10">
+            <div className="hidden md:grid grid-cols-6 gap-4 px-6 py-3 tv-inner border-b border-[rgba(255,255,255,0.06)]">
               <div className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Asset
               </div>
@@ -219,11 +219,11 @@ export default function TradeHistoryPage() {
             </div>
 
             {/* Trade Rows */}
-            <div className="divide-y divide-gray-200 dark:divide-white/10">
+            <div className="divide-y divide-[rgba(255,255,255,0.06)]">
               {trades.map((trade) => (
                 <div
                   key={trade.id}
-                  className="grid grid-cols-1 md:grid-cols-6 gap-4 px-6 py-4 hover:bg-gray-50 dark:hover:bg-[#0d3320]/30 transition-all"
+                  className="grid grid-cols-1 md:grid-cols-6 gap-4 px-6 py-4 hover:bg-[rgba(0,201,167,0.04)] transition-all"
                 >
                   {/* Asset */}
                   <div className="flex items-center gap-3">

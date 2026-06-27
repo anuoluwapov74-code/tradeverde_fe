@@ -290,7 +290,7 @@ export default function NotificationsPage() {
               <button
                 onClick={markAllAsRead}
                 disabled={markingAllRead}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-4 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-medium transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {markingAllRead ? (
                   <>
@@ -314,8 +314,8 @@ export default function NotificationsPage() {
                 onClick={() => setFilter(option.value)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   filter === option.value
-                    ? "bg-green-600 text-white"
-                    : "bg-white dark:bg-[#0d3320] text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#0d3320]/50 border border-gray-200 dark:border-white/10"
+                    ? "bg-[#00C9A7] text-[#001a0f]"
+                    : "tv-card text-gray-300 hover:opacity-80 border-[rgba(0,201,167,0.14)]"
                 }`}
               >
                 {option.label}
@@ -339,7 +339,7 @@ export default function NotificationsPage() {
             <p className="text-red-500 text-lg mb-4">{error}</p>
             <button
               onClick={fetchNotifications}
-              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+              className="px-6 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors"
             >
               Retry
             </button>
@@ -376,10 +376,10 @@ export default function NotificationsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     onClick={() => handleNotificationClick(notification)}
-                    className={`bg-white dark:bg-[#0d3320] rounded-xl p-5 border transition-all duration-300 cursor-pointer ${
+                    className={`rounded-xl p-5 border transition-all duration-300 cursor-pointer ${
                       notification.read
-                        ? "border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20"
-                        : "border-green-600 dark:border-green-600 hover:border-blue-600 dark:hover:border-blue-600"
+                        ? "border-[rgba(0,201,167,0.14)] bg-[rgba(0,201,167,0.04)] hover:border-[rgba(0,201,167,0.3)]"
+                        : "border-[#00C9A7] bg-[rgba(0,201,167,0.08)] hover:border-[#00C9A7]"
                     }`}
                   >
                     <div className="flex gap-4">
@@ -477,16 +477,18 @@ export default function NotificationsPage() {
               onClick={closeModal}
             >
               <div
-                className="bg-white dark:bg-[#0d3320] rounded-2xl max-w-3xl w-full max-h-[95vh] flex flex-col overflow-hidden shadow-2xl"
+                className="rounded-2xl max-w-3xl w-full max-h-[95vh] flex flex-col overflow-hidden shadow-2xl"
+                style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 w-12 h-12 bg-gray-900/80 dark:bg-white/90 hover:bg-gray-900 dark:hover:bg-white text-white dark:text-gray-900 rounded-full flex items-center justify-center transition-all shadow-lg z-10"
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity z-10"
+                  style={{ background: "rgba(255,255,255,0.08)" }}
                   aria-label="Close modal"
                 >
-                  <X className="w-6 h-6" strokeWidth={3} />
+                  <X className="w-3.5 h-3.5 text-gray-400" />
                 </button>
 
                 {/* Scrollable Content */}
@@ -553,7 +555,7 @@ export default function NotificationsPage() {
                   {selectedNotification.metadata && (
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
                       {selectedNotification.metadata.stock && (
-                        <div className="bg-gray-50 dark:bg-white/5 p-4 rounded-lg">
+                        <div className="tv-inner p-4 rounded-lg">
                           <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Stock
                           </div>
@@ -563,7 +565,7 @@ export default function NotificationsPage() {
                         </div>
                       )}
                       {selectedNotification.metadata.amount && (
-                        <div className="bg-gray-50 dark:bg-white/5 p-4 rounded-lg">
+                        <div className="tv-inner p-4 rounded-lg">
                           <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Amount
                           </div>
@@ -573,7 +575,7 @@ export default function NotificationsPage() {
                         </div>
                       )}
                       {selectedNotification.metadata.status && (
-                        <div className="bg-gray-50 dark:bg-white/5 p-4 rounded-lg">
+                        <div className="tv-inner p-4 rounded-lg">
                           <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Status
                           </div>
@@ -602,7 +604,7 @@ export default function NotificationsPage() {
                   {/* Close Button */}
                   <button
                     onClick={closeModal}
-                    className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors"
+                    className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-colors"
                   >
                     Close
                   </button>

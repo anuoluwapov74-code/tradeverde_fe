@@ -294,7 +294,8 @@ export default function TraderProfilePage() {
         <div className="flex gap-4">
           <button
             onClick={fetchTraderDetails}
-            className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+            className="px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
+            style={{ background: "#00C9A7", color: "#001a0f" }}
           >
             Retry
           </button>
@@ -326,7 +327,7 @@ export default function TraderProfilePage() {
         </Link>
 
         {/* Profile Header */}
-        <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-6 sm:p-8 mb-6">
+        <div className="tv-card rounded-2xl p-6 sm:p-8 mb-6">
           <div className="flex flex-col sm:flex-row gap-6">
             {/* Avatar + Flag */}
             <div className="shrink-0 flex items-start justify-between gap-6 min-w-[140px] sm:min-w-[160px]">
@@ -379,8 +380,9 @@ export default function TraderProfilePage() {
                       className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
                         loadingBalance || copyActionLoading
                           ? "bg-gray-400 cursor-not-allowed text-white"
-                          : "bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-500/25 hover:shadow-green-500/40"
+                          : "hover:opacity-90"
                       }`}
+                      style={!(loadingBalance || copyActionLoading) ? { background: "#00C9A7", color: "#001a0f" } : undefined}
                     >
                       {loadingBalance ? "Loading..." : copyActionLoading ? "Processing..." : "Copy Trader"}
                     </button>
@@ -450,7 +452,7 @@ export default function TraderProfilePage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-6 sm:gap-8 border-b border-gray-200 dark:border-[rgba(39,174,96,0.15)] mb-6 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-6 sm:gap-8 border-b border-[rgba(0,201,167,0.2)] mb-6 overflow-x-auto scrollbar-hide">
           {[
             { id: "overview", label: "Overview" },
             { id: "portfolio", label: "Portfolio" },
@@ -479,7 +481,7 @@ export default function TraderProfilePage() {
           <>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Chart */}
-              <div className="lg:col-span-2 bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-5 sm:p-6">
+              <div className="lg:col-span-2 tv-card rounded-2xl p-5 sm:p-6">
                 <div className="mb-1">
                   <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400">Earnings</h2>
                   <p className="text-xs text-gray-400 dark:text-gray-500">
@@ -493,7 +495,7 @@ export default function TraderProfilePage() {
                       onClick={() => setChartPeriod(p)}
                       className={`px-4 py-2 text-xs font-medium border transition-all ${
                         chartPeriod === p
-                          ? "border-green-500 dark:border-green-500 bg-green-50 dark:bg-[#071a0e] text-green-700 dark:text-green-400"
+                          ? "border-[#00C9A7] bg-[rgba(0,201,167,0.08)] text-[#00C9A7]"
                           : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/20"
                       }`}
                     >
@@ -532,7 +534,7 @@ export default function TraderProfilePage() {
               </div>
 
               {/* Profile Data Sidebar */}
-              <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-5 sm:p-6">
+              <div className="tv-card rounded-2xl p-5 sm:p-6">
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-6">Profile data</h2>
                 <div className="space-y-0">
                   {[
@@ -559,7 +561,7 @@ export default function TraderProfilePage() {
               </div>
 
               {/* Top Traded */}
-              <div className="lg:col-span-2 bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-5 sm:p-6">
+              <div className="lg:col-span-2 tv-card rounded-2xl p-5 sm:p-6">
                 <h2 className="text-base font-bold text-gray-900 dark:text-white mb-4">Top traded</h2>
                 {trader.top_traded && trader.top_traded.length > 0 ? (
                   <div className="overflow-x-auto -mx-5 sm:-mx-6 px-5 sm:px-6">
@@ -602,7 +604,7 @@ export default function TraderProfilePage() {
               </div>
 
               {/* Portfolio Breakdown */}
-              <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-5 sm:p-6">
+              <div className="tv-card rounded-2xl p-5 sm:p-6">
                 <h2 className="text-base font-bold text-gray-900 dark:text-white mb-5">Profile breakdown</h2>
                 {trader.portfolio_breakdown && trader.portfolio_breakdown.length > 0 ? (
                   <>
@@ -639,7 +641,7 @@ export default function TraderProfilePage() {
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Investors that trade just like {trader.username}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {similarTraders.map((st) => (
-                    <Link key={st.id} href={`/explore-traders/${st.id}`} className="group bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-xl p-4 hover:shadow-lg transition-all">
+                    <Link key={st.id} href={`/explore-traders/${st.id}`} className="group tv-card rounded-xl p-4 hover:shadow-lg hover:border-[#00C9A7] transition-all">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 rounded-full overflow-hidden bg-green-600 shrink-0">
                           {st.avatar_url ? (
@@ -669,7 +671,7 @@ export default function TraderProfilePage() {
         {activeTab === "portfolio" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Win Rate */}
-            <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-6">
+            <div className="tv-card rounded-2xl p-6">
               <h2 className="text-base font-bold text-gray-900 dark:text-white mb-6">Win Rate</h2>
               <div className="flex items-center justify-center mb-6">
                 <div className="relative w-40 h-40">
@@ -695,7 +697,7 @@ export default function TraderProfilePage() {
             </div>
 
             {/* Performance */}
-            <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-6">
+            <div className="tv-card rounded-2xl p-6">
               <h2 className="text-base font-bold text-gray-900 dark:text-white mb-6">Performance</h2>
               <div className="space-y-0">
                 {[
@@ -715,7 +717,7 @@ export default function TraderProfilePage() {
             </div>
 
             {/* About */}
-            <div className="lg:col-span-2 bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-6">
+            <div className="lg:col-span-2 tv-card rounded-2xl p-6">
               <h2 className="text-base font-bold text-gray-900 dark:text-white mb-4">About {trader.name}</h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                 {[
@@ -743,7 +745,7 @@ export default function TraderProfilePage() {
 
         {/* ── HISTORY TAB ── */}
         {activeTab === "history" && (
-          <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-6">
+          <div className="tv-card rounded-2xl p-6">
             <h2 className="text-base font-bold text-gray-900 dark:text-white mb-4">Trading Statistics</h2>
             <div className="space-y-6">
               <div className="flex flex-wrap gap-6">
@@ -773,7 +775,7 @@ export default function TraderProfilePage() {
 
         {/* ── COPIERS TAB ── */}
         {activeTab === "copiers" && (
-          <div className="bg-white dark:bg-[#0d3320] border border-gray-100 dark:border-[rgba(39,174,96,0.15)] rounded-2xl p-6">
+          <div className="tv-card rounded-2xl p-6">
             <h2 className="text-base font-bold text-gray-900 dark:text-white mb-6">Copier Statistics</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="text-center p-6 bg-green-50 dark:bg-green-500/10 rounded-2xl">
