@@ -53,7 +53,7 @@ export default function RiskDisclaimer() {
                   VerdeTrades (UK) Ltd authorised by FCA under FRN 583263
                 </li>
                 <li>
-                  VerdeTrades (USA) Ltd authorised by SEC; CRD 298461
+                  VerdeTrades (USA) Ltd authorised by SEC# 801-69167; CRD # 147179
                 </li>
                 <li>
                   VerdeTrades (ME) Limited licensed by ADGM&rsquo;s FSRA under Permission

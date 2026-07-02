@@ -207,7 +207,7 @@ export default function AboutPage() {
                     United States
                   </span>{" "}
                   &mdash; VerdeTrades (USA) Ltd., authorised and regulated by
-                  SEC; CRD 298461.
+                  SEC# 801-69167; CRD # 147179.
                 </li>
                 <li className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   <span className="font-semibold text-gray-900 dark:text-white">
