@@ -22,7 +22,7 @@ const FAQSection = () => {
     {
       question: "What is the minimum investment?",
       answer:
-        "The minimum investment varies depending on the trader you want to copy and your broker's requirements. Generally, you can start with as little as $500, but we recommend starting with at least $1,000 for better diversification.",
+        "The minimum investment depends on the Expert Trader you choose to copy and their trading requirements. While you can start with as little as $5,000, we generally recommend investing at least $25,000 or more to achieve better diversification and maximize the strategy's potential.",
     },
   ];
 

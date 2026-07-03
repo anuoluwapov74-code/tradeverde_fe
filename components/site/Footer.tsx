@@ -101,8 +101,8 @@ const Footer = () => {
               business in the United States and operates internationally through
               its affiliates and correspondent entities, all of which are
               subject to the oversight and regulatory framework established by
-              the relevant authorities in their respective regions. VERDE
-              VENTURES, LLC is committed to full regulatory compliance and the
+              the relevant authorities in their respective regions.
+              VERDE CAPITAL MANAGEMENT, INC is committed to full regulatory compliance and the
               protection of its clients&apos; interests at all times. Clients who
               are tax residents of certain jurisdictions may be subject to local
               income taxes on income (profits) and assets in accordance with
