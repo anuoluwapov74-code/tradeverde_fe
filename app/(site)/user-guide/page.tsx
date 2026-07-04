@@ -3,6 +3,7 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
+import FAQMajor from "@/components/site/FAQMajor";
 
 export const metadata: Metadata = {
   title: "User Guide — Getting Started with VerdeTrades",
@@ -286,6 +287,17 @@ export default function UserGuide() {
                   <span><strong>Community</strong> — Join our trading community for peer support and discussions</span>
                 </li>
               </ul>
+            </section>
+
+            {/* FAQ */}
+            <section>
+              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
+                Browse answers by category or visit the <Link href="/faq" className="text-green-600 hover:underline font-medium">full FAQ page</Link>.
+              </p>
+              <FAQMajor showHeader={false} />
             </section>
 
             {/* CTA */}
