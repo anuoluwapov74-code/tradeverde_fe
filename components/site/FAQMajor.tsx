@@ -173,7 +173,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is the minimum deposit amount?",
         content: [
-          { type: "text", content: "You can start trading with a small amount. The minimum deposit is 1000 US dollars." },
+          { type: "text", content: "You can start trading with a small amount. The minimum deposit is 5000 US dollars." },
         ],
       },
       {
