@@ -1,9 +1,9 @@
-﻿"use client";
+"use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Search, TrendingUp, TrendingDown, Loader2 } from "lucide-react";
+import { Search, TrendingUp, TrendingDown, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { apiFetch } from "@/lib/api";
 
 interface Stock {
@@ -11,6 +11,7 @@ interface Stock {
   symbol: string;
   name: string;
   logo_url: string;
+  category: string;
   price: string;
   change: string;
   change_percent: string;
@@ -18,66 +19,69 @@ interface Stock {
   is_featured: boolean;
 }
 
+type Tab = "all" | "stock" | "crypto" | "etf";
+
+const TABS: { key: Tab; label: string }[] = [
+  { key: "all",    label: "All" },
+  { key: "stock",  label: "Stocks" },
+  { key: "crypto", label: "Crypto" },
+  { key: "etf",    label: "ETF" },
+];
+
+const PAGE_SIZE = 12;
+
 export default function StockListPage() {
   const router = useRouter();
   const [stocks, setStocks] = useState<Stock[]>([]);
-  const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterType, setFilterType] = useState<"all" | "featured">("all");
+  const [activeTab, setActiveTab] = useState<Tab>("all");
+  const [page, setPage] = useState(1);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
-  // Fetch stocks from API
+  const markImgFailed = (sym: string) =>
+    setFailedImages((prev) => new Set(prev).add(sym));
+
   useEffect(() => {
-    fetchStocks();
-  }, [filterType]);
+    setLoading(true);
+    apiFetch("/stocks/")
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setStocks(data.stocks); })
+      .catch((err) => console.error("Error fetching stocks:", err))
+      .finally(() => setLoading(false));
+  }, []);
 
-  const fetchStocks = async () => {
-    try {
-      setLoading(true);
-      const url =
-        filterType === "featured"
-          ? "/stocks/?featured=true"
-          : "/stocks/";
+  // Reset to page 1 when tab or search changes
+  useEffect(() => { setPage(1); }, [activeTab, searchQuery]);
 
-      const response = await apiFetch(url);
-      const data = await response.json();
-
-      if (data.success) {
-        setStocks(data.stocks);
-        setFilteredStocks(data.stocks);
-      } else {
-        console.error("Failed to fetch stocks:", data.error);
-      }
-    } catch (error) {
-      console.error("Error fetching stocks:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Handle search
-  useEffect(() => {
-    if (searchQuery.trim() === "") {
-      setFilteredStocks(stocks);
-    } else {
-      const filtered = stocks.filter(
-        (stock) =>
-          stock.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          stock.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filtered = useMemo(() => {
+    let list = stocks;
+    if (activeTab !== "all") list = list.filter((s) => s.category === activeTab);
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter(
+        (s) => s.symbol.toLowerCase().includes(q) || s.name.toLowerCase().includes(q)
       );
-      setFilteredStocks(filtered);
     }
-  }, [searchQuery, stocks]);
+    return list;
+  }, [stocks, activeTab, searchQuery]);
 
-  const handleStockClick = (symbol: string) => {
-    router.push(`/stock/${symbol}`);
-  };
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { all: stocks.length };
+    TABS.slice(1).forEach(({ key }) => {
+      c[key] = stocks.filter((s) => s.category === key).length;
+    });
+    return c;
+  }, [stocks]);
 
   return (
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">
             Stock Market
           </h1>
@@ -86,80 +90,86 @@ export default function StockListPage() {
           </p>
         </div>
 
-        {/* Search and Filter */}
-        <div className="mb-6 flex flex-col sm:flex-row gap-4">
-          {/* Search Bar */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
-            <input
-              type="text"
-              placeholder="Search stocks..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-[rgba(0,201,167,0.04)] text-white rounded-lg border-2 border-[rgba(0,201,167,0.14)] focus:border-[#00C9A7] focus:outline-none transition-colors placeholder:text-gray-500"
-            />
-          </div>
-
-          {/* Filter Buttons */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => setFilterType("all")}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                filterType !== "all"
-                  ? "tv-card text-gray-300 hover:opacity-80"
-                  : ""
-              }`}
-              style={filterType === "all" ? { background: "#00C9A7", color: "#001a0f" } : undefined}
-            >
-              All Stocks
-            </button>
-            <button
-              onClick={() => setFilterType("featured")}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                filterType !== "featured"
-                  ? "tv-card text-gray-300 hover:opacity-80"
-                  : ""
-              }`}
-              style={filterType === "featured" ? { background: "#00C9A7", color: "#001a0f" } : undefined}
-            >
-              Featured
-            </button>
-          </div>
+        {/* Search */}
+        <div className="mb-4 relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search stocks..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-3 bg-[rgba(0,201,167,0.04)] text-white rounded-lg border-2 border-[rgba(0,201,167,0.14)] focus:border-[#00C9A7] focus:outline-none transition-colors placeholder:text-gray-500"
+          />
         </div>
 
-        {/* Loading State */}
+        {/* Tabs */}
+        <div className="mb-6 flex flex-wrap gap-2">
+          {TABS.map(({ key, label }) => (
+            <button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                activeTab === key
+                  ? ""
+                  : "tv-card text-gray-300 hover:opacity-80"
+              }`}
+              style={activeTab === key ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+            >
+              {label}
+              {counts[key] > 0 && (
+                <span
+                  className={`text-xs rounded-full px-1.5 py-0.5 ${
+                    activeTab === key
+                      ? "bg-black/10 text-[#001a0f]"
+                      : "bg-white/10 text-gray-300"
+                  }`}
+                >
+                  {counts[key]}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Loading */}
         {loading && (
           <div className="flex justify-center items-center py-20">
-            <Loader2 className="w-8 h-8 text-green-600 animate-spin" />
+            <Loader2 className="w-8 h-8 text-[#00C9A7] animate-spin" />
           </div>
         )}
 
-        {/* Stock Grid */}
-        {!loading && filteredStocks.length > 0 && (
+        {/* Grid */}
+        {!loading && paginated.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredStocks.map((stock) => (
+            {paginated.map((stock) => (
               <div
-                key={stock.id}
-                onClick={() => handleStockClick(stock.symbol)}
+                key={stock.symbol}
+                onClick={() => router.push(`/stock/${stock.symbol}`)}
                 className="tv-card p-6 rounded-lg hover:border-[#00C9A7] transition-all cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
               >
-                {/* Stock Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 relative rounded-full overflow-hidden bg-white">
-                    {stock.logo_url ? (
+                  <div
+                    style={{ width: 48, height: 48, borderRadius: 10, flexShrink: 0, overflow: "hidden" }}
+                    className="flex items-center justify-center bg-white"
+                  >
+                    {stock.logo_url && !failedImages.has(stock.symbol) ? (
                       <Image
                         src={stock.logo_url}
                         alt={stock.name}
-                        fill
-                        className="object-contain p-1"
+                        width={48}
+                        height={48}
+                        className="object-contain"
+                        style={{ padding: 4 }}
                         unoptimized
+                        onError={() => markImgFailed(stock.symbol)}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-600 font-bold">
-                        {stock.symbol.charAt(0)}
-                      </div>
+                      <span className="text-gray-600 font-bold text-xs">
+                        {stock.symbol.slice(0, 3)}
+                      </span>
                     )}
                   </div>
+
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-bold text-gray-900 dark:text-white truncate">
                       {stock.symbol}
@@ -168,58 +178,108 @@ export default function StockListPage() {
                       {stock.name}
                     </p>
                   </div>
-                  {stock.is_featured && (
-                    <div className="flex-shrink-0">
-                      <span className="px-2 py-1 bg-yellow-500/20 text-yellow-500 text-xs font-medium rounded">
+
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                    {stock.is_featured && (
+                      <span className="px-2 py-0.5 bg-yellow-500/20 text-yellow-500 text-xs font-medium rounded">
                         Featured
                       </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Stock Price */}
-                <div className="mb-3">
-                  <div className="text-sm font-bold text-gray-900 dark:text-white">
-                    $
-                    {parseFloat(stock.price).toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
+                    )}
+                    <span className="px-1.5 py-0.5 bg-white/5 text-gray-400 text-xs rounded capitalize">
+                      {stock.category}
+                    </span>
                   </div>
                 </div>
 
-                {/* Stock Change */}
-                <div className="flex items-center gap-2">
-                  {stock.is_positive_change ? (
-                    <TrendingUp className="w-4 h-4 text-green-500" />
-                  ) : (
-                    <TrendingDown className="w-4 h-4 text-red-500" />
-                  )}
-                  <span
-                    className={`text-sm font-medium ${
-                      stock.is_positive_change
-                        ? "text-green-500"
-                        : "text-red-500"
-                    }`}
-                  >
-                    {stock.is_positive_change ? "+" : ""}
-                    {parseFloat(stock.change).toFixed(2)} (
-                    {parseFloat(stock.change_percent).toFixed(2)}%)
-                  </span>
+                <div className="flex items-end justify-between">
+                  <div className="text-sm font-bold text-gray-900 dark:text-white">
+                    {parseFloat(stock.price) > 0
+                      ? `$${parseFloat(stock.price).toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}`
+                      : <span className="text-gray-500 text-xs">Price unavailable</span>
+                    }
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {stock.is_positive_change ? (
+                      <TrendingUp className="w-4 h-4 text-green-500" />
+                    ) : (
+                      <TrendingDown className="w-4 h-4 text-red-500" />
+                    )}
+                    <span
+                      className={`text-sm font-medium ${
+                        stock.is_positive_change ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {stock.is_positive_change ? "+" : ""}
+                      {parseFloat(stock.change).toFixed(2)} (
+                      {parseFloat(stock.change_percent).toFixed(2)}%)
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Empty State */}
-        {!loading && filteredStocks.length === 0 && (
+        {/* Empty */}
+        {!loading && paginated.length === 0 && (
           <div className="text-center py-20">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
               {searchQuery
                 ? "No stocks found matching your search"
-                : "No stocks available"}
+                : `No ${activeTab === "all" ? "assets" : activeTab} available`}
             </p>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {!loading && totalPages > 1 && (
+          <div className="mt-8 flex items-center justify-center gap-2 flex-wrap">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
+              .reduce<(number | "…")[]>((acc, p, idx, arr) => {
+                if (idx > 0 && (p as number) - (arr[idx - 1] as number) > 1) acc.push("…");
+                acc.push(p);
+                return acc;
+              }, [])
+              .map((p, i) =>
+                p === "…" ? (
+                  <span key={`ellipsis-${i}`} className="text-gray-500 px-1">…</span>
+                ) : (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p as number)}
+                    className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
+                      page === p ? "" : "tv-card text-gray-400 hover:border-[#00C9A7]"
+                    }`}
+                    style={page === p ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+                  >
+                    {p}
+                  </button>
+                )
+              )}
+
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            <span className="text-gray-500 text-sm ml-2">
+              {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length}
+            </span>
           </div>
         )}
       </div>

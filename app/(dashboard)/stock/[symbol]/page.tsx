@@ -1,534 +1,301 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, X, CheckCircle, AlertCircle, Activity, Shield, Target } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
+import {
+  TrendingUp,
+  TrendingDown,
+  Loader2,
+  ArrowLeft,
+  Globe,
+  BarChart2,
+  Info,
+  Wallet,
+} from "lucide-react";
 import { apiFetch } from "@/lib/api";
 
-interface Signal {
-  id: number;
+interface StockDetail {
+  symbol: string;
   name: string;
-  signal_type: string;
+  logo_url: string;
   price: string;
-  signal_strength: string;
-  action: string;
-  risk_level: string;
-  timeframe: string;
-  status: string;
-  is_featured: boolean;
-  is_purchased: boolean;
-  market_analysis: string;
-  entry_point: string;
-  target_price: string;
-  stop_loss: string;
-  technical_indicators: string;
-  fundamental_analysis: string;
-  created_at: string;
-  expires_at: string | null;
+  change: string;
+  change_percent: string;
+  is_positive_change: boolean;
+  open: number;
+  previous_close: number;
+  day_high: number;
+  day_low: number;
+  year_high: number;
+  year_low: number;
+  market_cap: number | null;
+  volume: number | null;
+  avg_volume: number | null;
+  eps: number | null;
+  pe: number | null;
+  exchange: string | null;
+  sector: string | null;
+  industry: string | null;
+  description: string | null;
+  website: string | null;
+  ceo: string | null;
 }
 
-interface PurchasedSignal {
+interface UserPosition {
   id: number;
-  signal_id: number;
-  signal_name: string;
-  signal_type: string;
-  amount_paid: string;
-  purchase_reference: string;
-  purchased_at: string;
-  signal_data: any;
-  current_signal: {
-    name: string;
-    signal_strength: string;
-    market_analysis: string;
-    entry_point: string;
-    target_price: string;
-    stop_loss: string;
-    action: string;
-    timeframe: string;
-    risk_level: string;
-    status: string;
-  } | null;
+  shares: string;
+  average_buy_price: string;
+  total_invested: string;
+  current_value: string;
+  profit_loss: string;
+  profit_loss_percent: string;
 }
 
-export default function SignalsPage() {
-  const [signals, setSignals] = useState<Signal[]>([]);
-  const [purchasedSignals, setPurchasedSignals] = useState<PurchasedSignal[]>([]);
+function fmt(n: number | string | null | undefined, decimals = 2): string {
+  const v = parseFloat(String(n ?? 0));
+  if (!v) return "—";
+  return v.toLocaleString(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+}
+
+function fmtLarge(n: number | null | undefined): string {
+  if (!n) return "—";
+  if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`;
+  if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
+  if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;
+  return `$${n.toLocaleString()}`;
+}
+
+function fmtVol(n: number | null | undefined): string {
+  if (!n) return "—";
+  if (n >= 1e9) return `${(n / 1e9).toFixed(2)}B`;
+  if (n >= 1e6) return `${(n / 1e6).toFixed(2)}M`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(0)}K`;
+  return String(n);
+}
+
+function StatRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+      <span className="text-gray-400 text-sm">{label}</span>
+      <span className="text-white text-sm font-medium">{value}</span>
+    </div>
+  );
+}
+
+export default function StockDetailPage() {
+  const { symbol } = useParams<{ symbol: string }>();
+  const router = useRouter();
+
+  const [stock, setStock] = useState<StockDetail | null>(null);
+  const [position, setPosition] = useState<UserPosition | null>(null);
   const [loading, setLoading] = useState(true);
-  const [userBalance, setUserBalance] = useState("0");
-  const [activeTab, setActiveTab] = useState<"all" | "purchased">("all");
-  const [selectedSignal, setSelectedSignal] = useState<Signal | null>(null);
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [purchasing, setPurchasing] = useState(false);
+  const [error, setError] = useState("");
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    fetchSignals();
-    fetchPurchasedSignals();
-  }, []);
+    if (!symbol) return;
+    setLoading(true);
+    setError("");
+    apiFetch(`/stocks/${symbol.toUpperCase()}/`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) {
+          setStock(data.stock);
+          setPosition(data.user_position ?? null);
+        } else {
+          setError(data.error || "Symbol not found");
+        }
+      })
+      .catch(() => setError("Failed to load data"))
+      .finally(() => setLoading(false));
+  }, [symbol]);
 
-  const fetchSignals = async () => {
-    try {
-      setLoading(true);
-      const response = await apiFetch("/signals/");
-
-      if (!response.ok) throw new Error("Failed to fetch signals");
-
-      const data = await response.json();
-      if (data.success) {
-        setSignals(data.signals || []);
-        setUserBalance(data.user_balance || "0");
-      }
-    } catch (error) {
-      console.error("Error fetching signals:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchPurchasedSignals = async () => {
-    try {
-      const response = await apiFetch("/signals/purchased/");
-
-      if (!response.ok) return;
-
-      const data = await response.json();
-      if (data.success) {
-        setPurchasedSignals(data.purchases || []);
-      }
-    } catch (error) {
-      console.error("Error fetching purchased signals:", error);
-    }
-  };
-
-  const handlePurchase = async () => {
-    if (!selectedSignal) return;
-
-    const signalPrice = parseFloat(selectedSignal.price);
-    const balance = parseFloat(userBalance);
-
-    if (balance < signalPrice) {
-      return;
-    }
-
-    setPurchasing(true);
-    try {
-      const response = await apiFetch(`/signals/${selectedSignal.id}/purchase/`, {
-        method: "POST",
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setUserBalance(data.new_balance);
-        setShowPurchaseModal(false);
-        setShowSuccessModal(true);
-        fetchSignals();
-        fetchPurchasedSignals();
-      }
-    } catch (error) {
-      console.error("Error purchasing signal:", error);
-    } finally {
-      setPurchasing(false);
-    }
-  };
-
-  const getRiskColor = (risk: string) => {
-    switch (risk.toLowerCase()) {
-      case "low":
-        return "text-green-500 bg-green-500/10";
-      case "medium":
-        return "text-yellow-500 bg-yellow-500/10";
-      case "high":
-        return "text-red-500 bg-red-500/10";
-      default:
-        return "text-gray-500 bg-gray-500/10";
-    }
-  };
-
-  const getActionColor = (action: string) => {
-    if (action.toLowerCase().includes("buy")) return "text-green-500";
-    if (action.toLowerCase().includes("sell")) return "text-red-500";
-    return "text-gray-500";
-  };
+  const price = stock ? parseFloat(stock.price) : 0;
+  const change = stock ? parseFloat(stock.change) : 0;
+  const changePct = stock ? parseFloat(stock.change_percent) : 0;
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
-            <div>
-              <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-1">
-                Trading Signals
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400">
-                Professional trading signals from expert analysts
-              </p>
-            </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6 text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Markets
+        </button>
 
-            {/* Balance Display */}
-            <div className="bg-green-600/10 dark:bg-green-500/20 border-2 border-green-600 rounded-xl px-6 py-4">
-              <div className="text-xs md:text-sm text-green-600 dark:text-green-400 mb-1">
-                Wallet Balance
-              </div>
-              <div className="text-base sm:text-sm font-bold text-gray-900 dark:text-white">
-                ${parseFloat(userBalance).toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </div>
-            </div>
+        {loading && (
+          <div className="flex justify-center items-center py-40">
+            <Loader2 className="w-10 h-10 text-[#00C9A7] animate-spin" />
           </div>
-
-          {/* Tabs */}
-          <div className="flex gap-4 border-b border-gray-200 dark:border-white/10">
-            <button
-              onClick={() => setActiveTab("all")}
-              className={`pb-3 px-4 font-medium transition-colors relative ${
-                activeTab === "all"
-                  ? "text-green-600 dark:text-green-400"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
-              }`}
-            >
-              All Signals
-              {activeTab === "all" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-blue-400" />
-              )}
-            </button>
-            <button
-              onClick={() => setActiveTab("purchased")}
-              className={`pb-3 px-4 font-medium transition-colors relative ${
-                activeTab === "purchased"
-                  ? "text-green-600 dark:text-green-400"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
-              }`}
-            >
-              Purchased Signals
-              {activeTab === "purchased" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-blue-400" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Loading State */}
-        {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
-          </div>
-        ) : (
-          <>
-            {/* All Signals Grid */}
-            {activeTab === "all" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {signals.map((signal) => (
-                  <motion.div
-                    key={signal.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="tv-card rounded-2xl p-6 hover:border-[#00C9A7] transition-all"
-                  >
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                            {signal.name}
-                          </h3>
-                          {signal.is_featured && (
-                            <span className="px-2 py-0.5 bg-yellow-500 text-white text-xs font-semibold rounded-full">
-                              Featured
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {signal.signal_type}
-                        </span>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">
-                          ${parseFloat(signal.price).toFixed(2)}
-                        </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
-                          Signal Price
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Metrics */}
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      <div className="tv-inner rounded-lg p-3">
-                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                          Strength
-                        </div>
-                        <div className="text-sm font-bold text-green-600">
-                          {parseFloat(signal.signal_strength).toFixed(0)}%
-                        </div>
-                      </div>
-                      <div className="tv-inner rounded-lg p-3">
-                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                          Action
-                        </div>
-                        <div className={`text-sm font-bold ${getActionColor(signal.action)}`}>
-                          {signal.action}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Details */}
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-500 dark:text-gray-400">Timeframe:</span>
-                        <span className="text-gray-900 dark:text-white font-medium">
-                          {signal.timeframe}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-500 dark:text-gray-400">Risk Level:</span>
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${getRiskColor(signal.risk_level)}`}>
-                          {signal.risk_level.toUpperCase()}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Purchase Button */}
-                    <button
-                      onClick={() => {
-                        setSelectedSignal(signal);
-                        setShowPurchaseModal(true);
-                      }}
-                      disabled={signal.is_purchased}
-                      className={`w-full py-3 rounded-lg font-semibold transition-all ${
-                        signal.is_purchased
-                          ? "bg-gray-200 dark:bg-white/10 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-                          : "bg-green-600 hover:bg-green-700 text-white"
-                      }`}
-                    >
-                      {signal.is_purchased ? "Already Purchased" : "Purchase Signal"}
-                    </button>
-                  </motion.div>
-                ))}
-              </div>
-            )}
-
-            {/* Purchased Signals */}
-            {activeTab === "purchased" && (
-              <div className="space-y-6">
-                {purchasedSignals.length === 0 ? (
-                  <div className="text-center py-12">
-                    <Activity className="w-16 h-16 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
-                    <p className="text-gray-500 dark:text-gray-400">
-                      You haven&apos;t purchased any signals yet
-                    </p>
-                  </div>
-                ) : (
-                  purchasedSignals.map((purchase) => (
-                    <motion.div
-                      key={purchase.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="tv-card rounded-2xl p-6"
-                    >
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                            {purchase.signal_name}
-                          </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            Purchased {new Date(purchase.purchased_at).toLocaleDateString()}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-bold text-gray-900 dark:text-white">
-                            ${parseFloat(purchase.amount_paid).toFixed(2)}
-                          </div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
-                            {purchase.purchase_reference}
-                          </div>
-                        </div>
-                      </div>
-
-                      {purchase.current_signal && (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 tv-inner rounded-lg p-4">
-                          <div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                              Entry Point
-                            </div>
-                            <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                              {purchase.current_signal.entry_point}
-                            </div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                              Target Price
-                            </div>
-                            <div className="text-sm font-semibold text-green-500">
-                              {purchase.current_signal.target_price}
-                            </div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                              Stop Loss
-                            </div>
-                            <div className="text-sm font-semibold text-red-500">
-                              {purchase.current_signal.stop_loss}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  ))
-                )}
-              </div>
-            )}
-          </>
         )}
-      </div>
 
-      {/* Purchase Modal */}
-      <AnimatePresence>
-        {showPurchaseModal && selectedSignal && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowPurchaseModal(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-            />
+        {!loading && error && (
+          <div className="text-center py-40">
+            <p className="text-red-400 text-lg">{error}</p>
+          </div>
+        )}
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              onClick={() => setShowPurchaseModal(false)}
-            >
-              <div
-                className="rounded-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto"
-                style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setShowPurchaseModal(false)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
-                  style={{ background: "rgba(255,255,255,0.08)" }}
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-6">
-                  Purchase Signal
-                </h2>
-
-                <div className="space-y-4 mb-6">
-                  <div className="tv-inner rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Signal</span>
-                      <span className="font-semibold text-gray-900 dark:text-white">
-                        {selectedSignal.name}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Price</span>
-                      <span className="font-semibold text-gray-900 dark:text-white">
-                        ${parseFloat(selectedSignal.price).toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        Your Balance
-                      </span>
-                      <span className="font-semibold text-gray-900 dark:text-white">
-                        ${parseFloat(userBalance).toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-
-                  {parseFloat(userBalance) < parseFloat(selectedSignal.price) && (
-                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 flex items-start gap-3">
-                      <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <div className="font-semibold text-red-600 dark:text-red-400 mb-1">
-                          Insufficient Balance
-                        </div>
-                        <div className="text-sm text-red-600 dark:text-red-400">
-                          You need ${parseFloat(selectedSignal.price).toFixed(2)} but only have $
-                          {parseFloat(userBalance).toFixed(2)}
-                        </div>
-                      </div>
-                    </div>
+        {!loading && stock && (
+          <div className="space-y-5">
+            {/* Hero */}
+            <div className="tv-card p-6 rounded-xl">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="w-16 h-16 rounded-full overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
+                  {stock.logo_url && !imgError ? (
+                    <Image
+                      src={stock.logo_url}
+                      alt={stock.name}
+                      width={64}
+                      height={64}
+                      className="object-contain p-1.5"
+                      unoptimized
+                      onError={() => setImgError(true)}
+                    />
+                  ) : (
+                    <span className="text-gray-600 font-bold text-sm">
+                      {stock.symbol.slice(0, 3)}
+                    </span>
                   )}
                 </div>
 
-                <div className="flex gap-3">
-                  <button
-                    onClick={handlePurchase}
-                    disabled={
-                      purchasing || parseFloat(userBalance) < parseFloat(selectedSignal.price)
-                    }
-                    className="flex-1 py-3 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
-                    style={{ background: "#00C9A7", color: "#001a0f" }}
-                  >
-                    {purchasing ? "Processing..." : "Confirm Purchase"}
-                  </button>
-                  <button
-                    onClick={() => setShowPurchaseModal(false)}
-                    className="flex-1 py-3 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 text-gray-900 dark:text-white font-semibold rounded-lg transition-all"
-                  >
-                    Cancel
-                  </button>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <h1 className="text-2xl font-bold text-white">{stock.symbol}</h1>
+                    {stock.exchange && (
+                      <span className="px-2 py-0.5 bg-[rgba(0,201,167,0.1)] text-[#00C9A7] text-xs rounded">
+                        {stock.exchange}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-gray-400 text-sm truncate">{stock.name}</p>
+                </div>
+
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-white">
+                    {price > 0 ? (
+                      `$${fmt(price)}`
+                    ) : (
+                      <span className="text-gray-500 text-xl">Price unavailable</span>
+                    )}
+                  </div>
+                  {price > 0 && (
+                    <div
+                      className={`flex items-center justify-end gap-1 mt-1 ${
+                        stock.is_positive_change ? "text-green-400" : "text-red-400"
+                      }`}
+                    >
+                      {stock.is_positive_change ? (
+                        <TrendingUp className="w-4 h-4" />
+                      ) : (
+                        <TrendingDown className="w-4 h-4" />
+                      )}
+                      <span className="text-sm font-medium">
+                        {stock.is_positive_change ? "+" : ""}
+                        {fmt(change)} ({stock.is_positive_change ? "+" : ""}
+                        {fmt(changePct)}%)
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            </div>
 
-      {/* Success Modal */}
-      <AnimatePresence>
-        {showSuccessModal && selectedSignal && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowSuccessModal(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            >
-              <div className="rounded-2xl max-w-md w-full p-6 text-center" style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-10 h-10 text-green-500" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              {/* Market Data */}
+              <div className="tv-card p-6 rounded-xl">
+                <div className="flex items-center gap-2 mb-4">
+                  <BarChart2 className="w-4 h-4 text-[#00C9A7]" />
+                  <h2 className="text-white font-semibold text-sm">Market Data</h2>
                 </div>
-                <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2">
-                  Purchase Successful!
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  You have successfully purchased {selectedSignal.name}
+                <StatRow label="Open" value={stock.open > 0 ? `$${fmt(stock.open)}` : "—"} />
+                <StatRow label="Previous Close" value={stock.previous_close > 0 ? `$${fmt(stock.previous_close)}` : "—"} />
+                <StatRow label="Day High" value={stock.day_high > 0 ? `$${fmt(stock.day_high)}` : "—"} />
+                <StatRow label="Day Low" value={stock.day_low > 0 ? `$${fmt(stock.day_low)}` : "—"} />
+                <StatRow label="52-Week High" value={stock.year_high > 0 ? `$${fmt(stock.year_high)}` : "—"} />
+                <StatRow label="52-Week Low" value={stock.year_low > 0 ? `$${fmt(stock.year_low)}` : "—"} />
+              </div>
+
+              {/* Key Statistics */}
+              <div className="tv-card p-6 rounded-xl">
+                <div className="flex items-center gap-2 mb-4">
+                  <Info className="w-4 h-4 text-[#00C9A7]" />
+                  <h2 className="text-white font-semibold text-sm">Key Statistics</h2>
+                </div>
+                <StatRow label="Market Cap" value={fmtLarge(stock.market_cap)} />
+                <StatRow label="Volume" value={fmtVol(stock.volume)} />
+                <StatRow label="Avg Volume" value={fmtVol(stock.avg_volume)} />
+                <StatRow label="EPS" value={stock.eps != null ? `$${fmt(stock.eps)}` : "—"} />
+                <StatRow label="P/E Ratio" value={stock.pe != null ? fmt(stock.pe) : "—"} />
+                {stock.sector && <StatRow label="Sector" value={stock.sector} />}
+                {stock.industry && <StatRow label="Industry" value={stock.industry} />}
+              </div>
+            </div>
+
+            {/* Your Position */}
+            {position && (
+              <div className="tv-card p-6 rounded-xl">
+                <div className="flex items-center gap-2 mb-4">
+                  <Wallet className="w-4 h-4 text-[#00C9A7]" />
+                  <h2 className="text-white font-semibold text-sm">Your Position</h2>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  {[
+                    { label: "Shares Held", value: fmt(position.shares) },
+                    { label: "Avg Buy Price", value: `$${fmt(position.average_buy_price)}` },
+                    { label: "Total Invested", value: `$${fmt(position.total_invested)}` },
+                    { label: "Current Value", value: `$${fmt(position.current_value)}` },
+                    {
+                      label: "P&L",
+                      value: `${parseFloat(position.profit_loss) >= 0 ? "+" : ""}$${fmt(position.profit_loss)} (${parseFloat(position.profit_loss_percent) >= 0 ? "+" : ""}${fmt(position.profit_loss_percent)}%)`,
+                      colored: true,
+                      positive: parseFloat(position.profit_loss) >= 0,
+                    },
+                  ].map(({ label, value, colored, positive }) => (
+                    <div key={label} className="tv-inner rounded-lg p-3">
+                      <p className="text-xs text-gray-400 mb-1">{label}</p>
+                      <p className={`text-sm font-semibold ${colored ? (positive ? "text-green-400" : "text-red-400") : "text-white"}`}>
+                        {value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* About */}
+            {stock.description && (
+              <div className="tv-card p-6 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-white font-semibold text-sm">About</h2>
+                  {stock.website && (
+                    <a
+                      href={stock.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-[#00C9A7] text-xs hover:opacity-80 transition-opacity"
+                    >
+                      <Globe className="w-3.5 h-3.5" />
+                      Website
+                    </a>
+                  )}
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-6">
+                  {stock.description}
                 </p>
-                <button
-                  onClick={() => {
-                    setShowSuccessModal(false);
-                    setSelectedSignal(null);
-                    setActiveTab("purchased");
-                  }}
-                  className="w-full py-3 font-semibold rounded-lg transition-all hover:opacity-90"
-                  style={{ background: "#00C9A7", color: "#001a0f" }}
-                >
-                  View Purchased Signals
-                </button>
+                {stock.ceo && (
+                  <p className="text-gray-500 text-xs mt-3">CEO: {stock.ceo}</p>
+                )}
               </div>
-            </motion.div>
-          </>
+            )}
+          </div>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }
