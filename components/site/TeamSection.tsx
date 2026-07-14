@@ -8,7 +8,7 @@ const TeamSection = () => {
 
   const teamMembers = [
     {
-      name: "Troy Johnson",
+      name: "James Carter",
       role: "Chief Executive Officer",
       image: "/team/troy.jpg",
     },
