@@ -10,9 +10,9 @@ const TeamSection = () => {
     {
       name: "James Carter",
       role: "Chief Executive Officer",
-      image: "/team/troy.jpg",
+      image: "/team/jamescarter.jpg",
     },
-    
+
     {
       name: "Sarah Chen",
       role: "Chief Technology Officer",
