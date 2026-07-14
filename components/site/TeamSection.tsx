@@ -12,6 +12,7 @@ const TeamSection = () => {
       role: "Chief Executive Officer",
       image: "/team/troy.jpg",
     },
+    
     {
       name: "Sarah Chen",
       role: "Chief Technology Officer",
