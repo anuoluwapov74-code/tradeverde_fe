@@ -1,16 +1,14 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
+import useSWR from "swr";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { X, Search } from "lucide-react";
-import { apiFetch } from "@/lib/api";
+import { X, Search, Newspaper, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface NewsItem {
   id: number;
   title: string;
   summary: string;
-  content: string;
   category: string;
   source: string;
   author: string;
@@ -22,13 +20,57 @@ interface NewsItem {
   updated_at: string;
 }
 
+interface NewsListResponse {
+  results: NewsItem[];
+  total: number;
+  page: number;
+  page_size: number;
+  total_pages: number;
+}
+
+interface NewsDetailResponse {
+  success: boolean;
+  article: NewsItem & { content: string };
+}
+
+const PAGE_SIZE = 24;
+
+function NewsImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string | null;
+  alt: string;
+  className?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return (
+      <div className={`flex items-center justify-center bg-gray-100 dark:bg-white/5 ${className ?? ""}`}>
+        <Newspaper className="w-8 h-8 text-gray-400 dark:text-gray-600" />
+      </div>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt}
+      className={`object-cover ${className ?? ""}`}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export default function NewsPage() {
-  const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [page, setPage] = useState(1);
 
   const categories = [
     "All",
@@ -40,39 +82,37 @@ export default function NewsPage() {
     "Forex",
   ];
 
+  // Debounce free-text search before it hits the API
   useEffect(() => {
-    fetchNews();
-  }, [selectedCategory, searchQuery]);
+    const t = setTimeout(() => setSearchQuery(searchInput.trim()), 400);
+    return () => clearTimeout(t);
+  }, [searchInput]);
 
-  const fetchNews = async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  // Reset to page 1 when the category or search changes (adjust during render, not in an effect)
+  const [prevFilters, setPrevFilters] = useState({ selectedCategory, searchQuery });
+  if (prevFilters.selectedCategory !== selectedCategory || prevFilters.searchQuery !== searchQuery) {
+    setPrevFilters({ selectedCategory, searchQuery });
+    if (page !== 1) setPage(1);
+  }
 
-      const params = new URLSearchParams();
-      if (selectedCategory !== "All") {
-        params.append("category", selectedCategory);
-      }
-      if (searchQuery.trim()) {
-        params.append("search", searchQuery.trim());
-      }
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+  params.set("page_size", String(PAGE_SIZE));
+  if (selectedCategory !== "All") params.set("category", selectedCategory);
+  if (searchQuery) params.set("search", searchQuery);
 
-      const url = `/news/${params.toString() ? `?${params.toString()}` : ""}`;
-      const response = await apiFetch(url);
+  const { data, error, isLoading } = useSWR<NewsListResponse>(
+    `/news/?${params.toString()}`
+  );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch news");
-      }
+  const { data: detailData, isLoading: detailLoading } = useSWR<NewsDetailResponse>(
+    selectedId ? `/news/${selectedId}/` : null
+  );
 
-      const data = await response.json();
-      setNewsData(data);
-    } catch (err) {
-      setError("Failed to load news. Please try again later.");
-      console.error("Error fetching news:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const newsData = data?.results ?? [];
+  const totalPages = data?.total_pages ?? 1;
+  const selectedNews = data?.results.find((n) => n.id === selectedId) ?? null;
+  const selectedArticle = detailData?.success ? detailData.article : null;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -83,13 +123,6 @@ export default function NewsPage() {
       hour: "2-digit",
       minute: "2-digit",
     });
-  };
-
-  const getImageUrl = (imageUrl: string | null) => {
-    return (
-      imageUrl ||
-      "https://via.placeholder.com/400x200/3b82f6/ffffff?text=News+Image"
-    );
   };
 
   return (
@@ -112,8 +145,8 @@ export default function NewsPage() {
             <input
               type="text"
               placeholder="Search news..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               className="w-full px-4 py-3 pl-12 bg-[rgba(0,201,167,0.04)] text-white border-2 border-[rgba(0,201,167,0.14)] rounded-lg focus:outline-none focus:border-[#00C9A7] transition-colors placeholder:text-gray-500"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
@@ -139,27 +172,21 @@ export default function NewsPage() {
         </div>
 
         {/* Loading State */}
-        {loading && (
+        {isLoading && (
           <div className="flex justify-center items-center py-20">
             <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
           </div>
         )}
 
         {/* Error State */}
-        {error && !loading && (
+        {error && !isLoading && (
           <div className="text-center py-12">
-            <p className="text-red-500 text-lg mb-4">{error}</p>
-            <button
-              onClick={fetchNews}
-              className="px-6 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors"
-            >
-              Retry
-            </button>
+            <p className="text-red-500 text-lg mb-4">Failed to load news. Please try again later.</p>
           </div>
         )}
 
         {/* No Results */}
-        {!loading && !error && newsData.length === 0 && (
+        {!isLoading && !error && newsData.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
               No news found matching your criteria
@@ -168,25 +195,19 @@ export default function NewsPage() {
         )}
 
         {/* News Grid */}
-        {!loading && !error && newsData.length > 0 && (
+        {!isLoading && !error && newsData.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {newsData.map((news) => (
               <motion.div
                 key={news.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                onClick={() => setSelectedNews(news)}
+                onClick={() => setSelectedId(news.id)}
                 className="tv-card rounded-2xl overflow-hidden hover:border-[#00C9A7] transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
               >
                 {/* Image */}
-                <div className="relative h-48 bg-gray-100 dark:bg-white/5">
-                  <Image
-                    src={getImageUrl(news.image_url)}
-                    alt={news.title}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
+                <div className="relative h-48">
+                  <NewsImage src={news.image_url} alt={news.title} className="w-full h-full" />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-full">
                       {news.category}
@@ -220,6 +241,30 @@ export default function NewsPage() {
             ))}
           </div>
         )}
+
+        {/* Pagination */}
+        {!isLoading && !error && totalPages > 1 && (
+          <div className="mt-10 flex items-center justify-center gap-3">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <span className="text-gray-400 text-sm">
+              Page <span className="text-white font-semibold">{page}</span> of{" "}
+              <span className="text-white font-semibold">{totalPages}</span>
+            </span>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Modal */}
@@ -230,7 +275,7 @@ export default function NewsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedNews(null)}
+              onClick={() => setSelectedId(null)}
               className="fixed inset-0 bg-black/70 dark:bg-black/50 flex items-center justify-center p-4 z-50"
             />
 
@@ -239,15 +284,15 @@ export default function NewsPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              onClick={() => setSelectedNews(null)}
+              onClick={() => setSelectedId(null)}
             >
               <div
-                className="rounded-2xl max-w-4xl w-full h-[95vh] flex flex-col overflow-hidden"
+                className="rounded-2xl max-w-4xl w-full h-[95vh] flex flex-col overflow-hidden bg-white dark:bg-[#0b1a12] shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
                 <button
-                  onClick={() => setSelectedNews(null)}
+                  onClick={() => setSelectedId(null)}
                   className="absolute top-4 right-4 w-12 h-12 bg-black/80 dark:bg-white/90 hover:bg-black dark:hover:bg-white text-white dark:text-gray-900 rounded-full flex items-center justify-center transition-all shadow-lg z-10"
                   aria-label="Close modal"
                 >
@@ -257,14 +302,8 @@ export default function NewsPage() {
                 {/* Scrollable Content */}
                 <div className="overflow-y-auto flex-1">
                   {/* Modal Header - Banner Image */}
-                  <div className="relative h-64 sm:h-80 bg-gray-100 dark:bg-white/5">
-                    <Image
-                      src={getImageUrl(selectedNews.image_url)}
-                      alt={selectedNews.title}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
+                  <div className="relative h-64 sm:h-80">
+                    <NewsImage src={selectedNews.image_url} alt={selectedNews.title} className="w-full h-full" />
                     <div className="absolute bottom-4 left-4 flex gap-2">
                       <span className="px-3 py-1 bg-green-600 text-white text-sm font-semibold rounded-full">
                         {selectedNews.category}
@@ -337,9 +376,18 @@ export default function NewsPage() {
 
                     {/* Article Content */}
                     <div className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 space-y-4">
-                      {selectedNews.content.split("\n").map((paragraph, index) => (
-                        <p key={index}>{paragraph}</p>
-                      ))}
+                      {detailLoading && !selectedArticle && (
+                        <div className="space-y-3">
+                          <div className="h-4 bg-gray-200 dark:bg-white/10 rounded animate-pulse" />
+                          <div className="h-4 bg-gray-200 dark:bg-white/10 rounded animate-pulse w-5/6" />
+                          <div className="h-4 bg-gray-200 dark:bg-white/10 rounded animate-pulse w-4/6" />
+                        </div>
+                      )}
+                      {selectedArticle?.content
+                        ? selectedArticle.content.split("\n").map((paragraph, index) => (
+                            <p key={index}>{paragraph}</p>
+                          ))
+                        : !detailLoading && <p>{selectedNews.summary}</p>}
                     </div>
 
                     {/* Tags */}
@@ -358,7 +406,7 @@ export default function NewsPage() {
 
                     {/* Close Button */}
                     <button
-                      onClick={() => setSelectedNews(null)}
+                      onClick={() => setSelectedId(null)}
                       className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-colors"
                     >
                       Close

@@ -1,16 +1,21 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import useSWR from "swr";
 import { Search, TrendingUp, TrendingDown, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
-import { apiFetch } from "@/lib/api";
+import StockLogo from "@/components/dashboard/StockLogo";
+
+interface StocksResponse {
+  success: boolean;
+  stocks: Stock[];
+}
 
 interface Stock {
   id: number;
   symbol: string;
   name: string;
-  logo_url: string;
+  logo_url: string | null;
   category: string;
   price: string;
   change: string;
@@ -32,27 +37,22 @@ const PAGE_SIZE = 12;
 
 export default function StockListPage() {
   const router = useRouter();
-  const [stocks, setStocks] = useState<Stock[]>([]);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<Tab>("all");
   const [page, setPage] = useState(1);
-  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
-  const markImgFailed = (sym: string) =>
-    setFailedImages((prev) => new Set(prev).add(sym));
+  // Stock prices sync roughly every 15 min server-side, so poll on the same cadence
+  const { data, isLoading: loading } = useSWR<StocksResponse>("/stocks/", {
+    refreshInterval: 900_000,
+  });
+  const stocks = useMemo(() => (data?.success ? data.stocks : []), [data]);
 
-  useEffect(() => {
-    setLoading(true);
-    apiFetch("/stocks/")
-      .then((r) => r.json())
-      .then((data) => { if (data.success) setStocks(data.stocks); })
-      .catch((err) => console.error("Error fetching stocks:", err))
-      .finally(() => setLoading(false));
-  }, []);
-
-  // Reset to page 1 when tab or search changes
-  useEffect(() => { setPage(1); }, [activeTab, searchQuery]);
+  // Reset to page 1 when tab or search changes (adjust during render, not in an effect)
+  const [prevFilters, setPrevFilters] = useState({ activeTab, searchQuery });
+  if (prevFilters.activeTab !== activeTab || prevFilters.searchQuery !== searchQuery) {
+    setPrevFilters({ activeTab, searchQuery });
+    if (page !== 1) setPage(1);
+  }
 
   const filtered = useMemo(() => {
     let list = stocks;
@@ -148,27 +148,7 @@ export default function StockListPage() {
                 className="tv-card p-6 rounded-lg hover:border-[#00C9A7] transition-all cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div
-                    style={{ width: 48, height: 48, borderRadius: 10, flexShrink: 0, overflow: "hidden" }}
-                    className="flex items-center justify-center bg-white"
-                  >
-                    {stock.logo_url && !failedImages.has(stock.symbol) ? (
-                      <Image
-                        src={stock.logo_url}
-                        alt={stock.name}
-                        width={48}
-                        height={48}
-                        className="object-contain"
-                        style={{ padding: 4 }}
-                        unoptimized
-                        onError={() => markImgFailed(stock.symbol)}
-                      />
-                    ) : (
-                      <span className="text-gray-600 font-bold text-xs">
-                        {stock.symbol.slice(0, 3)}
-                      </span>
-                    )}
-                  </div>
+                  <StockLogo logoUrl={stock.logo_url} name={stock.name || stock.symbol} size={48} />
 
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-bold text-gray-900 dark:text-white truncate">

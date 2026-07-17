@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Image from "next/image";
+import useSWR from "swr";
 import {
   TrendingUp,
   TrendingDown,
@@ -13,12 +12,12 @@ import {
   Info,
   Wallet,
 } from "lucide-react";
-import { apiFetch } from "@/lib/api";
+import StockLogo from "@/components/dashboard/StockLogo";
 
 interface StockDetail {
   symbol: string;
   name: string;
-  logo_url: string;
+  logo_url: string | null;
   price: string;
   change: string;
   change_percent: string;
@@ -40,6 +39,13 @@ interface StockDetail {
   description: string | null;
   website: string | null;
   ceo: string | null;
+}
+
+interface StockDetailResponse {
+  success: boolean;
+  error?: string;
+  stock: StockDetail;
+  user_position?: UserPosition | null;
 }
 
 interface UserPosition {
@@ -90,29 +96,13 @@ export default function StockDetailPage() {
   const { symbol } = useParams<{ symbol: string }>();
   const router = useRouter();
 
-  const [stock, setStock] = useState<StockDetail | null>(null);
-  const [position, setPosition] = useState<UserPosition | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [imgError, setImgError] = useState(false);
+  const { data, isLoading: loading, error: swrError } = useSWR<StockDetailResponse>(
+    symbol ? `/stocks/${symbol.toUpperCase()}/` : null
+  );
 
-  useEffect(() => {
-    if (!symbol) return;
-    setLoading(true);
-    setError("");
-    apiFetch(`/stocks/${symbol.toUpperCase()}/`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.success) {
-          setStock(data.stock);
-          setPosition(data.user_position ?? null);
-        } else {
-          setError(data.error || "Symbol not found");
-        }
-      })
-      .catch(() => setError("Failed to load data"))
-      .finally(() => setLoading(false));
-  }, [symbol]);
+  const stock = data?.success ? data.stock : null;
+  const position = data?.success ? data.user_position ?? null : null;
+  const error = swrError ? "Failed to load data" : !loading && data && !data.success ? (data.error || "Symbol not found") : "";
 
   const price = stock ? parseFloat(stock.price) : 0;
   const change = stock ? parseFloat(stock.change) : 0;
@@ -146,23 +136,7 @@ export default function StockDetailPage() {
             {/* Hero */}
             <div className="tv-card p-6 rounded-xl">
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
-                  {stock.logo_url && !imgError ? (
-                    <Image
-                      src={stock.logo_url}
-                      alt={stock.name}
-                      width={64}
-                      height={64}
-                      className="object-contain p-1.5"
-                      unoptimized
-                      onError={() => setImgError(true)}
-                    />
-                  ) : (
-                    <span className="text-gray-600 font-bold text-sm">
-                      {stock.symbol.slice(0, 3)}
-                    </span>
-                  )}
-                </div>
+                <StockLogo logoUrl={stock.logo_url} name={stock.name || stock.symbol} size={64} rounded="rounded-full" />
 
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-1">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
+import { SWRConfig } from "swr";
 import Sidebar from "@/components/dashboard/Sidebar";
 import TopNav from "@/components/dashboard/TopNav";
 import { apiFetch } from "@/lib/api";
@@ -9,6 +10,12 @@ import { BACKEND_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import Preloader from "@/components/Preloader";
 import { useTheme } from "next-themes";
+
+const swrFetcher = (url: string) =>
+  apiFetch(url).then((res) => {
+    if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+    return res.json();
+  });
 
 export interface AuthUser {
   email: string;
@@ -103,28 +110,37 @@ export default function DashboardShell({ children }: DashboardShellProps) {
   }
 
   return (
-    <div className="min-h-screen dashboard-font" style={isDark ? { background: "#0b1a12" } : undefined}>
-      <div className="flex flex-col h-screen overflow-hidden">
-        {/* Top Navigation */}
-        <TopNav onMenuClick={() => setIsSidebarOpen(true)} user={user} />
+    <SWRConfig
+      value={{
+        fetcher: swrFetcher,
+        revalidateOnFocus: true,
+        revalidateOnReconnect: true,
+        dedupingInterval: 15000,
+      }}
+    >
+      <div className="min-h-screen dashboard-font" style={isDark ? { background: "#0b1a12" } : undefined}>
+        <div className="flex flex-col h-screen overflow-hidden">
+          {/* Top Navigation */}
+          <TopNav onMenuClick={() => setIsSidebarOpen(true)} user={user} />
 
-        {/* Sidebar Drawer */}
-        <AnimatePresence>
-          {isSidebarOpen && (
-            <Sidebar
-              isOpen={isSidebarOpen}
-              onClose={() => setIsSidebarOpen(false)}
-            />
-          )}
-        </AnimatePresence>
+          {/* Sidebar Drawer */}
+          <AnimatePresence>
+            {isSidebarOpen && (
+              <Sidebar
+                isOpen={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+              />
+            )}
+          </AnimatePresence>
 
-        {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4">
-            {children}
-          </div>
-        </main>
+          {/* Main Content Area */}
+          <main className="flex-1 overflow-y-auto overflow-x-hidden">
+            <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4">
+              {children}
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+    </SWRConfig>
   );
 }
