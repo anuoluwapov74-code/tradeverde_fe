@@ -7,12 +7,12 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Risk Disclaimer — VerdeTrades",
   description: "Important risk information for VerdeTrades users. Copy trading and derivatives involve substantial risk of loss. Read this disclaimer before using VerdeTrades.",
-  alternates: { canonical: "https://verdetrades.com/risk-disclaimer" },
+  alternates: { canonical: "https://verdestrades.com/risk-disclaimer" },
   robots: { index: true, follow: false },
   openGraph: {
     title: "Risk Disclaimer — VerdeTrades",
     description: "Important risk information for VerdeTrades copy trading users.",
-    url: "https://verdetrades.com/risk-disclaimer",
+    url: "https://verdestrades.com/risk-disclaimer",
   },
 };
 

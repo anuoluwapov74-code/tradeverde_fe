@@ -7,12 +7,12 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Privacy Policy — VerdeTrades",
   description: "Read the VerdeTrades Privacy Policy to understand how we collect, use, and protect your personal data when you use our copy trading platform.",
-  alternates: { canonical: "https://verdetrades.com/privacy-policy" },
+  alternates: { canonical: "https://verdestrades.com/privacy-policy" },
   robots: { index: true, follow: false },
   openGraph: {
     title: "Privacy Policy — VerdeTrades",
     description: "How VerdeTrades collects, uses, and protects your personal data.",
-    url: "https://verdetrades.com/privacy-policy",
+    url: "https://verdestrades.com/privacy-policy",
   },
 };
 
@@ -211,7 +211,7 @@ export default function PrivacyPolicy() {
                 Please note that opting out of certain data processing activities may
                 limit your ability to use some features of our platform. To exercise any
                 of these rights, please contact us at{" "}
-                <span className="text-green-600">support@verdetrades.com</span>.
+                <span className="text-green-600">support@verdestrades.com</span>.
               </p>
             </section>
 

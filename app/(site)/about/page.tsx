@@ -8,11 +8,11 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About VerdeTrades",
   description: "Learn about VerdeTrades — our mission to democratise copy trading for futures, options, and contracts. Meet the team building precision, transparency, and zero-commission trading.",
-  alternates: { canonical: "https://verdetrades.com/about" },
+  alternates: { canonical: "https://verdestrades.com/about" },
   openGraph: {
     title: "About VerdeTrades",
     description: "Our mission to democratise copy trading. Meet the team behind VerdeTrades.",
-    url: "https://verdetrades.com/about",
+    url: "https://verdestrades.com/about",
   },
 };
 
@@ -229,10 +229,10 @@ export default function AboutPage() {
                 Have questions about VerdeTrades? We&apos;d love to hear from
                 you. Reach out to our team at{" "}
                 <a
-                  href="mailto:support@verdetrades.com"
+                  href="mailto:support@verdestrades.com"
                   className="text-green-600 hover:text-green-700 underline"
                 >
-                  support@verdetrades.com
+                  support@verdestrades.com
                 </a>{" "}
                 or start a conversation through our live chat.
               </p>

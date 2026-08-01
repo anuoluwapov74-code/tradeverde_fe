@@ -7,12 +7,12 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Cookies Policy — VerdeTrades",
   description: "Learn how VerdeTrades uses cookies and similar technologies to improve your experience on our copy trading platform.",
-  alternates: { canonical: "https://verdetrades.com/cookies-policy" },
+  alternates: { canonical: "https://verdestrades.com/cookies-policy" },
   robots: { index: true, follow: false },
   openGraph: {
     title: "Cookies Policy — VerdeTrades",
     description: "How VerdeTrades uses cookies on our copy trading platform.",
-    url: "https://verdetrades.com/cookies-policy",
+    url: "https://verdestrades.com/cookies-policy",
   },
 };
 
@@ -184,7 +184,7 @@ export default function CookiesPolicy() {
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 To opt out or manage your cookie preferences, please email us at{" "}
-                <span className="text-green-600">support@verdetrades.com</span>. Our team
+                <span className="text-green-600">support@verdestrades.com</span>. Our team
                 will assist you with updating your preferences promptly.
               </p>
             </section>

@@ -7,11 +7,11 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Leader Trader Guide — VerdeTrades",
   description: "Everything you need to know about becoming a top Leader Trader on VerdeTrades. Set your strategy, manage copiers, and maximise your earnings as a VerdeTrades expert.",
-  alternates: { canonical: "https://verdetrades.com/leader-guide" },
+  alternates: { canonical: "https://verdestrades.com/leader-guide" },
   openGraph: {
     title: "VerdeTrades Leader Trader Guide",
     description: "How to become a top Leader Trader and earn on VerdeTrades.",
-    url: "https://verdetrades.com/leader-guide",
+    url: "https://verdestrades.com/leader-guide",
   },
 };
 

@@ -8,11 +8,11 @@ import FAQMajor from "@/components/site/FAQMajor";
 export const metadata: Metadata = {
   title: "User Guide — Getting Started with VerdeTrades",
   description: "Learn how to use VerdeTrades: create your account, verify your identity, fund your wallet, choose a Leader Trader, and start copy trading in minutes.",
-  alternates: { canonical: "https://verdetrades.com/user-guide" },
+  alternates: { canonical: "https://verdestrades.com/user-guide" },
   openGraph: {
     title: "VerdeTrades User Guide",
     description: "Step-by-step guide to getting started with copy trading on VerdeTrades.",
-    url: "https://verdetrades.com/user-guide",
+    url: "https://verdestrades.com/user-guide",
   },
 };
 
@@ -276,7 +276,7 @@ export default function UserGuide() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>
-                  <span><strong>Email support</strong> — Reach us at support@verdetrades.com</span>
+                  <span><strong>Email support</strong> — Reach us at support@verdestrades.com</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>

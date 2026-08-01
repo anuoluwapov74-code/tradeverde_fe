@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   title: "Copy Futures, Options & Contracts with Precision",
   description:
     "VerdeTrades lets you mirror real-time stock, futures, and options trades from top-performing experts. AutoGuard™ protection, AI signals, zero commission — start copy trading today.",
-  alternates: { canonical: "https://verdetrades.com" },
+  alternates: { canonical: "https://verdestrades.com" },
   openGraph: {
     title: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time trades from top experts. AutoGuard™ risk management, AI signals, zero commission.",
-    url: "https://verdetrades.com",
-    images: [{ url: "https://verdetrades.com/opengraph-image.png", width: 1200, height: 630, alt: "VerdeTrades Copy Trading Platform" }],
+    url: "https://verdestrades.com",
+    images: [{ url: "https://verdestrades.com/opengraph-image.png", width: 1200, height: 630, alt: "VerdeTrades Copy Trading Platform" }],
   },
 };
 
@@ -40,12 +40,12 @@ export default function Home() {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://verdetrades.com/#organization",
+                "@id": "https://verdestrades.com/#organization",
                 name: "VerdeTrades",
-                url: "https://verdetrades.com",
+                url: "https://verdestrades.com",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://verdetrades.com/android-chrome-512x512.png",
+                  url: "https://verdestrades.com/android-chrome-512x512.png",
                 },
                 sameAs: [],
                 description:
@@ -53,26 +53,26 @@ export default function Home() {
               },
               {
                 "@type": "WebSite",
-                "@id": "https://verdetrades.com/#website",
-                url: "https://verdetrades.com",
+                "@id": "https://verdestrades.com/#website",
+                url: "https://verdestrades.com",
                 name: "VerdeTrades",
-                publisher: { "@id": "https://verdetrades.com/#organization" },
+                publisher: { "@id": "https://verdestrades.com/#organization" },
                 potentialAction: {
                   "@type": "SearchAction",
                   target: {
                     "@type": "EntryPoint",
-                    urlTemplate: "https://verdetrades.com/explore-traders?q={search_term_string}",
+                    urlTemplate: "https://verdestrades.com/explore-traders?q={search_term_string}",
                   },
                   "query-input": "required name=search_term_string",
                 },
               },
               {
                 "@type": "WebPage",
-                "@id": "https://verdetrades.com/#webpage",
-                url: "https://verdetrades.com",
+                "@id": "https://verdestrades.com/#webpage",
+                url: "https://verdestrades.com",
                 name: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
-                isPartOf: { "@id": "https://verdetrades.com/#website" },
-                about: { "@id": "https://verdetrades.com/#organization" },
+                isPartOf: { "@id": "https://verdestrades.com/#website" },
+                about: { "@id": "https://verdestrades.com/#organization" },
                 description:
                   "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
               },

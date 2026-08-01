@@ -7,12 +7,12 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Terms of Service — VerdeTrades",
   description: "Read the VerdeTrades Terms of Service governing your use of our copy trading platform, including account terms, trading rules, and user obligations.",
-  alternates: { canonical: "https://verdetrades.com/terms-of-service" },
+  alternates: { canonical: "https://verdestrades.com/terms-of-service" },
   robots: { index: true, follow: false },
   openGraph: {
     title: "Terms of Service — VerdeTrades",
     description: "The terms governing your use of the VerdeTrades copy trading platform.",
-    url: "https://verdetrades.com/terms-of-service",
+    url: "https://verdestrades.com/terms-of-service",
   },
 };
 

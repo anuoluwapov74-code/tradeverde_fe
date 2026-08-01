@@ -7,12 +7,12 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "End User License Agreement — VerdeTrades",
   description: "Read the VerdeTrades EULA governing your licence to use the VerdeTrades copy trading application, including permitted uses and restrictions.",
-  alternates: { canonical: "https://verdetrades.com/end-user-license-agreement" },
+  alternates: { canonical: "https://verdestrades.com/end-user-license-agreement" },
   robots: { index: true, follow: false },
   openGraph: {
     title: "End User License Agreement — VerdeTrades",
     description: "The EULA governing your licence to use the VerdeTrades application.",
-    url: "https://verdetrades.com/end-user-license-agreement",
+    url: "https://verdestrades.com/end-user-license-agreement",
   },
 };
 
@@ -325,7 +325,7 @@ export default function EndUserLicenseAgreement() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 If you have any questions about this End User License Agreement, please
                 contact us at{" "}
-                <span className="text-green-600">support@verdetrades.com</span>. Our team
+                <span className="text-green-600">support@verdestrades.com</span>. Our team
                 is available to assist you with any inquiries regarding your rights and
                 obligations under this agreement.
               </p>

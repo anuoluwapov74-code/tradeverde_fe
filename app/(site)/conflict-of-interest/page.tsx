@@ -7,12 +7,12 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Conflict of Interest Policy — VerdeTrades",
   description: "VerdeTrades's conflict of interest policy outlines how we identify and manage conflicts to protect our users and maintain platform integrity.",
-  alternates: { canonical: "https://verdetrades.com/conflict-of-interest" },
+  alternates: { canonical: "https://verdestrades.com/conflict-of-interest" },
   robots: { index: true, follow: false },
   openGraph: {
     title: "Conflict of Interest Policy — VerdeTrades",
     description: "How VerdeTrades identifies and manages conflicts of interest.",
-    url: "https://verdetrades.com/conflict-of-interest",
+    url: "https://verdestrades.com/conflict-of-interest",
   },
 };
 
