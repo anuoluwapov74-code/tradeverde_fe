@@ -8,7 +8,7 @@ import HowItWorks from "@/components/site/HowItWorks";
 import LiquidityProvidersSection from "@/components/site/LiquidityProvidersSection";
 import Navbar from "@/components/site/Navbar";
 import StatsSection from "@/components/site/StatsSection";
-import TeamSection from "@/components/site/TeamSection";
+// import TeamSection from "@/components/site/TeamSection";
 import TradersSection from "@/components/site/TradersSecion";
 import TrustSection from "@/components/site/TrustSection";
 import WhatYouCanCopy from "@/components/site/WhatYouCanCopy";
@@ -127,7 +127,7 @@ export default function Home() {
         <FeaturesSection />
         <WhatYouCanCopy />
         <FAQSection />
-        <TeamSection />
+        {/* <TeamSection /> */}
         <TrustSection />
         <CTASection />
         <LiquidityProvidersSection />
