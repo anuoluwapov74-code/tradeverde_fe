@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   User,
   Shield,
-  Wallet,
   X,
   Loader2,
   Lock,
@@ -14,7 +13,7 @@ import {
 } from "lucide-react";
 import { apiFetch } from "@/lib/api";
 
-type Tab = "profile" | "security" | "payment";
+type Tab = "profile" | "security";
 
 interface EditModalData {
   type:
@@ -22,9 +21,6 @@ interface EditModalData {
     | "phone"
     | "country"
     | "password"
-    | "btc"
-    | "eth"
-    | "usdt"
     | "disable2fa"
     | null;
 }
@@ -41,23 +37,6 @@ interface UserSettings {
     account_id: string;
     is_verified: boolean;
     account_status: string;
-  };
-  payment_methods: {
-    btc: {
-      address: string;
-      has_method: boolean;
-    };
-    eth: {
-      address: string;
-      network: string;
-      has_method: boolean;
-    };
-    usdt: {
-      address: string;
-      network: string;
-      method_type: string;
-      has_method: boolean;
-    };
   };
 }
 
@@ -86,8 +65,6 @@ export default function SettingsPage() {
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
-    cryptoAddress: "",
-    usdtNetwork: "USDT_TRC20",
     disable2faPassword: "",
   });
 
@@ -230,26 +207,6 @@ export default function SettingsPage() {
       case "country":
         setFormData({ ...formData, country: userSettings.profile.country });
         break;
-      case "btc":
-        setFormData({
-          ...formData,
-          cryptoAddress: userSettings.payment_methods.btc.address,
-        });
-        break;
-      case "eth":
-        setFormData({
-          ...formData,
-          cryptoAddress: userSettings.payment_methods.eth.address,
-        });
-        break;
-      case "usdt":
-        setFormData({
-          ...formData,
-          cryptoAddress: userSettings.payment_methods.usdt.address,
-          usdtNetwork:
-            userSettings.payment_methods.usdt.method_type || "USDT_TRC20",
-        });
-        break;
       case "password":
         setFormData({
           ...formData,
@@ -272,8 +229,6 @@ export default function SettingsPage() {
       oldPassword: "",
       newPassword: "",
       confirmPassword: "",
-      cryptoAddress: "",
-      usdtNetwork: "USDT_TRC20",
       disable2faPassword: "",
     });
     setSuccessMessage(null);
@@ -313,38 +268,11 @@ export default function SettingsPage() {
             confirm_password: formData.confirmPassword,
           };
           break;
-        case "btc":
-          endpoint = "/settings/payment-method/";
-          body = {
-            method_type: "BTC",
-            address: formData.cryptoAddress,
-          };
-          break;
-        case "eth":
-          endpoint = "/settings/payment-method/";
-          body = {
-            method_type: "ETH",
-            address: formData.cryptoAddress,
-          };
-          break;
-        case "usdt":
-          endpoint = "/settings/payment-method/";
-          body = {
-            method_type: formData.usdtNetwork,
-            address: formData.cryptoAddress,
-          };
-          break;
         default:
           return;
       }
 
-      const method =
-        editModal.type === "password" ||
-        editModal.type === "btc" ||
-        editModal.type === "eth" ||
-        editModal.type === "usdt"
-          ? "POST"
-          : "PATCH";
+      const method = editModal.type === "password" ? "POST" : "PATCH";
 
       const response = await apiFetch(endpoint, {
         method,
@@ -453,7 +381,7 @@ export default function SettingsPage() {
 
         {/* Tabs */}
         <div className="flex flex-wrap gap-2 sm:gap-3 mb-6">
-          {(["profile", "security", "payment"] as const).map((tab) => (
+          {(["profile", "security"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -466,8 +394,7 @@ export default function SettingsPage() {
             >
               {tab === "profile" && <User className="w-4 h-4" />}
               {tab === "security" && <Shield className="w-4 h-4" />}
-              {tab === "payment" && <Wallet className="w-4 h-4" />}
-              {tab === "profile" ? "Profile" : tab === "security" ? "Security" : "Payment Info"}
+              {tab === "profile" ? "Profile" : "Security"}
             </button>
           ))}
         </div>
@@ -722,105 +649,6 @@ export default function SettingsPage() {
           </motion.div>
         )}
 
-        {/* Payment Information Tab */}
-        {activeTab === "payment" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2">
-              Withdrawal Addresses
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Information for withdrawal methods available on your account
-            </p>
-
-            <div className="space-y-3">
-              {/* Bitcoin Address */}
-              <div className="tv-card p-5 rounded-lg">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                      Bitcoin Address (BTC)
-                    </div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white break-all">
-                      {userSettings.payment_methods.btc.address ||
-                        "No address added"}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => openEditModal("btc")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors whitespace-nowrap self-start sm:self-auto"
-                  >
-                    {userSettings.payment_methods.btc.has_method
-                      ? "Edit"
-                      : "Add"}{" "}
-                    BTC Address
-                  </button>
-                </div>
-              </div>
-
-              {/* Ethereum Address */}
-              <div className="tv-card p-5 rounded-lg">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                      Ethereum Address (ETH)
-                    </div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white break-all">
-                      {userSettings.payment_methods.eth.address ||
-                        "No address added"}
-                    </div>
-                    {userSettings.payment_methods.eth.network && (
-                      <div className="text-xs text-gray-500 mt-1">
-                        {userSettings.payment_methods.eth.network}
-                      </div>
-                    )}
-                  </div>
-                  <button
-                    onClick={() => openEditModal("eth")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors whitespace-nowrap self-start sm:self-auto"
-                  >
-                    {userSettings.payment_methods.eth.has_method
-                      ? "Edit"
-                      : "Add"}{" "}
-                    ETH Address
-                  </button>
-                </div>
-              </div>
-
-              {/* USDT Address */}
-              <div className="tv-card p-5 rounded-lg">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                      USDT Address
-                    </div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white break-all">
-                      {userSettings.payment_methods.usdt.address ||
-                        "No address added"}
-                    </div>
-                    {userSettings.payment_methods.usdt.network && (
-                      <div className="text-xs text-gray-500 mt-1">
-                        {userSettings.payment_methods.usdt.network}
-                      </div>
-                    )}
-                  </div>
-                  <button
-                    onClick={() => openEditModal("usdt")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors whitespace-nowrap self-start sm:self-auto"
-                  >
-                    {userSettings.payment_methods.usdt.has_method
-                      ? "Edit"
-                      : "Add"}{" "}
-                    USDT Address
-                  </button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
       </div>
 
       {/* Edit Modals */}
@@ -1171,138 +999,6 @@ export default function SettingsPage() {
                 </>
               )}
 
-              {/* Crypto Address Edit Modals (BTC & ETH) */}
-              {(editModal.type === "btc" || editModal.type === "eth") && (
-                <>
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white mb-4">
-                    {editModal.type === "btc" &&
-                      `${
-                        userSettings?.payment_methods.btc.has_method
-                          ? "Edit"
-                          : "Add"
-                      } Bitcoin Address`}
-                    {editModal.type === "eth" &&
-                      `${
-                        userSettings?.payment_methods.eth.has_method
-                          ? "Edit"
-                          : "Add"
-                      } Ethereum Address`}
-                  </h3>
-                  <div>
-                    <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1.5">
-                      {editModal.type === "btc" && "Bitcoin Address:"}
-                      {editModal.type === "eth" && "Ethereum Address (ERC20):"}
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.cryptoAddress}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          cryptoAddress: e.target.value,
-                        })
-                      }
-                      placeholder="Enter wallet address"
-                      className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
-                    />
-                  </div>
-                  <div className="flex gap-3 mt-5">
-                    <button
-                      onClick={handleUpdate}
-                      disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {updating ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          Updating...
-                        </span>
-                      ) : (
-                        "Update"
-                      )}
-                    </button>
-                    <button
-                      onClick={closeModal}
-                      disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-white/10 dark:hover:bg-white/20 text-gray-900 dark:text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </>
-              )}
-
-              {/* USDT Address Edit Modal with Network Selection */}
-              {editModal.type === "usdt" && (
-                <>
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white mb-4">
-                    {userSettings?.payment_methods.usdt.has_method
-                      ? "Edit"
-                      : "Add"}{" "}
-                    USDT Address
-                  </h3>
-                  <div className="space-y-3">
-                    <div>
-                      <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1.5">
-                        Network:
-                      </label>
-                      <select
-                        value={formData.usdtNetwork}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            usdtNetwork: e.target.value,
-                          })
-                        }
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
-                      >
-                        <option value="USDT_TRC20">TRC20 (Tron)</option>
-                        <option value="USDT_ERC20">ERC20 (Ethereum)</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1.5">
-                        USDT Address:
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.cryptoAddress}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            cryptoAddress: e.target.value,
-                          })
-                        }
-                        placeholder="Enter wallet address"
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex gap-3 mt-5">
-                    <button
-                      onClick={handleUpdate}
-                      disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {updating ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          Updating...
-                        </span>
-                      ) : (
-                        "Update"
-                      )}
-                    </button>
-                    <button
-                      onClick={closeModal}
-                      disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-white/10 dark:hover:bg-white/20 text-gray-900 dark:text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </>
-              )}
             </motion.div>
           </motion.div>
         )}

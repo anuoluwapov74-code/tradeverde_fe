@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   AlertCircle,
+  Check,
   ChevronDown,
   Loader2,
   CheckCircle,
@@ -12,13 +13,17 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch } from "@/lib/api";
-import { PaymentMethod, UserProfile, Transaction } from "@/components/dashboard/modals/types";
+import { UserProfile, Transaction } from "@/components/dashboard/modals/types";
+import { getCryptoIcon, getNetworkName } from "@/components/dashboard/modals/crypto-icons";
+
+// Hardcoded crypto types for withdrawal — no dependency on saved payment
+// methods. The user always types their own destination address manually below.
+const CRYPTO_TYPES = ["BTC", "ETH", "USDT", "BNB", "TRX", "USDC", "XRP", "SOL"];
 
 export default function WithdrawPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [methods, setMethods] = useState<PaymentMethod[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState("");
   const [amount, setAmount] = useState("");
   const [withdrawalAddress, setWithdrawalAddress] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -31,30 +36,18 @@ export default function WithdrawPage() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (selectedMethod && methods.length > 0) {
-      const method = methods.find((m) => m.method_type === selectedMethod);
-      if (method) setWithdrawalAddress(method.address);
-    } else {
-      setWithdrawalAddress("");
-    }
-  }, [selectedMethod, methods]);
-
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [profileRes, methodsRes, historyRes] = await Promise.all([
+      const [profileRes, historyRes] = await Promise.all([
         apiFetch("/withdrawals/profile/"),
-        apiFetch("/withdrawals/methods/"),
         apiFetch("/withdrawals/history/?limit=10"),
       ]);
 
       const profileData = await profileRes.json();
-      const methodsData = await methodsRes.json();
       const historyData = await historyRes.json();
 
       if (profileData.success) setProfile(profileData.user);
-      if (methodsData.success) setMethods(methodsData.methods);
       if (historyData.success) setTransactions(historyData.transactions);
     } catch {
       toast.error("Failed to load withdrawal data");
@@ -63,18 +56,12 @@ export default function WithdrawPage() {
     }
   };
 
-  const handleMethodSelect = (methodType: string) => {
-    setSelectedMethod(methodType);
-    setIsDropdownOpen(false);
-    setError("");
-  };
-
   const handleConfirmWithdrawal = async () => {
     setError("");
 
-    if (!selectedMethod) { setError("Please select a withdrawal method"); return; }
+    if (!selectedCurrency) { setError("Please select a currency type"); return; }
     if (!amount || parseFloat(amount) <= 0) { setError("Please enter a valid amount"); return; }
-    if (!withdrawalAddress) { setError("Withdrawal address is required"); return; }
+    if (!withdrawalAddress.trim()) { setError("Please enter your wallet address"); return; }
     if (profile && parseFloat(amount) > parseFloat(profile.balance)) {
       setError(`Insufficient balance. Your balance is ${profile.formatted_balance}`);
       return;
@@ -87,9 +74,9 @@ export default function WithdrawPage() {
     apiFetch("/withdrawals/intent/", {
       method: "POST",
       body: JSON.stringify({
-        method_type: selectedMethod,
+        method_type: selectedCurrency,
         amount: amount,
-        withdrawal_address: withdrawalAddress,
+        withdrawal_address: withdrawalAddress.trim(),
       }),
     }).catch(() => {});
 
@@ -97,9 +84,9 @@ export default function WithdrawPage() {
       const res = await apiFetch("/withdrawals/create/", {
         method: "POST",
         body: JSON.stringify({
-          method_type: selectedMethod,
+          method_type: selectedCurrency,
           amount: amount,
-          withdrawal_address: withdrawalAddress,
+          withdrawal_address: withdrawalAddress.trim(),
         }),
       });
 
@@ -113,7 +100,7 @@ export default function WithdrawPage() {
             formatted_balance: data.transaction.formatted_new_balance,
           });
         }
-        setSelectedMethod("");
+        setSelectedCurrency("");
         setAmount("");
         setWithdrawalAddress("");
         toast.success("Withdrawal request submitted!");
@@ -126,10 +113,6 @@ export default function WithdrawPage() {
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const getDisplayName = (methodType: string): string => {
-    return methodType.replace("_ERC20", "").replace("_TRC20", "");
   };
 
   const getStatusColor = (status: string) => {
@@ -204,56 +187,51 @@ export default function WithdrawPage() {
 
             <hr className="border-gray-200 dark:border-white/10" />
 
-            {/* Method Dropdown */}
+            {/* Type Dropdown */}
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Withdrawal Method
+                Type
               </label>
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between transition-all bg-gray-100 dark:bg-[#071a0e] border ${
+                  className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between gap-2 transition-all bg-gray-100 dark:bg-[#071a0e] border ${
                     isDropdownOpen ? "border-green-600" : "border-gray-300 dark:border-white/10"
-                  } ${selectedMethod ? "text-gray-900 dark:text-white" : "text-gray-500"}`}
+                  }`}
                 >
-                  <span>{selectedMethod ? getDisplayName(selectedMethod) : "Select method"}</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
+                  <span className="flex items-center gap-2 min-w-0">
+                    {selectedCurrency && (
+                      <span className="shrink-0 [&_svg]:!w-5 [&_svg]:!h-5">{getCryptoIcon(selectedCurrency)}</span>
+                    )}
+                    <span className={`truncate ${selectedCurrency ? "text-gray-900 dark:text-white" : "text-gray-500"}`}>
+                      {selectedCurrency
+                        ? `${selectedCurrency} (${getNetworkName(selectedCurrency)})`
+                        : "Select currency"}
+                    </span>
+                  </span>
+                  <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {isDropdownOpen && (
                   <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0d1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
-                    <div className="px-3 py-2 text-xs font-semibold" style={{ background: "#00C9A7", color: "#001a0f" }}>Select method</div>
-                    <div className="max-h-48 overflow-y-auto">
-                      {methods.length === 0 ? (
-                        <div className="px-3 py-3 text-xs text-gray-500 dark:text-gray-400">
-                          No payment methods available. Add one in settings.
-                        </div>
-                      ) : (
-                        methods.map((method) => (
-                          <button
-                            key={method.id}
-                            onClick={() => handleMethodSelect(method.method_type)}
-                            className="w-full px-3 py-2.5 text-left text-sm text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
-                          >
-                            {method.display_name}
-                          </button>
-                        ))
-                      )}
+                    <div className="max-h-56 overflow-y-auto">
+                      {CRYPTO_TYPES.map((currency) => (
+                        <button
+                          key={currency}
+                          onClick={() => { setSelectedCurrency(currency); setIsDropdownOpen(false); setError(""); }}
+                          className="w-full px-3 py-2.5 flex items-center gap-2.5 text-left text-sm text-gray-900 dark:text-white hover:bg-white/5 transition-colors"
+                        >
+                          <span className="shrink-0 [&_svg]:!w-6 [&_svg]:!h-6">{getCryptoIcon(currency)}</span>
+                          <span className="flex-1 truncate">{currency}</span>
+                          {selectedCurrency === currency && (
+                            <Check className="w-4 h-4 shrink-0" style={{ color: "#00C9A7" }} />
+                          )}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 )}
               </div>
-
-              {methods.length === 0 && (
-                <div className="mt-2 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                  <div className="flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-yellow-600 dark:text-yellow-300">
-                      No withdrawal methods set up. Please add one in your settings.
-                    </p>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Amount Input */}
@@ -277,23 +255,19 @@ export default function WithdrawPage() {
               )}
             </div>
 
-            {/* Withdrawal Address */}
-            {selectedMethod && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Withdrawal Address
-                </label>
-                <input
-                  type="text"
-                  value={withdrawalAddress}
-                  readOnly
-                  className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-500 dark:text-gray-400 focus:outline-none cursor-not-allowed opacity-75"
-                />
-                <p className="mt-1 text-[10px] text-gray-500">
-                  Saved address for {getDisplayName(selectedMethod)}. Update in settings.
-                </p>
-              </div>
-            )}
+            {/* Withdrawal Address — always manually typed */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Withdrawal Address
+              </label>
+              <input
+                type="text"
+                value={withdrawalAddress}
+                onChange={(e) => { setWithdrawalAddress(e.target.value); setError(""); }}
+                placeholder="Your wallet address"
+                className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-green-600 transition-all"
+              />
+            </div>
 
             {/* Error */}
             {error && (
@@ -308,7 +282,7 @@ export default function WithdrawPage() {
             {/* Submit Button */}
             <button
               onClick={handleConfirmWithdrawal}
-              disabled={submitting || !selectedMethod || !amount || !withdrawalAddress}
+              disabled={submitting || !selectedCurrency || !amount || !withdrawalAddress.trim()}
               className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
             >
               {submitting ? (
