@@ -7,11 +7,11 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "AutoGuard™ — VerdeTrades Risk Management",
   description: "AutoGuard™ by VerdeTrades automatically applies stop-loss, trailing stops, and position-size limits to every copied trade. Protect your capital while you copy the best traders.",
-  alternates: { canonical: "https://verdestrades.com/autoguard" },
+  alternates: { canonical: "https://verdetradespro.com/autoguard" },
   openGraph: {
     title: "AutoGuard™ — VerdeTrades Risk Management",
     description: "Automatic risk protection built into every copied trade on VerdeTrades.",
-    url: "https://verdestrades.com/autoguard",
+    url: "https://verdetradespro.com/autoguard",
   },
 };
 

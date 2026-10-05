@@ -7,11 +7,11 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Broker Integrations — VerdeTrades",
   description: "VerdeTrades integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
-  alternates: { canonical: "https://verdestrades.com/broker" },
+  alternates: { canonical: "https://verdetradespro.com/broker" },
   openGraph: {
     title: "Broker Integrations — VerdeTrades",
     description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on VerdeTrades.",
-    url: "https://verdestrades.com/broker",
+    url: "https://verdetradespro.com/broker",
   },
 };
 
@@ -377,10 +377,10 @@ export default function BrokerPartnership() {
               hours.
             </p>
             <Link
-              href="mailto:support@verdestrades.com"
+              href="mailto:support@verdetradespro.com"
               className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium transition"
             >
-              support@verdestrades.com
+              support@verdetradespro.com
             </Link>
           </div>
         </section>

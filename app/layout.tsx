@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://verdestrades.com"),
+  metadataBase: new URL("https://verdetradespro.com"),
   title: {
     default: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
     template: "%s | VerdeTrades",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     "futures copy trading",
     "options copy trading",
   ],
-  authors: [{ name: "VerdeTrades", url: "https://verdestrades.com" }],
+  authors: [{ name: "VerdeTrades", url: "https://verdetradespro.com" }],
   creator: "VerdeTrades",
   publisher: "VerdeTrades",
   category: "Finance",
@@ -60,18 +60,18 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://verdestrades.com",
+    canonical: "https://verdetradespro.com",
   },
   openGraph: {
     type: "website",
-    url: "https://verdestrades.com",
+    url: "https://verdetradespro.com",
     siteName: "VerdeTrades",
     title: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
     images: [
       {
-        url: "https://verdestrades.com/opengraph-image.png",
+        url: "https://verdetradespro.com/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "VerdeTrades — Copy Trading Platform",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
-    images: ["https://verdestrades.com/opengraph-image.png"],
+    images: ["https://verdetradespro.com/opengraph-image.png"],
   },
   icons: {
     icon: [

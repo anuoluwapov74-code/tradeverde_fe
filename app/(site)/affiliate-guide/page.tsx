@@ -7,11 +7,11 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Affiliate Guide — How to Earn with VerdeTrades",
   description: "Step-by-step guide to earning commissions as a VerdeTrades affiliate. Learn how to share your referral link, track conversions, and maximise your affiliate income.",
-  alternates: { canonical: "https://verdestrades.com/affiliate-guide" },
+  alternates: { canonical: "https://verdetradespro.com/affiliate-guide" },
   openGraph: {
     title: "VerdeTrades Affiliate Guide",
     description: "How to earn commissions as a VerdeTrades affiliate — step-by-step.",
-    url: "https://verdestrades.com/affiliate-guide",
+    url: "https://verdetradespro.com/affiliate-guide",
   },
 };
 

@@ -75,7 +75,7 @@ const Footer = () => {
                 title="CONTACT"
                 links={[
                   { label: "+1 (929) 512-0241", href: "#" },
-                  { label: "support@verdestrades.com", href: "mailto:support@verdestrades.com" },
+                  { label: "support@verdetradespro.com", href: "mailto:support@verdetradespro.com" },
                 ]}
               />
             </div>
