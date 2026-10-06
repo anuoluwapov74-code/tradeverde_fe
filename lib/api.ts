@@ -33,8 +33,13 @@ export async function apiFetch(
 ): Promise<Response> {
   const url = `${BACKEND_URL}${endpoint}`;
 
+  // Don't force JSON on a FormData body — the browser needs to set its own
+  // multipart/form-data boundary header, which a manual Content-Type here
+  // would stomp on and break the upload.
+  const isFormData = typeof FormData !== "undefined" && options.body instanceof FormData;
+
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+    ...(isFormData ? {} : { "Content-Type": "application/json" }),
     ...(options.headers as Record<string, string>),
   };
 

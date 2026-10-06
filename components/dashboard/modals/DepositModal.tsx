@@ -1,22 +1,29 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import useSWR from "swr";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X, AlertCircle, Copy, Check, Upload, CheckCircle,
-  Loader2, CreditCard, ArrowLeft, ChevronDown, Wallet,
+  Loader2, CreditCard, ArrowLeft, Info, ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { apiFetch } from "@/lib/api";
-import { BACKEND_URL } from "@/lib/constants";
 import { AdminWallet } from "./types";
 import { getCryptoIcon, getNetworkName } from "./crypto-icons";
 
 interface DepositModalProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+interface DepositOptionsResponse {
+  success: boolean;
+  wallets: AdminWallet[];
+  error?: string;
 }
 
 type DepositStep = "select" | "card" | "amount" | "address" | "success";
@@ -41,15 +48,12 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const isDark = resolvedTheme !== "light";
 
   const [step, setStep] = useState<DepositStep>("select");
-  const [wallets, setWallets] = useState<AdminWallet[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedWallet, setSelectedWallet] = useState<AdminWallet | null>(null);
   const [dollarAmount, setDollarAmount] = useState("");
   const [currencyAmount, setCurrencyAmount] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [sendingIntent, setSendingIntent] = useState(false);
   const [depositReference, setDepositReference] = useState("");
-  const [walletOpen, setWalletOpen] = useState(false);
 
   // Card step
   const [cardholderName, setCardholderName] = useState("");
@@ -70,9 +74,21 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
   const amountRef = useRef<HTMLInputElement>(null);
 
+  const { data: optionsRes, isLoading: loading } = useSWR<DepositOptionsResponse>(
+    isOpen ? "/deposits/options/" : null
+  );
+  const wallets = optionsRes?.success ? optionsRes.wallets : [];
+
   useEffect(() => {
-    if (isOpen) fetchDepositOptions();
-  }, [isOpen]);
+    if (optionsRes && !optionsRes.success) toast.error(optionsRes.error || "Failed to load deposit options");
+  }, [optionsRes]);
+
+  // Default to the first wallet once options load, without clobbering a
+  // selection the user already made (e.g. on a background revalidation).
+  useEffect(() => {
+    if (wallets.length > 0 && !selectedWallet) setSelectedWallet(wallets[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wallets]);
 
   useEffect(() => {
     if (step === "amount") setTimeout(() => amountRef.current?.focus(), 80);
@@ -87,22 +103,6 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
       } else setCurrencyAmount("");
     } else setCurrencyAmount("");
   }, [dollarAmount, selectedWallet]);
-
-  const fetchDepositOptions = async () => {
-    setLoading(true);
-    try {
-      const res = await apiFetch("/deposits/options/");
-      const data = await res.json();
-      if (data.success) {
-        setWallets(data.wallets);
-        if (data.wallets.length > 0) setSelectedWallet(data.wallets[0]);
-      } else toast.error(data.error || "Failed to load deposit options");
-    } catch {
-      toast.error("Failed to connect to server");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const formatCardNumber = (value: string) => {
     const digits = value.replace(/\D/g, "").slice(0, 19);
@@ -201,7 +201,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
       formData.append("dollar_amount", dollarAmount);
       formData.append("currency_unit", currencyAmount);
       formData.append("receipt", receipt);
-      const res = await fetch(`${BACKEND_URL}/deposits/create/`, { method: "POST", body: formData, credentials: "include" });
+      const res = await apiFetch("/deposits/create/", { method: "POST", body: formData });
       const data = await res.json();
       if (data.success) {
         setDepositReference(data.transaction.reference);
@@ -219,13 +219,16 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setStep("select"); setSelectedWallet(null);
     setDollarAmount(""); setCurrencyAmount("");
     setReceipt(null); setError(""); setCopied(false); setChecked(false);
-    setDepositReference(""); setWalletOpen(false);
+    setDepositReference("");
     setCardholderName(""); setCardNumber(""); setCardExpiry("");
     setCvv(""); setBillingAddress(""); setBillingZip(""); setCardError("");
     onClose();
   };
 
-  const cryptoSymbols = wallets.map(w => w.currency).join(", ") || "USDT, BTC, ETH, and more";
+  const handleSelectWallet = (wallet: AdminWallet) => {
+    setSelectedWallet(wallet);
+    setStep("amount");
+  };
 
   if (!isOpen) return null;
 
@@ -254,67 +257,83 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
           {/* ══════════════ SELECT ══════════════ */}
           {step === "select" && (
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-7">
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-4">
                 <h3 className="text-[18px] font-bold text-gray-900 dark:text-white">Choose payment method</h3>
                 <CloseBtn onClick={handleClose} />
               </div>
 
-              <div className="h-px mb-6 bg-gray-200 dark:bg-white/7" />
+              <div className="h-px mb-4 bg-gray-200 dark:bg-white/7" />
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {/* Card Payment */}
-                <div className="rounded-2xl p-5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
+                <div className="rounded-xl p-3.5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(0,201,167,0.12)" }}>
-                      <CreditCard className="w-5 h-5" style={{ color: TEAL }} />
+                      <CreditCard className="w-4.5 h-4.5" style={{ color: TEAL }} />
                     </div>
                     <div>
-                      <p className="text-[15px] font-bold text-gray-900 dark:text-white">Card Payment</p>
-                      <p className="text-[12px] text-gray-500 dark:text-white/40">Visa, Mastercard, Amex, Discover</p>
+                      <p className="text-[14px] font-bold text-gray-900 dark:text-white">Card Payment</p>
+                      <p className="text-[11px] text-gray-500 dark:text-white/40">Visa, Mastercard, Amex, Discover</p>
                     </div>
                   </div>
                   <button
                     onClick={() => setStep("card")}
-                    className="w-full h-11 rounded-xl text-[13px] font-bold transition-opacity hover:opacity-90"
-                    style={{ background: TEAL, color: "#001a0f" }}
+                    className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90"
+                    style={{ background: "#00796B", color: "#ffffff" }}
                   >
                     Pay with Card
                   </button>
                 </div>
 
-                {/* Cryptocurrency */}
-                <div className="rounded-2xl p-5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: "rgba(0,201,167,0.12)" }}>
-                      <Wallet className="w-5 h-5" style={{ color: TEAL }} />
-                    </div>
-                    <div>
-                      <p className="text-[15px] font-bold text-gray-900 dark:text-white">Cryptocurrency</p>
-                      <p className="text-[12px] text-gray-500 dark:text-white/40">
-                        {loading ? "Loading wallets…" : cryptoSymbols}
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => { if (!loading && wallets.length > 0) setStep("amount"); }}
-                    disabled={loading || wallets.length === 0}
-                    className="w-full h-11 rounded-xl text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    style={{ background: TEAL, color: "#001a0f" }}
-                  >
-                    {loading ? <><Loader2 className="w-4 h-4 animate-spin" />Loading…</> : "Pay with Crypto"}
-                  </button>
-                </div>
               </div>
+
+              {/* Cryptocurrency options — scrollable, Card Payment above stays put */}
+              {loading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin" style={{ color: TEAL }} />
+                </div>
+              ) : wallets.length === 0 ? (
+                <div className="text-center py-8">
+                  <AlertCircle className="w-8 h-8 text-gray-400 dark:text-white/30 mx-auto mb-3" />
+                  <p className="text-[13px] text-gray-500 dark:text-white/40">No deposit options available</p>
+                </div>
+              ) : (
+                <div className="space-y-2.5 max-h-[45vh] overflow-y-auto pr-1 mt-3">
+                  {wallets.map((wallet) => (
+                    <div
+                      key={wallet.id}
+                      className="rounded-xl p-3.5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]"
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden bg-gray-100 dark:bg-white/8 [&_svg]:!w-5 [&_svg]:!h-5">
+                          {getCryptoIcon(wallet.currency)}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-[14px] font-bold text-gray-900 dark:text-white truncate">{wallet.currency_display}</p>
+                          <p className="text-[11px] text-gray-500 dark:text-white/40">{getNetworkName(wallet.currency)}</p>
+                          <p className="text-[10.5px] text-gray-400 dark:text-white/30 mt-0.5">Rate: ${wallet.amount} per unit</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handleSelectWallet(wallet)}
+                        className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90"
+                        style={{ background: "#00796B", color: "#ffffff" }}
+                      >
+                        Deposit
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
           {/* ══════════════ CARD ══════════════ */}
           {step === "card" && (
-            <div className="p-6">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="p-5">
+              <div className="flex items-center gap-3 mb-4">
                 <button onClick={() => { setCardError(""); setStep("select"); }}
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-gray-100 dark:bg-white/8 hover:opacity-80 transition-opacity">
                   <ArrowLeft className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
@@ -326,46 +345,46 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 <CloseBtn onClick={handleClose} />
               </div>
 
-              <form onSubmit={handleCardSubmit} className="space-y-3.5">
+              <form onSubmit={handleCardSubmit} className="space-y-2.5">
                 {[
                   { label: "Cardholder Name", value: cardholderName, setter: setCardholderName, placeholder: "John Doe", type: "text" },
                 ].map(({ label, value, setter, placeholder, type }) => (
                   <div key={label}>
-                    <label className="block text-[12px] font-medium mb-1.5 text-gray-500 dark:text-white/40">{label}</label>
+                    <label className="block text-[12px] font-medium mb-1 text-gray-500 dark:text-white/40">{label}</label>
                     <input type={type} value={value} onChange={e => setter(e.target.value)} placeholder={placeholder}
-                      className="w-full px-4 py-3 rounded-xl text-[13px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#00C9A7] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                      className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#00C9A7] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                   </div>
                 ))}
                 <div>
-                  <label className="block text-[12px] font-medium mb-1.5 text-gray-500 dark:text-white/40">Card Number</label>
+                  <label className="block text-[12px] font-medium mb-1 text-gray-500 dark:text-white/40">Card Number</label>
                   <input type="text" inputMode="numeric" value={cardNumber}
                     onChange={e => setCardNumber(formatCardNumber(e.target.value))}
                     placeholder="4242 4242 4242 4242" maxLength={23}
-                    className="w-full px-4 py-3 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#00C9A7] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                    className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#00C9A7] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[12px] font-medium mb-1.5 text-gray-500 dark:text-white/40">Expiry</label>
+                    <label className="block text-[12px] font-medium mb-1 text-gray-500 dark:text-white/40">Expiry</label>
                     <input type="text" inputMode="numeric" value={cardExpiry} placeholder="MM/YY" maxLength={5}
                       onChange={e => {
                         const raw = e.target.value; const d = raw.replace(/\D/g, "").slice(0, 4);
                         setCardExpiry(d.length <= 2 ? d : d.slice(0, 2) + "/" + d.slice(2));
                       }}
-                      className="w-full px-4 py-3 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                      className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                   </div>
                   <div>
-                    <label className="block text-[12px] font-medium mb-1.5 text-gray-500 dark:text-white/40">CVV</label>
+                    <label className="block text-[12px] font-medium mb-1 text-gray-500 dark:text-white/40">CVV</label>
                     <input type="text" inputMode="numeric" value={cvv} placeholder="123" maxLength={4}
                       onChange={e => setCvv(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                      className="w-full px-4 py-3 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                      className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[12px] font-medium mb-1.5 text-gray-500 dark:text-white/40">
+                  <label className="block text-[12px] font-medium mb-1 text-gray-500 dark:text-white/40">
                     Billing Address <span className="opacity-50">(Optional)</span>
                   </label>
                   <input type="text" value={billingAddress} onChange={e => setBillingAddress(e.target.value)} placeholder="123 Main St"
-                    className="w-full px-4 py-3 rounded-xl text-[13px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 outline-none bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                    className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 outline-none bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                 </div>
                 {cardError && (
                   <div className="flex items-center gap-2 rounded-xl p-3" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
@@ -374,8 +393,8 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   </div>
                 )}
                 <button type="submit" disabled={submittingCard}
-                  className="w-full h-11 rounded-xl text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
-                  style={{ background: TEAL, color: "#001a0f" }}>
+                  className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2 mt-1"
+                  style={{ background: "#00796B", color: "#ffffff" }}>
                   {submittingCard ? <><Loader2 className="w-4 h-4 animate-spin" />Processing…</> : "Add Card"}
                 </button>
               </form>
@@ -384,68 +403,64 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
           {/* ══════════════ AMOUNT ══════════════ */}
           {step === "amount" && (
-            <div className="p-6">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="p-5">
+              <div className="flex items-center gap-3 mb-4">
                 <button onClick={() => { setStep("select"); setError(""); }}
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-gray-100 dark:bg-white/8 hover:opacity-80 transition-opacity">
                   <ArrowLeft className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
                 </button>
-                <h3 className="flex-1 text-[17px] font-bold text-gray-900 dark:text-white">Deposit</h3>
+                <h3 className="flex-1 text-[17px] font-bold text-gray-900 dark:text-white">Enter Amount</h3>
                 <CloseBtn onClick={handleClose} />
               </div>
 
-              {/* Wallet selector */}
-              <div className="relative mb-8">
-                <button
-                  type="button"
-                  onClick={() => wallets.length > 1 && setWalletOpen(v => !v)}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/7 border border-gray-200 dark:border-white/10"
-                >
-                  {selectedWallet && (
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center overflow-hidden shrink-0 [&_svg]:!w-7 [&_svg]:!h-7">
+              {/* Selected currency + rate */}
+              {selectedWallet && (
+                <div className="rounded-lg p-2.5 mb-2.5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden shrink-0 bg-gray-100 dark:bg-white/8 [&_svg]:!w-4.5 [&_svg]:!h-4.5">
                       {getCryptoIcon(selectedWallet.currency)}
                     </div>
-                  )}
-                  <span className="flex-1 text-left text-[13px] font-medium text-gray-900 dark:text-white">
-                    {selectedWallet
-                      ? <>{selectedWallet.currency} <span className="text-gray-500 dark:text-white/40">({getNetworkName(selectedWallet.currency)})</span></>
-                      : "Select currency"}
-                  </span>
-                  {wallets.length > 1 && <ChevronDown className="w-4 h-4 text-gray-400 dark:text-white/40" />}
-                </button>
+                    <div className="min-w-0">
+                      <p className="text-[12.5px] font-semibold truncate leading-tight" style={{ color: TEAL }}>{selectedWallet.currency_display}</p>
+                      <p className="text-[11px] text-gray-500 dark:text-white/40 leading-tight">Rate: ${selectedWallet.amount} per unit</p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-                <AnimatePresence>
-                  {walletOpen && (
-                    <>
-                      <div className="fixed inset-0 z-10" onClick={() => setWalletOpen(false)} />
-                      <motion.div
-                        initial={{ opacity: 0, y: -6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -6 }}
-                        transition={{ duration: 0.15 }}
-                        className="absolute top-full left-0 right-0 z-20 mt-1 rounded-xl overflow-hidden shadow-xl max-h-48 overflow-y-auto bg-white dark:bg-[#0f2016] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.15)]"
-                      >
-                        {wallets.map(w => (
-                          <button key={w.id} type="button"
-                            onClick={() => { setSelectedWallet(w); setWalletOpen(false); }}
-                            className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-gray-50 dark:hover:bg-[rgba(0,201,167,0.07)]"
-                          >
-                            <div className="w-6 h-6 rounded-full flex items-center justify-center overflow-hidden shrink-0 [&_svg]:!w-6 [&_svg]:!h-6">
-                              {getCryptoIcon(w.currency)}
-                            </div>
-                            <span className="flex-1 text-[13px] font-medium text-gray-900 dark:text-white">{w.currency}</span>
-                            {w.id === selectedWallet?.id && <Check className="w-3.5 h-3.5" style={{ color: TEAL }} />}
-                          </button>
-                        ))}
-                      </motion.div>
-                    </>
-                  )}
-                </AnimatePresence>
+              {/* Don't have crypto? */}
+              <div className="rounded-lg p-2.5 mb-3 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
+                <div className="flex items-start gap-1.5">
+                  <Info className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: TEAL }} />
+                  <div>
+                    <p className="text-[11px] text-gray-700 dark:text-gray-300 mb-1.5 leading-tight">
+                      Don&apos;t have cryptocurrency? Purchase from:
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {[
+                        { name: "Binance", url: "https://www.binance.com" },
+                        { name: "Coinbase", url: "https://www.coinbase.com" },
+                        { name: "Crypto.com", url: "https://crypto.com" },
+                        { name: "Kraken", url: "https://www.kraken.com" },
+                      ].map((ex) => (
+                        <a
+                          key={ex.name}
+                          href={ex.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2 py-0.5 rounded text-[9px] font-medium bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 transition-colors hover:text-[#00C9A7]"
+                        >
+                          {ex.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Big amount input */}
               <form onSubmit={handleAmountNext}>
-                <div className="flex flex-col items-center mb-6">
+                <div className="flex flex-col items-center mb-3">
                   <input
                     ref={amountRef}
                     type="text"
@@ -469,7 +484,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </div>
 
                 {/* You will get */}
-                <div className="flex items-center justify-between py-4 border-t border-gray-200 dark:border-white/7">
+                <div className="flex items-center justify-between py-3 border-t border-gray-200 dark:border-white/7">
                   <span className="text-[13px] text-gray-500 dark:text-white/40">You will get</span>
                   <span className="text-[13px] font-bold text-gray-900 dark:text-white">
                     {dollarAmount && parseFloat(dollarAmount) > 0
@@ -481,8 +496,8 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 <button
                   type="submit"
                   disabled={!dollarAmount || parseFloat(dollarAmount) <= 0 || sendingIntent}
-                  className="w-full h-11 rounded-xl text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  style={{ background: TEAL, color: "#001a0f" }}
+                  className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  style={{ background: "#00796B", color: "#ffffff" }}
                 >
                   {sendingIntent ? <><Loader2 className="w-4 h-4 animate-spin" />Processing…</> : "Deposit"}
                 </button>
@@ -492,8 +507,8 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
           {/* ══════════════ ADDRESS + UPLOAD ══════════════ */}
           {step === "address" && selectedWallet && (
-            <div className="p-6">
-              <div className="flex items-center gap-3 mb-4">
+            <div className="p-5">
+              <div className="flex items-center gap-3 mb-3">
                 <button onClick={() => { setStep("amount"); setReceipt(null); setError(""); setCopied(false); setChecked(false); }}
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-gray-100 dark:bg-white/8 hover:opacity-80 transition-opacity">
                   <ArrowLeft className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
@@ -502,21 +517,32 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 <CloseBtn onClick={handleClose} />
               </div>
 
-              {/* Large coin icon */}
-              <div className="flex flex-col items-center text-center mb-5">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden mb-3 [&_svg]:!w-16 [&_svg]:!h-16"
+              {/* Fund from Wallet — subtle, secondary to the coin icon below */}
+              <div className="flex justify-center mb-2">
+                <button
+                  onClick={() => router.push("/connect-wallet")}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border text-[10px] font-medium text-gray-400 dark:text-gray-500 border-gray-200 dark:border-white/8 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                >
+                  <ExternalLink className="w-2.5 h-2.5" />
+                  Fund from Wallet
+                </button>
+              </div>
+
+              {/* Coin icon */}
+              <div className="flex flex-col items-center text-center mb-3">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden mb-2 [&_svg]:!w-12 [&_svg]:!h-12"
                   style={{ border: "2px solid rgba(0,201,167,0.2)" }}>
                   {getCryptoIcon(selectedWallet.currency)}
                 </div>
-                <h3 className="text-[16px] font-bold text-gray-900 dark:text-white">
+                <h3 className="text-[14px] font-bold text-gray-900 dark:text-white">
                   {selectedWallet.currency}
                   {selectedWallet.currency !== getNetworkName(selectedWallet.currency) &&
                     ` (${getNetworkName(selectedWallet.currency)})`}
                 </h3>
 
                 {/* Wallet address */}
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="text-[12px] font-mono truncate max-w-[210px]" style={{ color: TEAL }}>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-[11px] font-mono truncate max-w-[210px]" style={{ color: TEAL }}>
                     {selectedWallet.wallet_address}
                   </span>
                   <button onClick={handleCopy} title={copied ? "Copied!" : "Copy address"}
@@ -527,18 +553,35 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </div>
               </div>
 
+              {/* QR code — scan to send */}
+              {selectedWallet.qr_code_url && (
+                <div className="flex justify-center mb-3">
+                  <div className="p-2 rounded-lg bg-white">
+                    <Image
+                      src={selectedWallet.qr_code_url}
+                      alt="Wallet QR code"
+                      width={96}
+                      height={96}
+                      className="rounded"
+                      unoptimized
+                    />
+                    <p className="text-center text-[9px] text-gray-500 mt-1 font-medium">Scan to pay</p>
+                  </div>
+                </div>
+              )}
+
               {/* Divider */}
-              <div className="h-px mb-5 bg-gray-200 dark:bg-white/7" />
+              <div className="h-px mb-3 bg-gray-200 dark:bg-white/7" />
 
               {/* Checkbox */}
-              <div className="flex items-center gap-3 mb-5 cursor-pointer select-none"
+              <div className="flex items-center gap-3 mb-3 cursor-pointer select-none"
                 onClick={() => setChecked(v => !v)}>
                 <div className="w-5 h-5 rounded flex items-center justify-center shrink-0 transition-colors"
                   style={{
                     background: checked ? TEAL : "transparent",
                     border: checked ? `2px solid ${TEAL}` : isDark ? "2px solid rgba(255,255,255,0.25)" : "2px solid #D1D5DB",
                   }}>
-                  {checked && <Check className="w-3 h-3 text-[#001a0f]" strokeWidth={3} />}
+                  {checked && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                 </div>
                 <span className="text-[13px] text-gray-700 dark:text-white/70">
                   I have funded my wallet
@@ -550,7 +593,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
-                className="rounded-2xl p-5 transition-all mb-5"
+                className="rounded-xl p-3 transition-all mb-3"
                 style={{
                   border: `1.5px dashed ${isDragging ? TEAL : isDark ? "rgba(255,255,255,0.15)" : "#D1D5DB"}`,
                   background: isDragging ? "rgba(0,201,167,0.06)" : isDark ? "rgba(255,255,255,0.03)" : "#F9FAFB",
@@ -560,10 +603,10 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   onChange={handleFileInput} className="hidden" />
                 {receipt ? (
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden shrink-0 bg-gray-100 dark:bg-white/8">
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden shrink-0 bg-gray-100 dark:bg-white/8">
                       {receipt.type.startsWith("image/")
                         ? <img src={URL.createObjectURL(receipt)} alt="preview" className="w-full h-full object-cover rounded-lg" />
-                        : <Upload className="w-5 h-5 text-gray-400" />}
+                        : <Upload className="w-4 h-4 text-gray-400" />}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-[12px] text-gray-900 dark:text-white font-medium truncate">{receipt.name}</p>
@@ -576,21 +619,21 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </button>
                   </div>
                 ) : (
-                  <label htmlFor="deposit-proof" className="flex items-center gap-4 cursor-pointer">
-                    <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0"
+                  <label htmlFor="deposit-proof" className="flex items-center gap-3 cursor-pointer">
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(0,201,167,0.12)" }}>
-                      <Upload className="w-5 h-5" style={{ color: TEAL }} />
+                      <Upload className="w-4 h-4" style={{ color: TEAL }} />
                     </div>
                     <div>
-                      <p className="text-[13px] font-bold text-gray-900 dark:text-white">Upload payment proof</p>
-                      <p className="text-[11px] text-gray-500 dark:text-white/40">PNG, JPG or PDF (max. 5MB)</p>
+                      <p className="text-[12px] font-bold text-gray-900 dark:text-white">Upload payment proof</p>
+                      <p className="text-[10px] text-gray-500 dark:text-white/40">PNG, JPG or PDF (max. 5MB)</p>
                     </div>
                   </label>
                 )}
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 mb-4 rounded-xl p-3"
+                <div className="flex items-center gap-2 mb-3 rounded-xl p-3"
                   style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
                   <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
                   <p className="text-[12px] text-red-400">{error}</p>
@@ -603,8 +646,8 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 disabled={!checked || !receipt || submitting}
                 className="w-full h-11 rounded-xl text-[13px] font-bold transition-all flex items-center justify-center gap-2"
                 style={{
-                  background: checked && receipt ? TEAL : "rgba(0,201,167,0.18)",
-                  color: checked && receipt ? "#001a0f" : "rgba(0,201,167,0.45)",
+                  background: checked && receipt ? "#00796B" : "rgba(0,201,167,0.18)",
+                  color: checked && receipt ? "#ffffff" : "rgba(0,201,167,0.45)",
                   cursor: checked && receipt ? "pointer" : "not-allowed",
                 }}
               >
@@ -615,25 +658,25 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
           {/* ══════════════ SUCCESS ══════════════ */}
           {step === "success" && (
-            <div className="p-6 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-5"
+            <div className="p-5 flex flex-col items-center text-center">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-3"
                 style={{ background: "rgba(0,201,167,0.12)" }}>
-                <CheckCircle className="w-8 h-8" style={{ color: TEAL }} />
+                <CheckCircle className="w-7 h-7" style={{ color: TEAL }} />
               </div>
-              <h3 className="text-[18px] font-bold text-gray-900 dark:text-white mb-2">Deposit Submitted!</h3>
-              <p className="text-[13px] leading-relaxed mb-2 text-gray-500 dark:text-white/40">
+              <h3 className="text-[18px] font-bold text-gray-900 dark:text-white mb-1.5">Deposit Submitted!</h3>
+              <p className="text-[13px] leading-relaxed mb-1.5 text-gray-500 dark:text-white/40">
                 Your deposit is pending confirmation.
               </p>
               {depositReference && (
-                <p className="text-[11px] font-mono mb-6" style={{ color: TEAL }}>Ref: {depositReference}</p>
+                <p className="text-[11px] font-mono mb-3" style={{ color: TEAL }}>Ref: {depositReference}</p>
               )}
-              <p className="text-[12px] mb-8 text-gray-500 dark:text-white/40">
+              <p className="text-[12px] mb-4 text-gray-500 dark:text-white/40">
                 Funds will be credited within 30 minutes to 24 hours after verification.
               </p>
               <button
                 onClick={() => { handleClose(); router.push("/transactions"); }}
-                className="w-full h-11 rounded-xl text-[13px] font-bold transition-opacity hover:opacity-90"
-                style={{ background: TEAL, color: "#001a0f" }}
+                className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90"
+                style={{ background: "#00796B", color: "#ffffff" }}
               >
                 Done
               </button>
