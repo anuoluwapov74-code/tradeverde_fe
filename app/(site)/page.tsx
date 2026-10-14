@@ -18,14 +18,14 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Copy Futures, Options & Contracts with Precision",
   description:
-    "VerdeTrades lets you mirror real-time stock, futures, and options trades from top-performing experts. AutoGuard™ protection, AI signals, zero commission — start copy trading today.",
-  alternates: { canonical: "https://verdetradespro.com" },
+    "VerdeTrades Pro lets you mirror real-time stock, futures, and options trades from top-performing experts. AutoGuard™ protection, AI signals, zero commission — start copy trading today.",
+  alternates: { canonical: "https://verdetradepro.com" },
   openGraph: {
-    title: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
+    title: "VerdeTrades Pro — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time trades from top experts. AutoGuard™ risk management, AI signals, zero commission.",
-    url: "https://verdetradespro.com",
-    images: [{ url: "https://verdetradespro.com/opengraph-image.png", width: 1200, height: 630, alt: "VerdeTrades Copy Trading Platform" }],
+    url: "https://verdetradepro.com",
+    images: [{ url: "https://verdetradepro.com/opengraph-image.png", width: 1200, height: 630, alt: "VerdeTrades Pro Copy Trading Platform" }],
   },
 };
 
@@ -40,39 +40,39 @@ export default function Home() {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://verdetradespro.com/#organization",
-                name: "VerdeTrades",
-                url: "https://verdetradespro.com",
+                "@id": "https://verdetradepro.com/#organization",
+                name: "VerdeTrades Pro",
+                url: "https://verdetradepro.com",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://verdetradespro.com/android-chrome-512x512.png",
+                  url: "https://verdetradepro.com/android-chrome-512x512.png",
                 },
                 sameAs: [],
                 description:
-                  "VerdeTrades is a copy trading platform for futures, options, and contracts. Mirror trades from top-performing experts with real-time precision.",
+                  "VerdeTrades Pro is a copy trading platform for futures, options, and contracts. Mirror trades from top-performing experts with real-time precision.",
               },
               {
                 "@type": "WebSite",
-                "@id": "https://verdetradespro.com/#website",
-                url: "https://verdetradespro.com",
-                name: "VerdeTrades",
-                publisher: { "@id": "https://verdetradespro.com/#organization" },
+                "@id": "https://verdetradepro.com/#website",
+                url: "https://verdetradepro.com",
+                name: "VerdeTrades Pro",
+                publisher: { "@id": "https://verdetradepro.com/#organization" },
                 potentialAction: {
                   "@type": "SearchAction",
                   target: {
                     "@type": "EntryPoint",
-                    urlTemplate: "https://verdetradespro.com/explore-traders?q={search_term_string}",
+                    urlTemplate: "https://verdetradepro.com/explore-traders?q={search_term_string}",
                   },
                   "query-input": "required name=search_term_string",
                 },
               },
               {
                 "@type": "WebPage",
-                "@id": "https://verdetradespro.com/#webpage",
-                url: "https://verdetradespro.com",
-                name: "VerdeTrades — Copy Futures, Options & Contracts with Precision",
-                isPartOf: { "@id": "https://verdetradespro.com/#website" },
-                about: { "@id": "https://verdetradespro.com/#organization" },
+                "@id": "https://verdetradepro.com/#webpage",
+                url: "https://verdetradepro.com",
+                name: "VerdeTrades Pro — Copy Futures, Options & Contracts with Precision",
+                isPartOf: { "@id": "https://verdetradepro.com/#website" },
+                about: { "@id": "https://verdetradepro.com/#organization" },
                 description:
                   "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
               },
@@ -81,18 +81,18 @@ export default function Home() {
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name: "What is VerdeTrades?",
+                    name: "What is VerdeTrades Pro?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "VerdeTrades is a copy trading platform that lets you mirror real-time trades from top-performing expert traders across futures, options, and contracts.",
+                      text: "VerdeTrades Pro is a copy trading platform that lets you mirror real-time trades from top-performing expert traders across futures, options, and contracts.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "How does copy trading work on VerdeTrades?",
+                    name: "How does copy trading work on VerdeTrades Pro?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "Sign up, choose an expert trader, set your investment amount, and VerdeTrades automatically mirrors every trade they make in your portfolio in real time.",
+                      text: "Sign up, choose an expert trader, set your investment amount, and VerdeTrades Pro automatically mirrors every trade they make in your portfolio in real time.",
                     },
                   },
                   {
@@ -100,15 +100,15 @@ export default function Home() {
                     name: "What is AutoGuard™?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "AutoGuard™ is VerdeTrades's proprietary risk management system that applies automatic stop-loss, trailing stops, and position-size limits to every copied trade.",
+                      text: "AutoGuard™ is VerdeTrades Pro's proprietary risk management system that applies automatic stop-loss, trailing stops, and position-size limits to every copied trade.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "Does VerdeTrades charge commission?",
+                    name: "Does VerdeTrades Pro charge commission?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "No. VerdeTrades charges zero commission on US equity trades. There are no per-trade fees and no hidden charges.",
+                      text: "No. VerdeTrades Pro charges zero commission on US equity trades. There are no per-trade fees and no hidden charges.",
                     },
                   },
                 ],

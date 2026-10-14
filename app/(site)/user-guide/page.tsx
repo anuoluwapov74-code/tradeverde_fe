@@ -6,13 +6,13 @@ import PagePreloader from "@/components/PagePreloader";
 import FAQMajor from "@/components/site/FAQMajor";
 
 export const metadata: Metadata = {
-  title: "User Guide — Getting Started with VerdeTrades",
-  description: "Learn how to use VerdeTrades: create your account, verify your identity, fund your wallet, choose a Leader Trader, and start copy trading in minutes.",
-  alternates: { canonical: "https://verdetradespro.com/user-guide" },
+  title: "User Guide — Getting Started with VerdeTrades Pro",
+  description: "Learn how to use VerdeTrades Pro: create your account, verify your identity, fund your wallet, choose a Leader Trader, and start copy trading in minutes.",
+  alternates: { canonical: "https://verdetradepro.com/user-guide" },
   openGraph: {
-    title: "VerdeTrades User Guide",
-    description: "Step-by-step guide to getting started with copy trading on VerdeTrades.",
-    url: "https://verdetradespro.com/user-guide",
+    title: "VerdeTrades Pro User Guide",
+    description: "Step-by-step guide to getting started with copy trading on VerdeTrades Pro.",
+    url: "https://verdetradepro.com/user-guide",
   },
 };
 

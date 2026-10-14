@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Declaration of Consent — VerdeTrades",
-  description: "VerdeTrades's declaration of consent document covering data processing, marketing communications, and user rights under applicable privacy regulations.",
-  alternates: { canonical: "https://verdetradespro.com/declaration-of-consent" },
+  title: "Declaration of Consent — VerdeTrades Pro",
+  description: "VerdeTrades Pro's declaration of consent document covering data processing, marketing communications, and user rights under applicable privacy regulations.",
+  alternates: { canonical: "https://verdetradepro.com/declaration-of-consent" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Declaration of Consent — VerdeTrades",
-    description: "VerdeTrades consent document for data processing and user rights.",
-    url: "https://verdetradespro.com/declaration-of-consent",
+    title: "Declaration of Consent — VerdeTrades Pro",
+    description: "VerdeTrades Pro consent document for data processing and user rights.",
+    url: "https://verdetradepro.com/declaration-of-consent",
   },
 };
 

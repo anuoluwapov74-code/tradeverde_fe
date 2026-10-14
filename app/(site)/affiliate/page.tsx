@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "VerdeTrades Affiliate Programme",
-  description: "Earn commissions by referring traders to VerdeTrades. Join the VerdeTrades affiliate programme, get your unique link, and grow your income by sharing the best copy trading platform.",
-  alternates: { canonical: "https://verdetradespro.com/affiliate" },
+  title: "VerdeTrades Pro Affiliate Programme",
+  description: "Earn commissions by referring traders to VerdeTrades Pro. Join the VerdeTrades Pro affiliate programme, get your unique link, and grow your income by sharing the best copy trading platform.",
+  alternates: { canonical: "https://verdetradepro.com/affiliate" },
   openGraph: {
-    title: "VerdeTrades Affiliate Programme",
-    description: "Refer traders to VerdeTrades and earn commissions on every referral.",
-    url: "https://verdetradespro.com/affiliate",
+    title: "VerdeTrades Pro Affiliate Programme",
+    description: "Refer traders to VerdeTrades Pro and earn commissions on every referral.",
+    url: "https://verdetradepro.com/affiliate",
   },
 };
 

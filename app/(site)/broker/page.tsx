@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Broker Integrations — VerdeTrades",
-  description: "VerdeTrades integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
-  alternates: { canonical: "https://verdetradespro.com/broker" },
+  title: "Broker Integrations — VerdeTrades Pro",
+  description: "VerdeTrades Pro integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
+  alternates: { canonical: "https://verdetradepro.com/broker" },
   openGraph: {
-    title: "Broker Integrations — VerdeTrades",
-    description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on VerdeTrades.",
-    url: "https://verdetradespro.com/broker",
+    title: "Broker Integrations — VerdeTrades Pro",
+    description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on VerdeTrades Pro.",
+    url: "https://verdetradepro.com/broker",
   },
 };
 

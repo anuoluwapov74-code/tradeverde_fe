@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — VerdeTrades",
-  description: "Read the VerdeTrades Privacy Policy to understand how we collect, use, and protect your personal data when you use our copy trading platform.",
-  alternates: { canonical: "https://verdetradespro.com/privacy-policy" },
+  title: "Privacy Policy — VerdeTrades Pro",
+  description: "Read the VerdeTrades Pro Privacy Policy to understand how we collect, use, and protect your personal data when you use our copy trading platform.",
+  alternates: { canonical: "https://verdetradepro.com/privacy-policy" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Privacy Policy — VerdeTrades",
-    description: "How VerdeTrades collects, uses, and protects your personal data.",
-    url: "https://verdetradespro.com/privacy-policy",
+    title: "Privacy Policy — VerdeTrades Pro",
+    description: "How VerdeTrades Pro collects, uses, and protects your personal data.",
+    url: "https://verdetradepro.com/privacy-policy",
   },
 };
 

@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Conflict of Interest Policy — VerdeTrades",
-  description: "VerdeTrades's conflict of interest policy outlines how we identify and manage conflicts to protect our users and maintain platform integrity.",
-  alternates: { canonical: "https://verdetradespro.com/conflict-of-interest" },
+  title: "Conflict of Interest Policy — VerdeTrades Pro",
+  description: "VerdeTrades Pro's conflict of interest policy outlines how we identify and manage conflicts to protect our users and maintain platform integrity.",
+  alternates: { canonical: "https://verdetradepro.com/conflict-of-interest" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Conflict of Interest Policy — VerdeTrades",
-    description: "How VerdeTrades identifies and manages conflicts of interest.",
-    url: "https://verdetradespro.com/conflict-of-interest",
+    title: "Conflict of Interest Policy — VerdeTrades Pro",
+    description: "How VerdeTrades Pro identifies and manages conflicts of interest.",
+    url: "https://verdetradepro.com/conflict-of-interest",
   },
 };
 

@@ -6,13 +6,13 @@ import PagePreloader from "@/components/PagePreloader";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About VerdeTrades",
-  description: "Learn about VerdeTrades — our mission to democratise copy trading for futures, options, and contracts. Meet the team building precision, transparency, and zero-commission trading.",
-  alternates: { canonical: "https://verdetradespro.com/about" },
+  title: "About VerdeTrades Pro",
+  description: "Learn about VerdeTrades Pro — our mission to democratise copy trading for futures, options, and contracts. Meet the team building precision, transparency, and zero-commission trading.",
+  alternates: { canonical: "https://verdetradepro.com/about" },
   openGraph: {
-    title: "About VerdeTrades",
-    description: "Our mission to democratise copy trading. Meet the team behind VerdeTrades.",
-    url: "https://verdetradespro.com/about",
+    title: "About VerdeTrades Pro",
+    description: "Our mission to democratise copy trading. Meet the team behind VerdeTrades Pro.",
+    url: "https://verdetradepro.com/about",
   },
 };
 

@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — VerdeTrades",
-  description: "Read the VerdeTrades Terms of Service governing your use of our copy trading platform, including account terms, trading rules, and user obligations.",
-  alternates: { canonical: "https://verdetradespro.com/terms-of-service" },
+  title: "Terms of Service — VerdeTrades Pro",
+  description: "Read the VerdeTrades Pro Terms of Service governing your use of our copy trading platform, including account terms, trading rules, and user obligations.",
+  alternates: { canonical: "https://verdetradepro.com/terms-of-service" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Terms of Service — VerdeTrades",
-    description: "The terms governing your use of the VerdeTrades copy trading platform.",
-    url: "https://verdetradespro.com/terms-of-service",
+    title: "Terms of Service — VerdeTrades Pro",
+    description: "The terms governing your use of the VerdeTrades Pro copy trading platform.",
+    url: "https://verdetradepro.com/terms-of-service",
   },
 };
 

@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "End User License Agreement — VerdeTrades",
-  description: "Read the VerdeTrades EULA governing your licence to use the VerdeTrades copy trading application, including permitted uses and restrictions.",
-  alternates: { canonical: "https://verdetradespro.com/end-user-license-agreement" },
+  title: "End User License Agreement — VerdeTrades Pro",
+  description: "Read the VerdeTrades Pro EULA governing your licence to use the VerdeTrades Pro copy trading application, including permitted uses and restrictions.",
+  alternates: { canonical: "https://verdetradepro.com/end-user-license-agreement" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "End User License Agreement — VerdeTrades",
-    description: "The EULA governing your licence to use the VerdeTrades application.",
-    url: "https://verdetradespro.com/end-user-license-agreement",
+    title: "End User License Agreement — VerdeTrades Pro",
+    description: "The EULA governing your licence to use the VerdeTrades Pro application.",
+    url: "https://verdetradepro.com/end-user-license-agreement",
   },
 };
 
