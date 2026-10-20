@@ -226,7 +226,7 @@ const LiquidityProvidersSection = () => {
             LIQUIDITY PROVIDERS
           </h2>
           <h5 className="text-white text-base md:text-lg lg:text-xl opacity-90">
-            VerdeTrades currently has a variety of liquidity providers, including
+            VerdifyTrades currently has a variety of liquidity providers, including
             but not limited to:
           </h5>
         </div>

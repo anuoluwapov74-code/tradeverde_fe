@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Risk Disclaimer — VerdeTrades Pro",
-  description: "Important risk information for VerdeTrades Pro users. Copy trading and derivatives involve substantial risk of loss. Read this disclaimer before using VerdeTrades Pro.",
-  alternates: { canonical: "https://verdetradepro.com/risk-disclaimer" },
+  title: "Risk Disclaimer — VerdifyTrades",
+  description: "Important risk information for VerdifyTrades users. Copy trading and derivatives involve substantial risk of loss. Read this disclaimer before using VerdifyTrades.",
+  alternates: { canonical: "https://verdifytrades.com/risk-disclaimer" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Risk Disclaimer — VerdeTrades Pro",
-    description: "Important risk information for VerdeTrades Pro copy trading users.",
-    url: "https://verdetradepro.com/risk-disclaimer",
+    title: "Risk Disclaimer — VerdifyTrades",
+    description: "Important risk information for VerdifyTrades copy trading users.",
+    url: "https://verdifytrades.com/risk-disclaimer",
   },
 };
 
@@ -34,29 +34,29 @@ export default function RiskDisclaimer() {
 
           {/* Content */}
           <div className="space-y-12">
-            {/* About VerdeTrades */}
+            {/* About VerdifyTrades */}
             <section>
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                1. About VerdeTrades
+                1. About VerdifyTrades
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades is a globally recognized financial services provider offering
+                VerdifyTrades is a globally recognized financial services provider offering
                 access to a wide range of trading instruments and investment services.
-                VerdeTrades operates through several regulated entities across multiple
+                VerdifyTrades operates through several regulated entities across multiple
                 jurisdictions:
               </p>
               <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed space-y-2">
                 <li>
-                  VerdeTrades (Europe) Ltd. authorised by CySEC under license #109/10
+                  VerdifyTrades (Europe) Ltd. authorised by CySEC under license #109/10
                 </li>
                 <li>
-                  VerdeTrades (UK) Ltd authorised by FCA under FRN 583263
+                  VerdifyTrades (UK) Ltd authorised by FCA under FRN 583263
                 </li>
                 <li>
-                  VerdeTrades (USA) Ltd authorised by SEC# 801-69167; CRD # 147179
+                  VerdifyTrades (USA) Ltd authorised by SEC# 801-69167; CRD # 147179
                 </li>
                 <li>
-                  VerdeTrades (ME) Limited licensed by ADGM&rsquo;s FSRA under Permission
+                  VerdifyTrades (ME) Limited licensed by ADGM&rsquo;s FSRA under Permission
                   Number 220073
                 </li>
               </ul>
@@ -68,10 +68,10 @@ export default function RiskDisclaimer() {
                 2. Full Disclaimer
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                The information and services provided by VerdeTrades are intended for
+                The information and services provided by VerdifyTrades are intended for
                 educational and informational purposes only and should not be construed as
                 investment advice, financial advice, trading advice, or any other type of
-                advice. VerdeTrades does not recommend that any financial instrument should
+                advice. VerdifyTrades does not recommend that any financial instrument should
                 be bought, sold, or held by you.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
@@ -96,7 +96,7 @@ export default function RiskDisclaimer() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 Past performance is not necessarily indicative of future results. Any
-                performance data, statistics, or results presented on the VerdeTrades
+                performance data, statistics, or results presented on the VerdifyTrades
                 platform are provided for informational purposes only and should not be
                 relied upon as a guarantee of future performance.
               </p>
@@ -169,19 +169,19 @@ export default function RiskDisclaimer() {
                 of losing your money.
               </p>
               <p className="text-red-800 dark:text-red-300 leading-relaxed mb-4">
-                The content on the VerdeTrades platform is not directed at residents of any
+                The content on the VerdifyTrades platform is not directed at residents of any
                 country or jurisdiction where such distribution or use would be contrary
                 to local law or regulation. It is your responsibility to ensure that your
-                use of the VerdeTrades platform complies with all applicable laws and
+                use of the VerdifyTrades platform complies with all applicable laws and
                 regulations in your jurisdiction.
               </p>
               <p className="text-red-800 dark:text-red-300 leading-relaxed">
-                VerdeTrades does not accept liability for any loss or damage, including
+                VerdifyTrades does not accept liability for any loss or damage, including
                 without limitation any loss of profit, which may arise directly or
                 indirectly from use of or reliance on the information provided on our
                 platform. You are solely responsible for evaluating the merits and risks
                 associated with using any information, products, or services provided
-                through VerdeTrades.
+                through VerdifyTrades.
               </p>
             </section>
 

@@ -30,6 +30,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://verdetradepro.com/sitemap.xml",
+    sitemap: "https://verdifytrades.com/sitemap.xml",
   };
 }

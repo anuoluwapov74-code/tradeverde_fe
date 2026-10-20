@@ -6,13 +6,13 @@ import PagePreloader from "@/components/PagePreloader";
 import FAQMajor from "@/components/site/FAQMajor";
 
 export const metadata: Metadata = {
-  title: "User Guide — Getting Started with VerdeTrades Pro",
-  description: "Learn how to use VerdeTrades Pro: create your account, verify your identity, fund your wallet, choose a Leader Trader, and start copy trading in minutes.",
-  alternates: { canonical: "https://verdetradepro.com/user-guide" },
+  title: "User Guide — Getting Started with VerdifyTrades",
+  description: "Learn how to use VerdifyTrades: create your account, verify your identity, fund your wallet, choose a Leader Trader, and start copy trading in minutes.",
+  alternates: { canonical: "https://verdifytrades.com/user-guide" },
   openGraph: {
-    title: "VerdeTrades Pro User Guide",
-    description: "Step-by-step guide to getting started with copy trading on VerdeTrades Pro.",
-    url: "https://verdetradepro.com/user-guide",
+    title: "VerdifyTrades User Guide",
+    description: "Step-by-step guide to getting started with copy trading on VerdifyTrades.",
+    url: "https://verdifytrades.com/user-guide",
   },
 };
 
@@ -27,7 +27,7 @@ export default function UserGuide() {
               User Guide
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Everything you need to know to get started with copy trading on VerdeTrades
+              Everything you need to know to get started with copy trading on VerdifyTrades
             </p>
           </div>
           <div className="space-y-12">
@@ -37,9 +37,9 @@ export default function UserGuide() {
                 Getting Started
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Welcome to VerdeTrades! This guide will walk you through everything you need to know
+                Welcome to VerdifyTrades! This guide will walk you through everything you need to know
                 to start copy trading. Whether you are a complete beginner or an experienced trader
-                looking to diversify, VerdeTrades makes it easy to follow top-performing traders and
+                looking to diversify, VerdifyTrades makes it easy to follow top-performing traders and
                 replicate their success.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -56,7 +56,7 @@ export default function UserGuide() {
               <ol className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
                   <span className="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">1</span>
-                  <span>Visit the VerdeTrades registration page and enter your email address and a strong password</span>
+                  <span>Visit the VerdifyTrades registration page and enter your email address and a strong password</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">2</span>
@@ -117,7 +117,7 @@ export default function UserGuide() {
                 Finding Traders to Copy
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades provides powerful tools to help you find the right traders to copy:
+                VerdifyTrades provides powerful tools to help you find the right traders to copy:
               </p>
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
@@ -207,7 +207,7 @@ export default function UserGuide() {
                 Deposits and Withdrawals
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades supports multiple funding methods for your convenience:
+                VerdifyTrades supports multiple funding methods for your convenience:
               </p>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
@@ -267,7 +267,7 @@ export default function UserGuide() {
                 Getting Help
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                If you need assistance at any point, VerdeTrades offers multiple support channels:
+                If you need assistance at any point, VerdifyTrades offers multiple support channels:
               </p>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
@@ -276,7 +276,7 @@ export default function UserGuide() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>
-                  <span><strong>Email support</strong> — Reach us at support@verdetradespro.com</span>
+                  <span><strong>Email support</strong> — Reach us at support@verdifytrades.com</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>
@@ -306,7 +306,7 @@ export default function UserGuide() {
                 Ready to Start Copy Trading?
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Create your VerdeTrades account today and start copying top-performing traders.
+                Create your VerdifyTrades account today and start copying top-performing traders.
                 It only takes a few minutes to get started.
               </p>
               <div className="flex flex-wrap gap-4">

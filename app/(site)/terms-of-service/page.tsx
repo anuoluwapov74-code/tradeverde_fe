@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — VerdeTrades Pro",
-  description: "Read the VerdeTrades Pro Terms of Service governing your use of our copy trading platform, including account terms, trading rules, and user obligations.",
-  alternates: { canonical: "https://verdetradepro.com/terms-of-service" },
+  title: "Terms of Service — VerdifyTrades",
+  description: "Read the VerdifyTrades Terms of Service governing your use of our copy trading platform, including account terms, trading rules, and user obligations.",
+  alternates: { canonical: "https://verdifytrades.com/terms-of-service" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Terms of Service — VerdeTrades Pro",
-    description: "The terms governing your use of the VerdeTrades Pro copy trading platform.",
-    url: "https://verdetradepro.com/terms-of-service",
+    title: "Terms of Service — VerdifyTrades",
+    description: "The terms governing your use of the VerdifyTrades copy trading platform.",
+    url: "https://verdifytrades.com/terms-of-service",
   },
 };
 
@@ -40,7 +40,7 @@ export default function TermsOfService() {
                 1. Acceptance of Terms
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                By accessing or using the VerdeTrades platform, website, mobile applications, and any
+                By accessing or using the VerdifyTrades platform, website, mobile applications, and any
                 associated services (collectively, the &ldquo;Services&rdquo;), you acknowledge that you have
                 read, understood, and agree to be bound by these Terms of Service
                 (&ldquo;Terms&rdquo;). If you do not agree to these Terms, you must not access or use our
@@ -48,8 +48,8 @@ export default function TermsOfService() {
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 These Terms constitute a legally binding agreement between you
-                (&ldquo;User,&rdquo; &ldquo;you,&rdquo; or &ldquo;your&rdquo;) and VerdeTrades and its affiliated entities
-                (&ldquo;VerdeTrades,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By using our Services, you
+                (&ldquo;User,&rdquo; &ldquo;you,&rdquo; or &ldquo;your&rdquo;) and VerdifyTrades and its affiliated entities
+                (&ldquo;VerdifyTrades,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By using our Services, you
                 represent and warrant that you are at least 18 years of age and have the
                 legal capacity to enter into this agreement.
               </p>
@@ -69,13 +69,13 @@ export default function TermsOfService() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 You are solely responsible for maintaining the confidentiality of your
                 account credentials, including your username and password. You agree to
-                notify VerdeTrades immediately of any unauthorized use of your account or
-                any other breach of security. VerdeTrades will not be liable for any loss or
+                notify VerdifyTrades immediately of any unauthorized use of your account or
+                any other breach of security. VerdifyTrades will not be liable for any loss or
                 damage arising from your failure to protect your account information.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 You may not transfer, sell, or otherwise assign your account to any third
-                party without prior written consent from VerdeTrades. We reserve the right to
+                party without prior written consent from VerdifyTrades. We reserve the right to
                 suspend or terminate any account that we reasonably believe has been
                 compromised or is being used in violation of these Terms.
               </p>
@@ -87,7 +87,7 @@ export default function TermsOfService() {
                 3. Trading Services
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades provides access to a range of financial trading services,
+                VerdifyTrades provides access to a range of financial trading services,
                 including but not limited to copy trading, futures trading, options trading,
                 and contracts for difference (CFDs). These services are provided on an
                 &ldquo;as available&rdquo; basis and may be subject to market conditions, regulatory
@@ -101,7 +101,7 @@ export default function TermsOfService() {
                 your behalf.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                VerdeTrades does not provide investment advice, and no content on our
+                VerdifyTrades does not provide investment advice, and no content on our
                 platform should be construed as such. All trading decisions are made at
                 your own discretion and risk. You should consult with a qualified financial
                 advisor before making any investment decisions.
@@ -122,7 +122,7 @@ export default function TermsOfService() {
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 The value of your investments can go down as well as up, and you should
-                only trade with funds you can afford to lose. VerdeTrades strongly recommends
+                only trade with funds you can afford to lose. VerdifyTrades strongly recommends
                 that you seek independent financial advice before engaging in any trading
                 activity on our platform. For full details, please review our{" "}
                 <Link
@@ -185,10 +185,10 @@ export default function TermsOfService() {
                 6. Intellectual Property
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                All content, features, and functionality of the VerdeTrades platform,
+                All content, features, and functionality of the VerdifyTrades platform,
                 including but not limited to text, graphics, logos, icons, images, audio
                 clips, digital downloads, data compilations, and software, are the
-                exclusive property of VerdeTrades or its licensors and are protected by
+                exclusive property of VerdifyTrades or its licensors and are protected by
                 international copyright, trademark, patent, and other intellectual
                 property laws.
               </p>
@@ -197,7 +197,7 @@ export default function TermsOfService() {
                 license to access and use the Services for personal, non-commercial
                 purposes. You may not reproduce, distribute, modify, create derivative
                 works from, publicly display, or otherwise exploit any content from the
-                platform without prior written permission from VerdeTrades.
+                platform without prior written permission from VerdifyTrades.
               </p>
             </section>
 
@@ -207,7 +207,7 @@ export default function TermsOfService() {
                 7. Limitation of Liability
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                To the fullest extent permitted by applicable law, VerdeTrades and its
+                To the fullest extent permitted by applicable law, VerdifyTrades and its
                 directors, officers, employees, agents, and affiliates shall not be liable
                 for any indirect, incidental, special, consequential, or punitive damages,
                 including but not limited to loss of profits, data, use, goodwill, or
@@ -215,12 +215,12 @@ export default function TermsOfService() {
                 inability to access or use) the Services.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                VerdeTrades shall not be liable for any losses arising from market
+                VerdifyTrades shall not be liable for any losses arising from market
                 volatility, system failures, third-party service interruptions, or any
                 other circumstances beyond our reasonable control. Our total aggregate
                 liability to you for any claims arising out of or relating to these Terms
                 or the Services shall not exceed the amount of fees paid by you to
-                VerdeTrades in the twelve (12) months preceding the claim.
+                VerdifyTrades in the twelve (12) months preceding the claim.
               </p>
             </section>
 
@@ -230,7 +230,7 @@ export default function TermsOfService() {
                 8. Termination
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades reserves the right to suspend or terminate your access to the
+                VerdifyTrades reserves the right to suspend or terminate your access to the
                 Services at any time, with or without cause and with or without notice. You
                 may also terminate your account at any time by contacting our support
                 team.
@@ -250,7 +250,7 @@ export default function TermsOfService() {
                 9. Modifications to Terms
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                VerdeTrades reserves the right to modify these Terms at any time. We will
+                VerdifyTrades reserves the right to modify these Terms at any time. We will
                 notify you of any material changes by posting the updated Terms on our
                 website and updating the &ldquo;Last Updated&rdquo; date. Your continued use of the
                 Services after any changes to the Terms constitutes your acceptance of the
@@ -265,24 +265,24 @@ export default function TermsOfService() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 These Terms shall be governed by and construed in accordance with the laws
-                of the jurisdiction in which the applicable VerdeTrades entity is
+                of the jurisdiction in which the applicable VerdifyTrades entity is
                 incorporated, without regard to its conflict of law provisions.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades operates through several regulated entities worldwide:
+                VerdifyTrades operates through several regulated entities worldwide:
               </p>
               <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed space-y-2">
                 <li>
-                  VerdeTrades (Europe) Ltd. authorised by CySEC under license #109/10
+                  VerdifyTrades (Europe) Ltd. authorised by CySEC under license #109/10
                 </li>
                 <li>
-                  VerdeTrades (UK) Ltd authorised by FCA under FRN 583263
+                  VerdifyTrades (UK) Ltd authorised by FCA under FRN 583263
                 </li>
                 <li>
-                  VerdeTrades (USA) Ltd authorised by SEC# 801-69167; CRD # 147179
+                  VerdifyTrades (USA) Ltd authorised by SEC# 801-69167; CRD # 147179
                 </li>
                 <li>
-                  VerdeTrades (ME) Limited licensed by ADGM&rsquo;s FSRA under Permission
+                  VerdifyTrades (ME) Limited licensed by ADGM&rsquo;s FSRA under Permission
                   Number 220073
                 </li>
               </ul>

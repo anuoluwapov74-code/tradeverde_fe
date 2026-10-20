@@ -35,7 +35,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <span className="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-              <span className="text-green-600 dark:text-green-400">Verde</span>Trades
+              <span className="text-green-600 dark:text-green-400">Verdify</span>Trades
             </span>
           </Link>
 

@@ -18,14 +18,14 @@ import PagePreloader from "@/components/PagePreloader";
 export const metadata: Metadata = {
   title: "Copy Futures, Options & Contracts with Precision",
   description:
-    "VerdeTrades Pro lets you mirror real-time stock, futures, and options trades from top-performing experts. AutoGuard™ protection, AI signals, zero commission — start copy trading today.",
-  alternates: { canonical: "https://verdetradepro.com" },
+    "VerdifyTrades lets you mirror real-time stock, futures, and options trades from top-performing experts. AutoGuard™ protection, AI signals, zero commission — start copy trading today.",
+  alternates: { canonical: "https://verdifytrades.com" },
   openGraph: {
-    title: "VerdeTrades Pro — Copy Futures, Options & Contracts with Precision",
+    title: "VerdifyTrades — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time trades from top experts. AutoGuard™ risk management, AI signals, zero commission.",
-    url: "https://verdetradepro.com",
-    images: [{ url: "https://verdetradepro.com/opengraph-image.png", width: 1200, height: 630, alt: "VerdeTrades Pro Copy Trading Platform" }],
+    url: "https://verdifytrades.com",
+    images: [{ url: "https://verdifytrades.com/opengraph-image.png", width: 1200, height: 630, alt: "VerdifyTrades Copy Trading Platform" }],
   },
 };
 
@@ -40,39 +40,39 @@ export default function Home() {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://verdetradepro.com/#organization",
-                name: "VerdeTrades Pro",
-                url: "https://verdetradepro.com",
+                "@id": "https://verdifytrades.com/#organization",
+                name: "VerdifyTrades",
+                url: "https://verdifytrades.com",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://verdetradepro.com/android-chrome-512x512.png",
+                  url: "https://verdifytrades.com/android-chrome-512x512.png",
                 },
                 sameAs: [],
                 description:
-                  "VerdeTrades Pro is a copy trading platform for futures, options, and contracts. Mirror trades from top-performing experts with real-time precision.",
+                  "VerdifyTrades is a copy trading platform for futures, options, and contracts. Mirror trades from top-performing experts with real-time precision.",
               },
               {
                 "@type": "WebSite",
-                "@id": "https://verdetradepro.com/#website",
-                url: "https://verdetradepro.com",
-                name: "VerdeTrades Pro",
-                publisher: { "@id": "https://verdetradepro.com/#organization" },
+                "@id": "https://verdifytrades.com/#website",
+                url: "https://verdifytrades.com",
+                name: "VerdifyTrades",
+                publisher: { "@id": "https://verdifytrades.com/#organization" },
                 potentialAction: {
                   "@type": "SearchAction",
                   target: {
                     "@type": "EntryPoint",
-                    urlTemplate: "https://verdetradepro.com/explore-traders?q={search_term_string}",
+                    urlTemplate: "https://verdifytrades.com/explore-traders?q={search_term_string}",
                   },
                   "query-input": "required name=search_term_string",
                 },
               },
               {
                 "@type": "WebPage",
-                "@id": "https://verdetradepro.com/#webpage",
-                url: "https://verdetradepro.com",
-                name: "VerdeTrades Pro — Copy Futures, Options & Contracts with Precision",
-                isPartOf: { "@id": "https://verdetradepro.com/#website" },
-                about: { "@id": "https://verdetradepro.com/#organization" },
+                "@id": "https://verdifytrades.com/#webpage",
+                url: "https://verdifytrades.com",
+                name: "VerdifyTrades — Copy Futures, Options & Contracts with Precision",
+                isPartOf: { "@id": "https://verdifytrades.com/#website" },
+                about: { "@id": "https://verdifytrades.com/#organization" },
                 description:
                   "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
               },
@@ -81,18 +81,18 @@ export default function Home() {
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name: "What is VerdeTrades Pro?",
+                    name: "What is VerdifyTrades?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "VerdeTrades Pro is a copy trading platform that lets you mirror real-time trades from top-performing expert traders across futures, options, and contracts.",
+                      text: "VerdifyTrades is a copy trading platform that lets you mirror real-time trades from top-performing expert traders across futures, options, and contracts.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "How does copy trading work on VerdeTrades Pro?",
+                    name: "How does copy trading work on VerdifyTrades?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "Sign up, choose an expert trader, set your investment amount, and VerdeTrades Pro automatically mirrors every trade they make in your portfolio in real time.",
+                      text: "Sign up, choose an expert trader, set your investment amount, and VerdifyTrades automatically mirrors every trade they make in your portfolio in real time.",
                     },
                   },
                   {
@@ -100,15 +100,15 @@ export default function Home() {
                     name: "What is AutoGuard™?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "AutoGuard™ is VerdeTrades Pro's proprietary risk management system that applies automatic stop-loss, trailing stops, and position-size limits to every copied trade.",
+                      text: "AutoGuard™ is VerdifyTrades's proprietary risk management system that applies automatic stop-loss, trailing stops, and position-size limits to every copied trade.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "Does VerdeTrades Pro charge commission?",
+                    name: "Does VerdifyTrades charge commission?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "No. VerdeTrades Pro charges zero commission on US equity trades. There are no per-trade fees and no hidden charges.",
+                      text: "No. VerdifyTrades charges zero commission on US equity trades. There are no per-trade fees and no hidden charges.",
                     },
                   },
                 ],

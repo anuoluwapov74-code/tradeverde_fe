@@ -6,13 +6,13 @@ import PagePreloader from "@/components/PagePreloader";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About VerdeTrades Pro",
-  description: "Learn about VerdeTrades Pro — our mission to democratise copy trading for futures, options, and contracts. Meet the team building precision, transparency, and zero-commission trading.",
-  alternates: { canonical: "https://verdetradepro.com/about" },
+  title: "About VerdifyTrades",
+  description: "Learn about VerdifyTrades — our mission to democratise copy trading for futures, options, and contracts. Meet the team building precision, transparency, and zero-commission trading.",
+  alternates: { canonical: "https://verdifytrades.com/about" },
   openGraph: {
-    title: "About VerdeTrades Pro",
-    description: "Our mission to democratise copy trading. Meet the team behind VerdeTrades Pro.",
-    url: "https://verdetradepro.com/about",
+    title: "About VerdifyTrades",
+    description: "Our mission to democratise copy trading. Meet the team behind VerdifyTrades.",
+    url: "https://verdifytrades.com/about",
   },
 };
 
@@ -25,7 +25,7 @@ export default function AboutPage() {
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              About VerdeTrades
+              About VerdifyTrades
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg">
               Democratizing copy trading for everyone
@@ -40,7 +40,7 @@ export default function AboutPage() {
                 Our Story
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                VerdeTrades was founded with a clear mission: to make
+                VerdifyTrades was founded with a clear mission: to make
                 professional-grade copy trading accessible to everyone. We
                 believe that every investor, regardless of experience level,
                 should have the ability to mirror the strategies of
@@ -50,7 +50,7 @@ export default function AboutPage() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 From our early days, we set out to build a platform that bridges
                 the gap between experienced traders and those looking to learn
-                and grow their portfolios. Today, VerdeTrades serves a global
+                and grow their portfolios. Today, VerdifyTrades serves a global
                 community of traders across futures, options, and contracts.
               </p>
             </section>
@@ -60,7 +60,7 @@ export default function AboutPage() {
               <div className="aspect-video rounded-2xl overflow-hidden">
                 <Image
                   src="/images/about_1.jpg"
-                  alt="VerdeTrades team in discussion"
+                  alt="VerdifyTrades team in discussion"
                   width={600}
                   height={340}
                   className="w-full h-full object-cover"
@@ -69,7 +69,7 @@ export default function AboutPage() {
               <div className="aspect-video rounded-2xl overflow-hidden">
                 <Image
                   src="/images/about_2.jpg"
-                  alt="VerdeTrades annual report presentation"
+                  alt="VerdifyTrades annual report presentation"
                   width={600}
                   height={340}
                   className="w-full h-full object-cover"
@@ -146,7 +146,7 @@ export default function AboutPage() {
                 Our Team
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Behind VerdeTrades is a diverse team of financial professionals,
+                Behind VerdifyTrades is a diverse team of financial professionals,
                 technologists, and compliance experts united by a shared passion
                 for making copy trading better. Our team brings decades of
                 combined experience in financial services, fintech development,
@@ -159,7 +159,7 @@ export default function AboutPage() {
               <div className="aspect-video rounded-2xl overflow-hidden">
                 <Image
                   src="/images/about_3.jpg"
-                  alt="VerdeTrades team collaborating"
+                  alt="VerdifyTrades team collaborating"
                   width={600}
                   height={340}
                   className="w-full h-full object-cover"
@@ -168,7 +168,7 @@ export default function AboutPage() {
               <div className="aspect-video rounded-2xl overflow-hidden">
                 <Image
                   src="/images/about_4.jpg"
-                  alt="VerdeTrades team meeting"
+                  alt="VerdifyTrades team meeting"
                   width={600}
                   height={340}
                   className="w-full h-full object-cover"
@@ -182,7 +182,7 @@ export default function AboutPage() {
                 Global Presence
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                VerdeTrades operates under strict regulatory oversight across
+                VerdifyTrades operates under strict regulatory oversight across
                 multiple jurisdictions, ensuring the highest standards of
                 compliance and client protection:
               </p>
@@ -191,7 +191,7 @@ export default function AboutPage() {
                   <span className="font-semibold text-gray-900 dark:text-white">
                     Europe
                   </span>{" "}
-                  &mdash; VerdeTrades (Europe) Ltd., authorised and regulated by
+                  &mdash; VerdifyTrades (Europe) Ltd., authorised and regulated by
                   the Cyprus Securities Exchange Commission (CySEC) under
                   license #109/10.
                 </li>
@@ -199,21 +199,21 @@ export default function AboutPage() {
                   <span className="font-semibold text-gray-900 dark:text-white">
                     United Kingdom
                   </span>{" "}
-                  &mdash; VerdeTrades (UK) Ltd., authorised and regulated by the
+                  &mdash; VerdifyTrades (UK) Ltd., authorised and regulated by the
                   Financial Conduct Authority (FCA) under FRN 583263.
                 </li>
                 <li className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   <span className="font-semibold text-gray-900 dark:text-white">
                     United States
                   </span>{" "}
-                  &mdash; VerdeTrades (USA) Ltd., authorised and regulated by
+                  &mdash; VerdifyTrades (USA) Ltd., authorised and regulated by
                   SEC# 801-69167; CRD # 147179.
                 </li>
                 <li className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   <span className="font-semibold text-gray-900 dark:text-white">
                     Middle East
                   </span>{" "}
-                  &mdash; VerdeTrades (ME) Limited, licensed by ADGM&apos;s
+                  &mdash; VerdifyTrades (ME) Limited, licensed by ADGM&apos;s
                   Financial Services Regulatory Authority (FSRA) under
                   Permission Number 220073.
                 </li>
@@ -226,13 +226,13 @@ export default function AboutPage() {
                 Get in Touch
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Have questions about VerdeTrades? We&apos;d love to hear from
+                Have questions about VerdifyTrades? We&apos;d love to hear from
                 you. Reach out to our team at{" "}
                 <a
-                  href="mailto:support@verdetradespro.com"
+                  href="mailto:support@verdifytrades.com"
                   className="text-green-600 hover:text-green-700 underline"
                 >
-                  support@verdetradespro.com
+                  support@verdifytrades.com
                 </a>{" "}
                 or start a conversation through our live chat.
               </p>

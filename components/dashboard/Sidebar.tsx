@@ -133,7 +133,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className={`flex items-center justify-between p-5 border-b ${isDark ? "border-[rgba(0,201,167,0.12)]" : "border-gray-200"}`}>
             <Link href="/portfolio" className="flex items-center">
               <span className="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                <span className="text-green-600 dark:text-green-400">Verde</span>Trades
+                <span className="text-green-600 dark:text-green-400">Verdify</span>Trades
               </span>
             </Link>
 

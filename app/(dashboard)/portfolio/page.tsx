@@ -314,7 +314,7 @@ export default function PortfolioPage() {
               <div className="flex items-center justify-between mb-5">
                 <div className="flex flex-col gap-1">
                   <span className="text-[15px] font-bold leading-none">
-                    <span style={{ color: "#00C9A7" }}>Verde</span>
+                    <span style={{ color: "#00C9A7" }}>Verdify</span>
                     <span style={{ color: dk.darkText }}>Trades</span>
                   </span>
                   {isVerified && (

@@ -48,7 +48,7 @@ export default function BalanceCard({
         <div className="flex items-center justify-between px-5 pt-5 pb-2">
           <div className="flex flex-col gap-1">
             <span className="text-[15px] font-bold leading-none">
-              <span style={{ color: "#00C9A7" }}>Verde</span>
+              <span style={{ color: "#00C9A7" }}>Verdify</span>
               <span className="text-white">Trades</span>
             </span>
             {isVerified && (

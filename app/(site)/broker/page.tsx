@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Broker Integrations — VerdeTrades Pro",
-  description: "VerdeTrades Pro integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
-  alternates: { canonical: "https://verdetradepro.com/broker" },
+  title: "Broker Integrations — VerdifyTrades",
+  description: "VerdifyTrades integrates with E-Trade, Webull, TD Ameritrade, Interactive Brokers, Schwab, and more. Connect your existing broker account and start copy trading instantly.",
+  alternates: { canonical: "https://verdifytrades.com/broker" },
   openGraph: {
-    title: "Broker Integrations — VerdeTrades Pro",
-    description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on VerdeTrades Pro.",
-    url: "https://verdetradepro.com/broker",
+    title: "Broker Integrations — VerdifyTrades",
+    description: "Connect E-Trade, Webull, Schwab, and more to start copy trading on VerdifyTrades.",
+    url: "https://verdifytrades.com/broker",
   },
 };
 
@@ -32,7 +32,7 @@ export default function BrokerPartnership() {
             </h1>
             <p className="mt-6 text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto">
               You can be the first brokerage industry innovation. With
-              VerdeTrades, alongside your Traders and restart your profits
+              VerdifyTrades, alongside your Traders and restart your profits
               manifold.
             </p>
             <div className="mt-10">
@@ -352,7 +352,7 @@ export default function BrokerPartnership() {
             </h2>
             <p className="mt-5 text-gray-600 dark:text-gray-400 leading-relaxed">
               Join the leading brokers who have already partnered with
-              VerdeTrades. Let&apos;s grow together.
+              VerdifyTrades. Let&apos;s grow together.
             </p>
             <div className="mt-8">
               <Link
@@ -377,10 +377,10 @@ export default function BrokerPartnership() {
               hours.
             </p>
             <Link
-              href="mailto:support@verdetradespro.com"
+              href="mailto:support@verdifytrades.com"
               className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium transition"
             >
-              support@verdetradespro.com
+              support@verdifytrades.com
             </Link>
           </div>
         </section>

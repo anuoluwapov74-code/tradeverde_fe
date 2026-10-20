@@ -6,13 +6,13 @@
 
 /*
   ╔══════════════════════════════════════════════════════╗
-  ║           TradeVerde — Green Theme System            ║
+  ║           VerdifyTrades — Green Theme System            ║
   ║   Derived from the front.html design reference       ║
   ╚══════════════════════════════════════════════════════╝
 */
 
 :root {
-  /* ── Full TradeVerde palette ── */
+  /* ── Full VerdifyTrades palette ── */
   --g-deepest: #071a0e;
   --g-deep:    #0d3320;
   --g-dark:    #145a32;

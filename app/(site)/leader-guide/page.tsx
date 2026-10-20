@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Leader Trader Guide — VerdeTrades Pro",
-  description: "Everything you need to know about becoming a top Leader Trader on VerdeTrades Pro. Set your strategy, manage copiers, and maximise your earnings as a VerdeTrades Pro expert.",
-  alternates: { canonical: "https://verdetradepro.com/leader-guide" },
+  title: "Leader Trader Guide — VerdifyTrades",
+  description: "Everything you need to know about becoming a top Leader Trader on VerdifyTrades. Set your strategy, manage copiers, and maximise your earnings as a VerdifyTrades expert.",
+  alternates: { canonical: "https://verdifytrades.com/leader-guide" },
   openGraph: {
-    title: "VerdeTrades Pro Leader Trader Guide",
-    description: "How to become a top Leader Trader and earn on VerdeTrades Pro.",
-    url: "https://verdetradepro.com/leader-guide",
+    title: "VerdifyTrades Leader Trader Guide",
+    description: "How to become a top Leader Trader and earn on VerdifyTrades.",
+    url: "https://verdifytrades.com/leader-guide",
   },
 };
 
@@ -26,7 +26,7 @@ export default function LeaderGuide() {
               Leader Guide
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Your complete guide to becoming a successful signal leader on VerdeTrades
+              Your complete guide to becoming a successful signal leader on VerdifyTrades
             </p>
           </div>
           <div className="space-y-12">
@@ -36,13 +36,13 @@ export default function LeaderGuide() {
                 What is a Leader?
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                A Leader on VerdeTrades is an experienced trader who shares their trading signals with
+                A Leader on VerdifyTrades is an experienced trader who shares their trading signals with
                 the community. When other users (followers) copy your trades, you earn commissions based
                 on their activity. As a Leader, your trading performance is publicly visible, and your
                 reputation grows as you demonstrate consistent results.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Leaders are the backbone of the VerdeTrades copy trading ecosystem. They provide the
+                Leaders are the backbone of the VerdifyTrades copy trading ecosystem. They provide the
                 strategies and expertise that make copy trading possible for traders of all experience levels.
               </p>
             </section>
@@ -53,12 +53,12 @@ export default function LeaderGuide() {
                 Requirements to Become a Leader
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                To qualify as a Leader on VerdeTrades, you must meet the following criteria:
+                To qualify as a Leader on VerdifyTrades, you must meet the following criteria:
               </p>
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>
-                  <span>A verified VerdeTrades account with completed KYC</span>
+                  <span>A verified VerdifyTrades account with completed KYC</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#8226;</span>
@@ -85,7 +85,7 @@ export default function LeaderGuide() {
                 Setting Up Your Profile
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Your Leader profile is your public identity on VerdeTrades. A well-crafted profile
+                Your Leader profile is your public identity on VerdifyTrades. A well-crafted profile
                 attracts more followers and builds trust. Here is how to set it up:
               </p>
               <ol className="space-y-3 text-gray-700 dark:text-gray-300">
@@ -168,7 +168,7 @@ export default function LeaderGuide() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-600 font-bold">&#10003;</span>
-                  <span><strong>External promotion</strong> — Share your VerdeTrades profile on social media and trading communities.</span>
+                  <span><strong>External promotion</strong> — Share your VerdifyTrades profile on social media and trading communities.</span>
                 </li>
               </ul>
             </section>
@@ -179,7 +179,7 @@ export default function LeaderGuide() {
                 Earning as a Leader
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Leaders earn money through multiple channels on VerdeTrades:
+                Leaders earn money through multiple channels on VerdifyTrades:
               </p>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
@@ -229,7 +229,7 @@ export default function LeaderGuide() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 As a Leader, responsible risk management is not just good practice — it is your
-                responsibility. Your followers trust you with their capital, and VerdeTrades monitors
+                responsibility. Your followers trust you with their capital, and VerdifyTrades monitors
                 leader behavior to protect the community.
               </p>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -259,7 +259,7 @@ export default function LeaderGuide() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 Ready to share your trading expertise and earn from your skills? Apply to become
-                a VerdeTrades Leader and start building your following today.
+                a VerdifyTrades Leader and start building your following today.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/register" className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-600/50">

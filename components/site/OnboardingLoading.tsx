@@ -118,7 +118,7 @@ const OnboardingLoading = () => {
                 transition={{ delay: 0.2 }}
               >
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
-                  <span className="text-green-600">VERDE</span>TRADES
+                  <span className="text-green-600">VERDIFY</span>TRADES
                 </h1>
               </motion.div>
 
