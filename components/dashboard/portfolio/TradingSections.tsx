@@ -36,8 +36,8 @@ interface FollowingTrader {
 }
 
 const CHIP = {
-  background: "rgba(0,201,167,0.1)",
-  border: "1px solid rgba(0,201,167,0.2)",
+  background: "rgba(59,130,246,0.1)",
+  border: "1px solid rgba(59,130,246,0.2)",
 };
 
 function AccordionSection({
@@ -61,7 +61,7 @@ function AccordionSection({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-4 border-b border-[rgba(0,201,167,0.1)] lg:cursor-default"
+        className="w-full flex items-center justify-between px-4 py-4 border-b border-[rgba(59,130,246,0.1)] lg:cursor-default"
       >
         <div className="flex items-center gap-3">
           {/* Icon chip */}
@@ -69,7 +69,7 @@ function AccordionSection({
             className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
             style={CHIP}
           >
-            <Icon className="w-[15px] h-[15px] text-[#00C9A7]" />
+            <Icon className="w-[15px] h-[15px] text-[#3b82f6]" />
           </div>
           <h3 className="text-[14px] font-semibold text-gray-900 dark:text-white">{title}</h3>
         </div>
@@ -80,7 +80,7 @@ function AccordionSection({
           style={CHIP}
         >
           <ChevronDown
-            className={`w-4 h-4 text-[#00C9A7] transition-transform lg:!rotate-0 ${open ? "rotate-180" : ""}`}
+            className={`w-4 h-4 text-[#3b82f6] transition-transform lg:!rotate-0 ${open ? "rotate-180" : ""}`}
           />
         </div>
       </button>
@@ -119,9 +119,9 @@ function EmptyState({
     <div className="flex flex-col items-center justify-center py-12 px-5 text-center">
       <div
         className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-5"
-        style={{ background: "rgba(0,201,167,0.08)" }}
+        style={{ background: "rgba(59,130,246,0.08)" }}
       >
-        <Icon className="w-8 h-8 text-[#00C9A7] opacity-70" />
+        <Icon className="w-8 h-8 text-[#3b82f6] opacity-70" />
       </div>
       <h4 className="text-[15px] font-bold text-gray-900 dark:text-white mb-2">{title}</h4>
       <p className="text-[12px] text-gray-400 dark:text-[rgba(255,255,255,0.4)] max-w-[200px] mb-6 leading-relaxed">
@@ -132,7 +132,7 @@ function EmptyState({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           className="h-11 px-8 rounded-lg text-[13px] font-bold text-[#001011]"
-          style={{ background: "#00C9A7" }}
+          style={{ background: "#3b82f6" }}
         >
           Explore Traders
         </motion.button>
@@ -163,7 +163,7 @@ export function TradeCopiedSection() {
 
   const body = loading ? (
     <div className="flex items-center justify-center py-10">
-      <div className="w-5 h-5 border-2 border-[#00C9A7] border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-[#3b82f6] border-t-transparent rounded-full animate-spin" />
     </div>
   ) : trades.length === 0 ? (
     <EmptyState
@@ -174,12 +174,12 @@ export function TradeCopiedSection() {
   ) : (
     <div className="overflow-x-auto max-h-[400px] overflow-y-auto">
       <table className="w-full text-xs min-w-[560px]">
-        <thead className="sticky top-0 dark:bg-[#0a1512] backdrop-blur-sm">
-          <tr className="border-b border-gray-100 dark:border-[rgba(0,201,167,0.1)]">
+        <thead className="sticky top-0 dark:bg-[#0a1220] backdrop-blur-sm">
+          <tr className="border-b border-gray-100 dark:border-[rgba(59,130,246,0.1)]">
             {["Asset", "Type", "Direction", "Price", "PNL", "Status"].map((h) => (
               <th
                 key={h}
-                className="px-5 py-3 text-left text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-[rgba(0,201,167,0.55)]"
+                className="px-5 py-3 text-left text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-[rgba(59,130,246,0.55)]"
               >
                 {h}
               </th>
@@ -226,7 +226,7 @@ export function TradeCopiedSection() {
                 </span>
               </td>
               <td className="px-5 py-3 whitespace-nowrap">
-                <span className={`text-[10px] font-semibold ${trade.status === "open" ? "text-green-700 dark:text-[#00C9A7]" : "text-gray-500 dark:text-[rgba(255,255,255,0.4)]"}`}>
+                <span className={`text-[10px] font-semibold ${trade.status === "open" ? "text-blue-700 dark:text-[#3b82f6]" : "text-gray-500 dark:text-[rgba(255,255,255,0.4)]"}`}>
                   {trade.status.toUpperCase()}
                 </span>
               </td>
@@ -293,7 +293,7 @@ export function FollowingSection() {
 
   const body = loading ? (
     <div className="flex items-center justify-center py-10">
-      <div className="w-5 h-5 border-2 border-[#00C9A7] border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-[#3b82f6] border-t-transparent rounded-full animate-spin" />
     </div>
   ) : traders.length === 0 ? (
     <div className="flex flex-col items-center px-4 pt-4">
@@ -302,7 +302,7 @@ export function FollowingSection() {
         type="text"
         placeholder="Search for trader"
         disabled
-        className="w-full px-4 py-2.5 mb-2 text-[13px] rounded-lg bg-white dark:bg-[rgba(255,255,255,0.04)] border border-gray-200 dark:border-[rgba(0,201,167,0.15)] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[rgba(255,255,255,0.3)] outline-none"
+        className="w-full px-4 py-2.5 mb-2 text-[13px] rounded-lg bg-white dark:bg-[rgba(255,255,255,0.04)] border border-gray-200 dark:border-[rgba(59,130,246,0.15)] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[rgba(255,255,255,0.3)] outline-none"
       />
       <EmptyState
         icon={Users}
@@ -317,7 +317,7 @@ export function FollowingSection() {
         placeholder="Search for trader"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full px-4 py-2.5 mb-4 text-[13px] rounded-lg bg-white dark:bg-[rgba(255,255,255,0.04)] border border-gray-200 dark:border-[rgba(0,201,167,0.15)] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[rgba(255,255,255,0.3)] outline-none focus:border-[#00C9A7]/50 transition-colors"
+        className="w-full px-4 py-2.5 mb-4 text-[13px] rounded-lg bg-white dark:bg-[rgba(255,255,255,0.04)] border border-gray-200 dark:border-[rgba(59,130,246,0.15)] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[rgba(255,255,255,0.3)] outline-none focus:border-[#3b82f6]/50 transition-colors"
       />
       <div className="space-y-3 max-h-[350px] overflow-y-auto">
         {filteredTraders.length === 0 ? (
@@ -327,7 +327,7 @@ export function FollowingSection() {
         ) : (
           filteredTraders.map((trader) => (
             <Link className="inline-block w-full" key={trader.id} href={`/explore-traders/${trader.trader_id}`}>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-[rgba(255,255,255,0.04)] hover:bg-gray-100 dark:hover:bg-[rgba(255,255,255,0.07)] transition-all cursor-pointer border border-transparent dark:hover:border-[rgba(0,201,167,0.2)]">
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-[rgba(255,255,255,0.04)] hover:bg-gray-100 dark:hover:bg-[rgba(255,255,255,0.07)] transition-all cursor-pointer border border-transparent dark:hover:border-[rgba(59,130,246,0.2)]">
                 <Image
                   src={getAvatarUrl(trader.trader_avatar_url, trader.trader_name)}
                   alt={trader.trader_name}
@@ -341,7 +341,7 @@ export function FollowingSection() {
                   <p className="text-[10px] text-gray-500 dark:text-[rgba(255,255,255,0.4)] truncate">{trader.trader_username}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] font-medium text-[#00C9A7]">
+                  <p className="text-[10px] font-medium text-[#3b82f6]">
                     ${parseFloat(trader.initial_investment).toLocaleString()}
                   </p>
                   <p className="text-[9px] text-gray-400 dark:text-[rgba(255,255,255,0.3)]">Investment</p>

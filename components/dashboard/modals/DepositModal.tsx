@@ -28,7 +28,7 @@ interface DepositOptionsResponse {
 
 type DepositStep = "select" | "card" | "amount" | "address" | "success";
 
-const TEAL = "#00C9A7";
+const TEAL = "#3b82f6";
 
 /* ── Shared close button ── */
 function CloseBtn({ onClick }: { onClick: () => void }) {
@@ -252,7 +252,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full sm:max-w-[360px] max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white dark:bg-[#0b1a12]"
+          className="relative w-full sm:max-w-[360px] max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white dark:bg-[#0a1428]"
         >
 
           {/* ══════════════ SELECT ══════════════ */}
@@ -267,10 +267,10 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
               <div className="space-y-3">
                 {/* Card Payment */}
-                <div className="rounded-xl p-3.5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
+                <div className="rounded-xl p-3.5 bg-[rgba(59,130,246,0.06)] dark:bg-[rgba(59,130,246,0.04)] border border-[rgba(59,130,246,0.2)] dark:border-[rgba(59,130,246,0.14)]">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: "rgba(0,201,167,0.12)" }}>
+                      style={{ background: "rgba(59,130,246,0.12)" }}>
                       <CreditCard className="w-4.5 h-4.5" style={{ color: TEAL }} />
                     </div>
                     <div>
@@ -281,7 +281,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   <button
                     onClick={() => setStep("card")}
                     className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90"
-                    style={{ background: "#00796B", color: "#ffffff" }}
+                    style={{ background: "#1d4ed8", color: "#ffffff" }}
                   >
                     Pay with Card
                   </button>
@@ -304,7 +304,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   {wallets.map((wallet) => (
                     <div
                       key={wallet.id}
-                      className="rounded-xl p-3.5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]"
+                      className="rounded-xl p-3.5 bg-[rgba(59,130,246,0.06)] dark:bg-[rgba(59,130,246,0.04)] border border-[rgba(59,130,246,0.2)] dark:border-[rgba(59,130,246,0.14)]"
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden bg-gray-100 dark:bg-white/8 [&_svg]:!w-5 [&_svg]:!h-5">
@@ -319,7 +319,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       <button
                         onClick={() => handleSelectWallet(wallet)}
                         className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90"
-                        style={{ background: "#00796B", color: "#ffffff" }}
+                        style={{ background: "#1d4ed8", color: "#ffffff" }}
                       >
                         Deposit
                       </button>
@@ -352,7 +352,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   <div key={label}>
                     <label className="block text-[12px] font-medium mb-1 text-gray-500 dark:text-white/40">{label}</label>
                     <input type={type} value={value} onChange={e => setter(e.target.value)} placeholder={placeholder}
-                      className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#00C9A7] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                      className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#3b82f6] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                   </div>
                 ))}
                 <div>
@@ -360,7 +360,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   <input type="text" inputMode="numeric" value={cardNumber}
                     onChange={e => setCardNumber(formatCardNumber(e.target.value))}
                     placeholder="4242 4242 4242 4242" maxLength={23}
-                    className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#00C9A7] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
+                    className="w-full px-4 py-2.5 rounded-xl text-[13px] text-gray-900 dark:text-white font-mono placeholder-gray-400 dark:placeholder-gray-600 outline-none focus:border-[#3b82f6] transition-colors bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10" />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -394,7 +394,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 )}
                 <button type="submit" disabled={submittingCard}
                   className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2 mt-1"
-                  style={{ background: "#00796B", color: "#ffffff" }}>
+                  style={{ background: "#1d4ed8", color: "#ffffff" }}>
                   {submittingCard ? <><Loader2 className="w-4 h-4 animate-spin" />Processing…</> : "Add Card"}
                 </button>
               </form>
@@ -415,7 +415,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
               {/* Selected currency + rate */}
               {selectedWallet && (
-                <div className="rounded-lg p-2.5 mb-2.5 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
+                <div className="rounded-lg p-2.5 mb-2.5 bg-[rgba(59,130,246,0.06)] dark:bg-[rgba(59,130,246,0.04)] border border-[rgba(59,130,246,0.2)] dark:border-[rgba(59,130,246,0.14)]">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden shrink-0 bg-gray-100 dark:bg-white/8 [&_svg]:!w-4.5 [&_svg]:!h-4.5">
                       {getCryptoIcon(selectedWallet.currency)}
@@ -429,7 +429,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
               )}
 
               {/* Don't have crypto? */}
-              <div className="rounded-lg p-2.5 mb-3 bg-[rgba(0,201,167,0.06)] dark:bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.2)] dark:border-[rgba(0,201,167,0.14)]">
+              <div className="rounded-lg p-2.5 mb-3 bg-[rgba(59,130,246,0.06)] dark:bg-[rgba(59,130,246,0.04)] border border-[rgba(59,130,246,0.2)] dark:border-[rgba(59,130,246,0.14)]">
                 <div className="flex items-start gap-1.5">
                   <Info className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: TEAL }} />
                   <div>
@@ -448,7 +448,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           href={ex.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2 py-0.5 rounded text-[9px] font-medium bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 transition-colors hover:text-[#00C9A7]"
+                          className="px-2 py-0.5 rounded text-[9px] font-medium bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 transition-colors hover:text-[#3b82f6]"
                         >
                           {ex.name}
                         </a>
@@ -497,7 +497,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   type="submit"
                   disabled={!dollarAmount || parseFloat(dollarAmount) <= 0 || sendingIntent}
                   className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90 disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  style={{ background: "#00796B", color: "#ffffff" }}
+                  style={{ background: "#1d4ed8", color: "#ffffff" }}
                 >
                   {sendingIntent ? <><Loader2 className="w-4 h-4 animate-spin" />Processing…</> : "Deposit"}
                 </button>
@@ -531,7 +531,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
               {/* Coin icon */}
               <div className="flex flex-col items-center text-center mb-3">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden mb-2 [&_svg]:!w-12 [&_svg]:!h-12"
-                  style={{ border: "2px solid rgba(0,201,167,0.2)" }}>
+                  style={{ border: "2px solid rgba(59,130,246,0.2)" }}>
                   {getCryptoIcon(selectedWallet.currency)}
                 </div>
                 <h3 className="text-[14px] font-bold text-gray-900 dark:text-white">
@@ -596,7 +596,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 className="rounded-xl p-3 transition-all mb-3"
                 style={{
                   border: `1.5px dashed ${isDragging ? TEAL : isDark ? "rgba(255,255,255,0.15)" : "#D1D5DB"}`,
-                  background: isDragging ? "rgba(0,201,167,0.06)" : isDark ? "rgba(255,255,255,0.03)" : "#F9FAFB",
+                  background: isDragging ? "rgba(59,130,246,0.06)" : isDark ? "rgba(255,255,255,0.03)" : "#F9FAFB",
                 }}
               >
                 <input type="file" id="deposit-proof" accept="image/*,.pdf"
@@ -621,7 +621,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 ) : (
                   <label htmlFor="deposit-proof" className="flex items-center gap-3 cursor-pointer">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: "rgba(0,201,167,0.12)" }}>
+                      style={{ background: "rgba(59,130,246,0.12)" }}>
                       <Upload className="w-4 h-4" style={{ color: TEAL }} />
                     </div>
                     <div>
@@ -646,8 +646,8 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 disabled={!checked || !receipt || submitting}
                 className="w-full h-11 rounded-xl text-[13px] font-bold transition-all flex items-center justify-center gap-2"
                 style={{
-                  background: checked && receipt ? "#00796B" : "rgba(0,201,167,0.18)",
-                  color: checked && receipt ? "#ffffff" : "rgba(0,201,167,0.45)",
+                  background: checked && receipt ? "#1d4ed8" : "rgba(59,130,246,0.18)",
+                  color: checked && receipt ? "#ffffff" : "rgba(59,130,246,0.45)",
                   cursor: checked && receipt ? "pointer" : "not-allowed",
                 }}
               >
@@ -660,7 +660,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
           {step === "success" && (
             <div className="p-5 flex flex-col items-center text-center">
               <div className="w-14 h-14 rounded-full flex items-center justify-center mb-3"
-                style={{ background: "rgba(0,201,167,0.12)" }}>
+                style={{ background: "rgba(59,130,246,0.12)" }}>
                 <CheckCircle className="w-7 h-7" style={{ color: TEAL }} />
               </div>
               <h3 className="text-[18px] font-bold text-gray-900 dark:text-white mb-1.5">Deposit Submitted!</h3>
@@ -676,7 +676,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
               <button
                 onClick={() => { handleClose(); router.push("/transactions"); }}
                 className="w-full h-10 rounded-lg text-[13px] font-bold transition-opacity hover:opacity-90"
-                style={{ background: "#00796B", color: "#ffffff" }}
+                style={{ background: "#1d4ed8", color: "#ffffff" }}
               >
                 Done
               </button>

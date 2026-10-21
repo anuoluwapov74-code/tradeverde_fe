@@ -132,7 +132,7 @@ export default function WithdrawPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <Loader2 className="w-8 h-8 text-green-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
       </div>
     );
   }
@@ -153,16 +153,16 @@ export default function WithdrawPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-green-600/10 border border-green-500/20 rounded-xl p-4"
+          className="bg-blue-600/10 border border-blue-500/20 rounded-xl p-4"
         >
           <div className="flex items-start gap-3">
-            <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-gray-900 dark:text-white">Withdrawal Submitted</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 ${parseFloat(success.amount).toFixed(2)} &middot; Ref: <span className="font-mono">{success.ref}</span>
               </p>
-              <button onClick={() => setSuccess(null)} className="text-xs text-green-600 hover:underline mt-1">Dismiss</button>
+              <button onClick={() => setSuccess(null)} className="text-xs text-blue-600 hover:underline mt-1">Dismiss</button>
             </div>
           </div>
         </motion.div>
@@ -195,8 +195,8 @@ export default function WithdrawPage() {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between gap-2 transition-all bg-gray-100 dark:bg-[#071a0e] border ${
-                    isDropdownOpen ? "border-green-600" : "border-gray-300 dark:border-white/10"
+                  className={`w-full px-4 py-3 rounded-lg text-left flex items-center justify-between gap-2 transition-all bg-gray-100 dark:bg-[#060f24] border ${
+                    isDropdownOpen ? "border-blue-600" : "border-gray-300 dark:border-white/10"
                   }`}
                 >
                   <span className="flex items-center gap-2 min-w-0">
@@ -213,7 +213,7 @@ export default function WithdrawPage() {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0d1a12", border: "1px solid rgba(0,201,167,0.14)" }}>
+                  <div className="absolute z-10 w-full mt-1.5 rounded-lg shadow-lg overflow-hidden" style={{ background: "#0b1424", border: "1px solid rgba(59,130,246,0.14)" }}>
                     <div className="max-h-56 overflow-y-auto">
                       {CRYPTO_TYPES.map((currency) => (
                         <button
@@ -224,7 +224,7 @@ export default function WithdrawPage() {
                           <span className="shrink-0 [&_svg]:!w-6 [&_svg]:!h-6">{getCryptoIcon(currency)}</span>
                           <span className="flex-1 truncate">{currency}</span>
                           {selectedCurrency === currency && (
-                            <Check className="w-4 h-4 shrink-0" style={{ color: "#00C9A7" }} />
+                            <Check className="w-4 h-4 shrink-0" style={{ color: "#3b82f6" }} />
                           )}
                         </button>
                       ))}
@@ -246,7 +246,7 @@ export default function WithdrawPage() {
                 placeholder="0.00"
                 min="0"
                 step="0.01"
-                className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-green-600 transition-all text-lg font-semibold"
+                className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-blue-600 transition-all text-lg font-semibold"
               />
               {profile && amount && parseFloat(amount) > parseFloat(profile.balance) && (
                 <p className="mt-1.5 text-xs text-red-400">
@@ -265,7 +265,7 @@ export default function WithdrawPage() {
                 value={withdrawalAddress}
                 onChange={(e) => { setWithdrawalAddress(e.target.value); setError(""); }}
                 placeholder="Your wallet address"
-                className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-green-600 transition-all"
+                className="w-full px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-blue-600 transition-all"
               />
             </div>
 
@@ -283,7 +283,7 @@ export default function WithdrawPage() {
             <button
               onClick={handleConfirmWithdrawal}
               disabled={submitting || !selectedCurrency || !amount || !withdrawalAddress.trim()}
-              className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+              className="w-full py-3 bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
             >
               {submitting ? (
                 <><Loader2 className="w-4 h-4 animate-spin" />Processing...</>
@@ -293,10 +293,10 @@ export default function WithdrawPage() {
             </button>
 
             {/* Note */}
-            <div className="p-3 bg-green-600/10 border border-green-500/20 rounded-lg">
+            <div className="p-3 bg-blue-600/10 border border-blue-500/20 rounded-lg">
               <div className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                <p className="text-[10px] text-green-700 dark:text-green-300">
+                <Clock className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                <p className="text-[10px] text-blue-700 dark:text-blue-300">
                   <strong>Note:</strong> Withdrawals are processed within 24-48 hours. You will be notified once approved.
                 </p>
               </div>

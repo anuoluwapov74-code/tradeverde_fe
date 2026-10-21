@@ -101,7 +101,7 @@ export default function TransferPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-green-700" />
+        <Loader2 className="w-8 h-8 animate-spin text-blue-700" />
       </div>
     );
   }
@@ -145,7 +145,7 @@ export default function TransferPage() {
       <div className="flex justify-center -my-2 relative z-10">
         <button
           onClick={handleSwap}
-          className="w-10 h-10 rounded-full tv-card border-2 flex items-center justify-center hover:border-[#00C9A7] hover:bg-[rgba(0,201,167,0.08)] transition-all shadow-sm"
+          className="w-10 h-10 rounded-full tv-card border-2 flex items-center justify-center hover:border-[#3b82f6] hover:bg-[rgba(59,130,246,0.08)] transition-all shadow-sm"
         >
           <ArrowDownUp className="w-4 h-4 text-gray-600 dark:text-gray-300" />
         </button>
@@ -171,7 +171,7 @@ export default function TransferPage() {
         <label className="text-xs text-gray-500 dark:text-gray-400 mb-1.5 block">
           Amount
         </label>
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] focus-within:border-green-600 dark:focus-within:border-green-600 transition-colors">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] focus-within:border-blue-600 dark:focus-within:border-blue-600 transition-colors">
           <input
             type="number"
             inputMode="decimal"
@@ -182,7 +182,7 @@ export default function TransferPage() {
           />
           <button
             onClick={handleMax}
-            className="text-xs font-semibold text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition-colors"
+            className="text-xs font-semibold text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
           >
             Max
           </button>
@@ -216,7 +216,7 @@ export default function TransferPage() {
       <button
         onClick={handleConfirm}
         disabled={submitting || !amount || parseFloat(amount) <= 0}
-        className="w-full py-3.5 rounded-xl bg-[#00C9A7] hover:opacity-90 disabled:bg-gray-300 dark:disabled:bg-white/10 disabled:cursor-not-allowed text-[#001a0f] text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+        className="w-full py-3.5 rounded-xl bg-[#3b82f6] hover:opacity-90 disabled:bg-gray-300 dark:disabled:bg-white/10 disabled:cursor-not-allowed text-[#000f24] text-sm font-semibold transition-colors flex items-center justify-center gap-2"
       >
         {submitting ? (
           <Loader2 className="w-4 h-4 animate-spin" />

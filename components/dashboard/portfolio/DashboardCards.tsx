@@ -54,10 +54,10 @@ export function PortfolioBreakdownCard({
       label: "Profit",
       value: totalProfits,
       icon: TrendingUp,
-      iconBg: "bg-emerald-100 dark:bg-emerald-500/15",
-      iconColor: "text-emerald-600 dark:text-emerald-400",
-      valueColor: "text-emerald-600 dark:text-emerald-400",
-      barColor: "bg-emerald-500",
+      iconBg: "bg-blue-100 dark:bg-blue-500/15",
+      iconColor: "text-blue-600 dark:text-blue-400",
+      valueColor: "text-blue-600 dark:text-blue-400",
+      barColor: "bg-blue-500",
       barPct: total > 0 ? Math.abs(totalProfits / total) * 100 : 0,
     },
     {
@@ -74,10 +74,10 @@ export function PortfolioBreakdownCard({
       label: "Total",
       value: total,
       icon: Layers,
-      iconBg: "bg-teal-100 dark:bg-teal-500/15",
-      iconColor: "text-teal-600 dark:text-teal-400",
+      iconBg: "bg-sky-100 dark:bg-sky-500/15",
+      iconColor: "text-sky-600 dark:text-sky-400",
       valueColor: "text-gray-900 dark:text-white",
-      barColor: "bg-teal-400",
+      barColor: "bg-sky-400",
       barPct: 100,
     },
   ];
@@ -93,7 +93,7 @@ export function PortfolioBreakdownCard({
       className="rounded-2xl tv-card shadow-sm overflow-hidden"
     >
       {/* Header */}
-      <div className="px-4 py-3 border-b border-[rgba(0,201,167,0.1)] flex items-center gap-2">
+      <div className="px-4 py-3 border-b border-[rgba(59,130,246,0.1)] flex items-center gap-2">
         <Layers className="w-4 h-4 text-gray-500 dark:text-gray-400" />
         <h3 className="text-xs font-semibold text-gray-900 dark:text-white">Portfolio Breakdown</h3>
       </div>

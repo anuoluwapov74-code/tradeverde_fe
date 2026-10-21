@@ -129,11 +129,11 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
   const getTypeColor = (type: string) => {
     switch (type) {
       case "trade":
-        return { bg: "bg-emerald-100 dark:bg-emerald-500/20", text: "text-emerald-600" };
+        return { bg: "bg-blue-100 dark:bg-blue-500/20", text: "text-blue-600" };
       case "deposit":
-        return { bg: "bg-green-100 dark:bg-green-500/20", text: "text-green-700" };
+        return { bg: "bg-blue-100 dark:bg-blue-500/20", text: "text-blue-700" };
       case "withdrawal":
-        return { bg: "bg-green-100 dark:bg-green-500/20", text: "text-green-600" };
+        return { bg: "bg-blue-100 dark:bg-blue-500/20", text: "text-blue-600" };
       case "alert":
         return { bg: "bg-purple-100 dark:bg-purple-500/20", text: "text-purple-600" };
       case "system":
@@ -165,16 +165,16 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
         exit={{ opacity: 0, y: -10, scale: 0.95 }}
         transition={{ duration: 0.2 }}
         className="fixed sm:absolute left-2 right-2 sm:left-auto sm:right-0 top-16 sm:top-auto sm:mt-2 sm:w-96 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden z-50"
-        style={{ background: "rgba(13,26,18,0.97)", border: "1px solid rgba(0,201,167,0.14)" }}
+        style={{ background: "rgba(13,20,36,0.97)", border: "1px solid rgba(59,130,246,0.14)" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,201,167,0.1)]">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(59,130,246,0.1)]">
           <div className="flex items-center space-x-2">
             <h3 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
               Notifications
             </h3>
             {unreadCount > 0 && (
-              <span className="px-1.5 py-0.5 bg-green-700 text-white text-[10px] font-bold rounded-full">
+              <span className="px-1.5 py-0.5 bg-blue-700 text-white text-[10px] font-bold rounded-full">
                 {unreadCount}
               </span>
             )}
@@ -182,7 +182,7 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
           {unreadCount > 0 && (
             <button
               onClick={markAllAsRead}
-              className="text-[10px] sm:text-xs text-green-700 hover:text-green-800 dark:text-green-400 dark:hover:text-green-400 font-medium transition-colors"
+              className="text-[10px] sm:text-xs text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-400 font-medium transition-colors"
             >
               Mark all read
             </button>
@@ -193,7 +193,7 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
         <div className="max-h-72 sm:max-h-80 overflow-y-auto">
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
             </div>
           ) : notifications.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8 px-4">
@@ -221,7 +221,7 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="px-4 py-3 hover:bg-[rgba(0,201,167,0.04)] transition-colors cursor-pointer"
+                  className="px-4 py-3 hover:bg-[rgba(59,130,246,0.04)] transition-colors cursor-pointer"
                   onClick={handleViewAll}
                 >
                   <div className="flex items-start space-x-2.5">
@@ -239,7 +239,7 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
                           {notification.title}
                         </p>
                         {!notification.read && (
-                          <div className="w-1.5 h-1.5 bg-green-700 rounded-full ml-2 mt-1 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 bg-blue-700 rounded-full ml-2 mt-1 flex-shrink-0" />
                         )}
                       </div>
                       {notification.message && (
@@ -259,10 +259,10 @@ export default function NotificationDropdown({ onClose, onNotificationUpdate }: 
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2.5 border-t border-[rgba(0,201,167,0.1)]">
+        <div className="px-4 py-2.5 border-t border-[rgba(59,130,246,0.1)]">
           <button
             onClick={handleViewAll}
-            className="w-full text-center text-[10px] sm:text-xs text-green-700 hover:text-green-800 dark:text-green-400 dark:hover:text-green-400 font-medium transition-colors"
+            className="w-full text-center text-[10px] sm:text-xs text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-400 font-medium transition-colors"
           >
             View all notifications
           </button>

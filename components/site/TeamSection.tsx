@@ -48,15 +48,15 @@ const TeamSection = () => {
   const currentMember = teamMembers[currentIndex];
 
   return (
-    <section className="relative overflow-hidden bg-[#071a0e] py-8 lg:py-14">
+    <section className="relative overflow-hidden bg-[#060f24] py-8 lg:py-14">
       {/* Subtle glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-600/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left Content */}
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-green-500 mb-3">
+            <p className="text-sm font-semibold uppercase tracking-wider text-blue-500 mb-3">
               Our People
             </p>
             <h2 className="mb-6 text-3xl font-bold text-white lg:text-4xl">
@@ -86,7 +86,7 @@ const TeamSection = () => {
             {/* Team Member Card */}
             <div key={currentIndex} className="flex flex-col items-center text-center">
               <div className="relative mb-6">
-                <div className="h-48 w-48 overflow-hidden rounded-full border-2 border-green-500/30 bg-gray-800 lg:h-56 lg:w-56">
+                <div className="h-48 w-48 overflow-hidden rounded-full border-2 border-blue-500/30 bg-gray-800 lg:h-56 lg:w-56">
                   <Image
                     src={currentMember.image}
                     alt={currentMember.name}
@@ -96,13 +96,13 @@ const TeamSection = () => {
                   />
                 </div>
                 {/* Glow ring */}
-                <div className="absolute inset-0 rounded-full border border-green-500/20 blur-sm" />
+                <div className="absolute inset-0 rounded-full border border-blue-500/20 blur-sm" />
               </div>
 
               <h3 className="mb-1 text-xl font-bold text-white lg:text-2xl">
                 {currentMember.name}
               </h3>
-              <p className="text-sm text-green-500">
+              <p className="text-sm text-blue-500">
                 {currentMember.role}
               </p>
             </div>
@@ -127,7 +127,7 @@ const TeamSection = () => {
               onClick={() => setCurrentIndex(index)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "w-8 bg-green-600"
+                  ? "w-8 bg-blue-600"
                   : "w-1.5 bg-white/20 hover:bg-white/30"
               }`}
               aria-label={`Go to team member ${index + 1}`}

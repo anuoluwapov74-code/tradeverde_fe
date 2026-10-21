@@ -98,7 +98,7 @@ export default function StockListPage() {
             placeholder="Search stocks..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-[rgba(0,201,167,0.04)] text-white rounded-lg border-2 border-[rgba(0,201,167,0.14)] focus:border-[#00C9A7] focus:outline-none transition-colors placeholder:text-gray-500"
+            className="w-full pl-10 pr-4 py-3 bg-[rgba(59,130,246,0.04)] text-white rounded-lg border-2 border-[rgba(59,130,246,0.14)] focus:border-[#3b82f6] focus:outline-none transition-colors placeholder:text-gray-500"
           />
         </div>
 
@@ -113,14 +113,14 @@ export default function StockListPage() {
                   ? ""
                   : "tv-card text-gray-300 hover:opacity-80"
               }`}
-              style={activeTab === key ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+              style={activeTab === key ? { background: "#3b82f6", color: "#000f24" } : undefined}
             >
               {label}
               {counts[key] > 0 && (
                 <span
                   className={`text-xs rounded-full px-1.5 py-0.5 ${
                     activeTab === key
-                      ? "bg-black/10 text-[#001a0f]"
+                      ? "bg-black/10 text-[#000f24]"
                       : "bg-white/10 text-gray-300"
                   }`}
                 >
@@ -134,7 +134,7 @@ export default function StockListPage() {
         {/* Loading */}
         {loading && (
           <div className="flex justify-center items-center py-20">
-            <Loader2 className="w-8 h-8 text-[#00C9A7] animate-spin" />
+            <Loader2 className="w-8 h-8 text-[#3b82f6] animate-spin" />
           </div>
         )}
 
@@ -145,7 +145,7 @@ export default function StockListPage() {
               <div
                 key={stock.symbol}
                 onClick={() => router.push(`/stock/${stock.symbol}`)}
-                className="tv-card p-6 rounded-lg hover:border-[#00C9A7] transition-all cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
+                className="tv-card p-6 rounded-lg hover:border-[#3b82f6] transition-all cursor-pointer hover:shadow-lg hover:shadow-[#3b82f6]/10"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <StockLogo logoUrl={stock.logo_url} name={stock.name || stock.symbol} size={48} />
@@ -220,7 +220,7 @@ export default function StockListPage() {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#3b82f6] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -240,9 +240,9 @@ export default function StockListPage() {
                     key={p}
                     onClick={() => setPage(p as number)}
                     className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
-                      page === p ? "" : "tv-card text-gray-400 hover:border-[#00C9A7]"
+                      page === p ? "" : "tv-card text-gray-400 hover:border-[#3b82f6]"
                     }`}
-                    style={page === p ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+                    style={page === p ? { background: "#3b82f6", color: "#000f24" } : undefined}
                   >
                     {p}
                   </button>
@@ -252,7 +252,7 @@ export default function StockListPage() {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#3b82f6] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

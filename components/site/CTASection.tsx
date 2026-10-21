@@ -28,7 +28,7 @@ const CTASection = () => {
     <section className="relative py-8 lg:py-14">
       {/* Subtle background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-green-600/5 dark:bg-green-500/10 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/5 dark:bg-blue-500/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@ const CTASection = () => {
         <div className="flex justify-center">
           <Link
             href="/register"
-            className="group inline-flex items-center gap-2 rounded-full bg-primary px-10 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary-hover hover:shadow-xl hover:shadow-green-600/25 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-full bg-primary px-10 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary-hover hover:shadow-xl hover:shadow-blue-600/25 hover:-translate-y-0.5"
           >
             Get started now
             <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -74,14 +74,14 @@ interface StepCardProps {
 }
 
 const StepCard = ({ icon, title, description, index }: StepCardProps) => (
-  <div className="group flex flex-col items-center rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-green-600/5 lg:p-10">
+  <div className="group flex flex-col items-center rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/5 lg:p-10">
     {/* Step number */}
     <div className="mb-2 text-xs font-bold uppercase tracking-widest text-primary/60">
       Step {index + 1}
     </div>
 
     {/* Icon */}
-    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50 dark:bg-green-500/10 text-primary transition-transform duration-300 group-hover:scale-110">
+    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-500/10 text-primary transition-transform duration-300 group-hover:scale-110">
       {icon}
     </div>
 

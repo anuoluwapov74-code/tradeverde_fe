@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const FALLBACK_COLORS = [
   "#6366f1", "#8b5cf6", "#ec4899", "#14b8a6",
-  "#f59e0b", "#10b981", "#3b82f6", "#f43f5e",
+  "#f59e0b", "#3b82f6", "#3b82f6", "#f43f5e",
 ];
 
 interface StockLogoProps {

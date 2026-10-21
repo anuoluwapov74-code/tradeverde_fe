@@ -118,7 +118,7 @@ export default function DashboardShell({ children }: DashboardShellProps) {
         dedupingInterval: 15000,
       }}
     >
-      <div className="min-h-screen dashboard-font" style={isDark ? { background: "#0b1a12" } : undefined}>
+      <div className="min-h-screen dashboard-font" style={isDark ? { background: "#0a1428" } : undefined}>
         <div className="flex flex-col h-screen overflow-hidden">
           {/* Top Navigation */}
           <TopNav onMenuClick={() => setIsSidebarOpen(true)} user={user} />

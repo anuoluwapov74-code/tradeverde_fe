@@ -54,7 +54,7 @@ const HowItWorks = () => {
         <div className="relative mt-6 lg:mt-10">
           {/* Connecting line - desktop only */}
           <div className="absolute top-12 left-0 right-0 hidden lg:block">
-            <div className="mx-auto max-w-3xl h-px bg-linear-to-r from-transparent via-green-400 dark:via-green-500/30 to-transparent" />
+            <div className="mx-auto max-w-3xl h-px bg-linear-to-r from-transparent via-blue-400 dark:via-blue-500/30 to-transparent" />
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
@@ -75,9 +75,9 @@ interface StepCardProps {
 }
 
 const StepCard = ({ number, title, description }: StepCardProps) => (
-  <div className="group relative rounded-2xl border border-gray-200/80 dark:border-white/[0.08] bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-green-600/[0.06] hover:border-[var(--primary)]/30">
+  <div className="group relative rounded-2xl border border-gray-200/80 dark:border-white/[0.08] bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/[0.06] hover:border-[var(--primary)]/30">
     {/* Step number badge */}
-    <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-green-600 to-green-700 text-sm font-bold text-white shadow-lg shadow-green-600/25 transition-transform duration-300 group-hover:scale-110">
+    <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-blue-700 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-transform duration-300 group-hover:scale-110">
       {number}
     </div>
     <h3 className="text-base font-bold lg:text-lg mb-2">
@@ -98,7 +98,7 @@ interface TraderCardProps {
 }
 
 const TraderCard = ({ name, role, avatar, status }: TraderCardProps) => (
-  <div className="relative flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 transition-all hover:border-[var(--primary)] dark:border-[rgba(39,174,96,0.2)]">
+  <div className="relative flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 transition-all hover:border-[var(--primary)] dark:border-[rgba(37,99,235,0.2)]">
     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[var(--primary)] to-[var(--primary-hover)] text-sm font-bold text-white">
       {avatar}
     </div>

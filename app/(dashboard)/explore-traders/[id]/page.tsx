@@ -131,7 +131,7 @@ function generateChartData(
   return data;
 }
 
-const portfolioColors = ["#14532d","#22c55e","#86efac","#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899"];
+const portfolioColors = ["#1e3a8a","#3b82f6","#93c5fd","#3b82f6","#3b82f6","#f59e0b","#8b5cf6","#ec4899"];
 
 export default function TraderProfilePage() {
   const params = useParams();
@@ -282,7 +282,7 @@ export default function TraderProfilePage() {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <PulseLoader color="#27ae60" size={15} />
+        <PulseLoader color="#2563eb" size={15} />
       </div>
     );
   }
@@ -295,7 +295,7 @@ export default function TraderProfilePage() {
           <button
             onClick={fetchTraderDetails}
             className="px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
-            style={{ background: "#00C9A7", color: "#001a0f" }}
+            style={{ background: "#3b82f6", color: "#000f24" }}
           >
             Retry
           </button>
@@ -337,11 +337,11 @@ export default function TraderProfilePage() {
                   alt={trader.name}
                   width={96}
                   height={96}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-green-100 dark:border-green-900/30"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-blue-100 dark:border-blue-900/30"
                   unoptimized
                 />
                 {trader.badge === "gold" && (
-                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-yellow-400 rounded-full flex items-center justify-center shadow-md border-2 border-white dark:border-[#0d3320]">
+                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-yellow-400 rounded-full flex items-center justify-center shadow-md border-2 border-white dark:border-[#0b1f45]">
                     <span className="text-xs">&#x1F451;</span>
                   </div>
                 )}
@@ -382,7 +382,7 @@ export default function TraderProfilePage() {
                           ? "bg-gray-400 cursor-not-allowed text-white"
                           : "hover:opacity-90"
                       }`}
-                      style={!(loadingBalance || copyActionLoading) ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+                      style={!(loadingBalance || copyActionLoading) ? { background: "#3b82f6", color: "#000f24" } : undefined}
                     >
                       {loadingBalance ? "Loading..." : copyActionLoading ? "Processing..." : "Copy Trader"}
                     </button>
@@ -393,7 +393,7 @@ export default function TraderProfilePage() {
                     </span>
                   ) : (
                     <>
-                      <span className="px-4 py-2.5 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 rounded-xl text-sm font-semibold flex items-center gap-1.5">
+                      <span className="px-4 py-2.5 bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 rounded-xl text-sm font-semibold flex items-center gap-1.5">
                         <UserCheck className="w-4 h-4" />
                         Copying
                       </span>
@@ -413,9 +413,9 @@ export default function TraderProfilePage() {
               {/* Stats Row */}
               <div className="flex flex-wrap gap-4 sm:gap-6 mt-5">
                 {[
-                  { icon: <DollarSign className="w-4 h-4 text-green-500" />, value: `$${parseFloat(trader.min_account_threshold).toLocaleString()}`, label: "Min Capital" },
+                  { icon: <DollarSign className="w-4 h-4 text-blue-500" />, value: `$${parseFloat(trader.min_account_threshold).toLocaleString()}`, label: "Min Capital" },
                   { icon: <Users className="w-4 h-4 text-purple-500" />, value: trader.copiers.toLocaleString(), label: "Copiers" },
-                  { icon: <UserCheck className="w-4 h-4 text-emerald-500" />, value: trader.followers.toLocaleString(), label: "Followers" },
+                  { icon: <UserCheck className="w-4 h-4 text-blue-500" />, value: trader.followers.toLocaleString(), label: "Followers" },
                   { icon: <Shield className="w-4 h-4 text-amber-500" />, value: `${trader.profit_share ?? 50}%`, label: "Profit Share" },
                 ].map((s, i) => (
                   <div key={i} className="flex items-center gap-2">
@@ -432,7 +432,7 @@ export default function TraderProfilePage() {
               {trader.tags && trader.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4">
                   {trader.tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 text-xs font-medium bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 rounded-full border border-green-100 dark:border-green-500/20">
+                    <span key={i} className="px-3 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 rounded-full border border-blue-100 dark:border-blue-500/20">
                       {tag}
                     </span>
                   ))}
@@ -452,7 +452,7 @@ export default function TraderProfilePage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-6 sm:gap-8 border-b border-[rgba(0,201,167,0.2)] mb-6 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-6 sm:gap-8 border-b border-[rgba(59,130,246,0.2)] mb-6 overflow-x-auto scrollbar-hide">
           {[
             { id: "overview", label: "Overview" },
             { id: "portfolio", label: "Portfolio" },
@@ -464,13 +464,13 @@ export default function TraderProfilePage() {
               onClick={() => setActiveTab(t.id as "overview" | "portfolio" | "history" | "copiers")}
               className={`pb-3 text-sm font-medium whitespace-nowrap transition-all relative ${
                 activeTab === t.id
-                  ? "text-green-600 dark:text-green-400"
+                  ? "text-blue-600 dark:text-blue-400"
                   : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
               }`}
             >
               {t.label}
               {activeTab === t.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-green-400 rounded-full" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
               )}
             </button>
           ))}
@@ -495,7 +495,7 @@ export default function TraderProfilePage() {
                       onClick={() => setChartPeriod(p)}
                       className={`px-4 py-2 text-xs font-medium border transition-all ${
                         chartPeriod === p
-                          ? "border-[#00C9A7] bg-[rgba(0,201,167,0.08)] text-[#00C9A7]"
+                          ? "border-[#3b82f6] bg-[rgba(59,130,246,0.08)] text-[#3b82f6]"
                           : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/20"
                       }`}
                     >
@@ -520,11 +520,11 @@ export default function TraderProfilePage() {
                           <stop offset="100%" stopColor={chartColor} stopOpacity={0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke={isLight ? "#f1f5f9" : "#1e3a28"} vertical={false} />
+                      <CartesianGrid strokeDasharray="3 3" stroke={isLight ? "#f1f5f9" : "#1e2f4f"} vertical={false} />
                       <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: isLight ? "#94a3b8" : "#64748b" }} interval="preserveStartEnd" />
                       <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: isLight ? "#94a3b8" : "#64748b" }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}K`} width={55} />
                       <Tooltip
-                        contentStyle={{ backgroundColor: isLight ? "#ffffff" : "#0d3320", border: `1px solid ${isLight ? "#e2e8f0" : "rgba(39,174,96,0.2)"}`, borderRadius: 12, color: isLight ? "#0f1724" : "#fff", fontSize: 13 }}
+                        contentStyle={{ backgroundColor: isLight ? "#ffffff" : "#0b1f45", border: `1px solid ${isLight ? "#e2e8f0" : "rgba(37,99,235,0.2)"}`, borderRadius: 12, color: isLight ? "#0f1724" : "#fff", fontSize: 13 }}
                         formatter={(value) => [`$${Number(value).toLocaleString(undefined, { maximumFractionDigits: 0 })}`, "Value"]}
                       />
                       <Area type="monotone" dataKey="value" stroke={chartColor} strokeWidth={2} fill="url(#chartGradient)" />
@@ -545,7 +545,7 @@ export default function TraderProfilePage() {
                     { label: "Cum. Earnings of Copiers", value: `+${parseFloat(trader.cumulative_earnings_copiers).toLocaleString(undefined, { minimumFractionDigits: 2 })}`, isGain: true, showTrend: true },
                     { label: "Cum. Copiers", value: trader.cumulative_copiers.toLocaleString(), isBold: true },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between py-4 border-b border-gray-100 dark:border-[rgba(39,174,96,0.08)] last:border-0">
+                    <div key={i} className="flex items-center justify-between py-4 border-b border-gray-100 dark:border-[rgba(37,99,235,0.08)] last:border-0">
                       <span className="text-sm text-gray-500 dark:text-gray-400">{item.label}</span>
                       <span className={`text-sm font-bold flex items-center gap-1 ${item.isGain ? "text-emerald-500" : item.isRed ? "text-red-500" : "text-gray-900 dark:text-white"}`}>
                         {item.value}
@@ -567,7 +567,7 @@ export default function TraderProfilePage() {
                   <div className="overflow-x-auto -mx-5 sm:-mx-6 px-5 sm:px-6">
                     <table className="w-full min-w-[500px]">
                       <thead>
-                        <tr className="border-b border-gray-100 dark:border-[rgba(39,174,96,0.08)]">
+                        <tr className="border-b border-gray-100 dark:border-[rgba(37,99,235,0.08)]">
                           {["Asset", "Avg profit", "Avg Loss", "Profitable"].map((h) => (
                             <th key={h} className="text-left pb-3 text-xs font-medium text-gray-500 dark:text-gray-400">{h}</th>
                           ))}
@@ -575,10 +575,10 @@ export default function TraderProfilePage() {
                       </thead>
                       <tbody>
                         {trader.top_traded.map((asset, i) => (
-                          <tr key={i} className="border-b border-gray-50 dark:border-[rgba(39,174,96,0.05)] last:border-0">
+                          <tr key={i} className="border-b border-gray-50 dark:border-[rgba(37,99,235,0.05)] last:border-0">
                             <td className="py-4">
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-green-900 dark:bg-[#071a0e] flex items-center justify-center shrink-0">
+                                <div className="w-10 h-10 rounded-full bg-blue-900 dark:bg-[#060f24] flex items-center justify-center shrink-0">
                                   <span className="text-white text-sm font-bold">{asset.ticker?.charAt(0) || asset.name.charAt(0)}</span>
                                 </div>
                                 <div>
@@ -641,9 +641,9 @@ export default function TraderProfilePage() {
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Investors that trade just like {trader.username}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {similarTraders.map((st) => (
-                    <Link key={st.id} href={`/explore-traders/${st.id}`} className="group tv-card rounded-xl p-4 hover:shadow-lg hover:border-[#00C9A7] transition-all">
+                    <Link key={st.id} href={`/explore-traders/${st.id}`} className="group tv-card rounded-xl p-4 hover:shadow-lg hover:border-[#3b82f6] transition-all">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-full overflow-hidden bg-green-600 shrink-0">
+                        <div className="w-10 h-10 rounded-full overflow-hidden bg-blue-600 shrink-0">
                           {st.avatar_url ? (
                             <Image src={st.avatar_url} width={40} height={40} alt={st.name} className="w-full h-full object-cover" unoptimized />
                           ) : (
@@ -676,8 +676,8 @@ export default function TraderProfilePage() {
               <div className="flex items-center justify-center mb-6">
                 <div className="relative w-40 h-40">
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="40" fill="none" stroke={isLight ? "#f1f5f9" : "#1e3a28"} strokeWidth="8" />
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" strokeWidth="8" strokeDasharray={`${(trader.win_rate / 100) * 251.2} 251.2`} strokeLinecap="round" />
+                    <circle cx="50" cy="50" r="40" fill="none" stroke={isLight ? "#f1f5f9" : "#1e2f4f"} strokeWidth="8" />
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#3b82f6" strokeWidth="8" strokeDasharray={`${(trader.win_rate / 100) * 251.2} 251.2`} strokeLinecap="round" />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-2xl font-bold text-gray-900 dark:text-white">{trader.win_rate.toFixed(0)}%</span>
@@ -685,8 +685,8 @@ export default function TraderProfilePage() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl">
-                  <div className="text-lg font-bold text-emerald-500">{trader.total_wins}</div>
+                <div className="text-center p-3 bg-blue-50 dark:bg-blue-500/10 rounded-xl">
+                  <div className="text-lg font-bold text-blue-500">{trader.total_wins}</div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">Total Wins</div>
                 </div>
                 <div className="text-center p-3 bg-red-50 dark:bg-red-500/10 rounded-xl">
@@ -708,7 +708,7 @@ export default function TraderProfilePage() {
                   { label: "Avg. Profit", value: `+${trader.avg_profit_percent}%`, color: "text-emerald-500" },
                   { label: "Avg. Loss", value: `${trader.avg_loss_percent}%`, color: "text-red-500" },
                 ].map((item) => (
-                  <div key={item.label} className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-[rgba(39,174,96,0.08)] last:border-0">
+                  <div key={item.label} className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-[rgba(37,99,235,0.08)] last:border-0">
                     <span className="text-sm text-gray-500 dark:text-gray-400">{item.label}</span>
                     <span className={`text-sm font-bold ${item.color}`}>{item.value}</span>
                   </div>
@@ -752,7 +752,7 @@ export default function TraderProfilePage() {
                 <div className="flex items-center gap-2"><TrendingUp className="w-4 h-4 text-emerald-500" /><span className="text-sm text-emerald-500 font-semibold">+{trader.avg_profit_percent}% Avg. Profit</span></div>
                 <div className="flex items-center gap-2"><TrendingDown className="w-4 h-4 text-red-500" /><span className="text-sm text-red-500 font-semibold">{trader.avg_loss_percent}% Avg. Loss</span></div>
               </div>
-              <div className="pt-6 border-t border-gray-100 dark:border-[rgba(39,174,96,0.08)]">
+              <div className="pt-6 border-t border-gray-100 dark:border-[rgba(37,99,235,0.08)]">
                 <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Frequently Traded Assets</h3>
                 {trader.frequently_traded.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-10 text-gray-400 dark:text-gray-500">
@@ -762,7 +762,7 @@ export default function TraderProfilePage() {
                 ) : (
                   <div className="flex flex-wrap gap-2">
                     {trader.frequently_traded.map((asset, index) => (
-                      <span key={index} className="px-4 py-2 bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-sm rounded-xl font-medium border border-green-100 dark:border-green-500/20">
+                      <span key={index} className="px-4 py-2 bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 text-sm rounded-xl font-medium border border-blue-100 dark:border-blue-500/20">
                         {asset}
                       </span>
                     ))}
@@ -778,8 +778,8 @@ export default function TraderProfilePage() {
           <div className="tv-card rounded-2xl p-6">
             <h2 className="text-base font-bold text-gray-900 dark:text-white mb-6">Copier Statistics</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-              <div className="text-center p-6 bg-green-50 dark:bg-green-500/10 rounded-2xl">
-                <Users className="w-8 h-8 text-green-500 mx-auto mb-3" />
+              <div className="text-center p-6 bg-blue-50 dark:bg-blue-500/10 rounded-2xl">
+                <Users className="w-8 h-8 text-blue-500 mx-auto mb-3" />
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">{trader.copiers.toLocaleString()}</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Active Copiers</div>
               </div>
@@ -788,9 +788,9 @@ export default function TraderProfilePage() {
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">{trader.cumulative_copiers.toLocaleString()}</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">All-time Copiers</div>
               </div>
-              <div className="text-center p-6 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl">
-                <DollarSign className="w-8 h-8 text-emerald-500 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-emerald-500">${parseFloat(trader.cumulative_earnings_copiers).toLocaleString()}</div>
+              <div className="text-center p-6 bg-blue-50 dark:bg-blue-500/10 rounded-2xl">
+                <DollarSign className="w-8 h-8 text-blue-500 mx-auto mb-3" />
+                <div className="text-2xl font-bold text-blue-500">${parseFloat(trader.cumulative_earnings_copiers).toLocaleString()}</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Total Copier Earnings</div>
               </div>
             </div>

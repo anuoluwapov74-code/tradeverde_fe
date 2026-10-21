@@ -9,9 +9,9 @@ const FeaturesSection = () => {
       title: "Transparent Options Copying",
       description:
         "See exactly what you're mirroring—ticker, strategy, side (call/put), strike, expiry, entry/exit premium, size, and timestamps—plus a clear history of each leader's performance and drawdowns.",
-      gradient: "from-green-500 to-emerald-400",
-      bgColor: "bg-green-50 dark:bg-green-500/10",
-      iconColor: "text-green-700 dark:text-green-400",
+      gradient: "from-blue-500 to-blue-400",
+      bgColor: "bg-blue-50 dark:bg-blue-500/10",
+      iconColor: "text-blue-700 dark:text-blue-400",
     },
     {
       icon: <DocumentIcon />,
@@ -27,9 +27,9 @@ const FeaturesSection = () => {
       title: "Innovative Execution for Multi-Legs",
       description:
         "Copy complex structures as a unit: verticals, calendars, iron condors, butterflies. We sync legs, preserve ratios, and apply best-effort routing.",
-      gradient: "from-green-500 to-emerald-500",
-      bgColor: "bg-green-50 dark:bg-green-500/10",
-      iconColor: "text-green-600 dark:text-green-400",
+      gradient: "from-blue-500 to-blue-500",
+      bgColor: "bg-blue-50 dark:bg-blue-500/10",
+      iconColor: "text-blue-600 dark:text-blue-400",
     },
     {
       icon: <ChatIcon />,
@@ -45,9 +45,9 @@ const FeaturesSection = () => {
       title: "Learn While You Copy",
       description:
         "Leaders attach notes, rationale, and risk context to each trade. Use strategy tags and post-trade debriefs to sharpen your own playbook.",
-      gradient: "from-teal-500 to-green-500",
-      bgColor: "bg-teal-50 dark:bg-teal-500/10",
-      iconColor: "text-teal-700 dark:text-teal-400",
+      gradient: "from-sky-500 to-blue-500",
+      bgColor: "bg-sky-50 dark:bg-sky-500/10",
+      iconColor: "text-sky-700 dark:text-sky-400",
     },
     {
       icon: <CrownIcon />,
@@ -69,7 +69,7 @@ const FeaturesSection = () => {
             Platform Features
           </p>
           <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
-            Why choose VerdifyTrades
+            Why choose TradeVerdify
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 dark:text-gray-400 lg:text-base">
             The most advanced copy trading platform with enterprise-grade
@@ -105,7 +105,7 @@ const FeatureCard = ({
   bgColor,
   iconColor,
 }: FeatureCardProps) => (
-  <div className="group relative overflow-hidden rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-green-600/5">
+  <div className="group relative overflow-hidden rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/5">
     {/* Gradient background on hover */}
     <div
       className={`absolute inset-0 bg-linear-to-br ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.04] dark:group-hover:opacity-[0.08]`}

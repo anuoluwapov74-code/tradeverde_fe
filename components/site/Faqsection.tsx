@@ -63,7 +63,7 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="group rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-green-600/5">
+    <div className="group rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/5">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between p-5 text-left transition-all"
@@ -77,7 +77,7 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
           className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
             isOpen
               ? "bg-primary text-white rotate-45 scale-110"
-              : "bg-gray-100 dark:bg-white/8 text-gray-500 dark:text-gray-400 group-hover:bg-green-50 dark:group-hover:bg-green-600/10"
+              : "bg-gray-100 dark:bg-white/8 text-gray-500 dark:text-gray-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-600/10"
           }`}
         >
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

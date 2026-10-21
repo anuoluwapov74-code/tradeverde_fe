@@ -141,7 +141,7 @@ function ResetPasswordContent() {
       <PagePreloader>
         <div className="min-h-screen flex items-center justify-center bg-transparent">
         <div className="text-center">
-          <PulseLoader color="#27ae60" size={15} />
+          <PulseLoader color="#2563eb" size={15} />
           <p className="text-gray-600 dark:text-gray-300 mt-4">
             Validating reset link...
           </p>
@@ -176,7 +176,7 @@ function ResetPasswordContent() {
 
           <div className="space-y-3">
             <Link href="/forgot-password">
-              <Button className="w-full bg-green-800 hover:bg-green-700 mb-4">
+              <Button className="w-full bg-blue-800 hover:bg-blue-700 mb-4">
                 Request New Reset Link
               </Button>
             </Link>
@@ -203,8 +203,8 @@ function ResetPasswordContent() {
           animate={{ opacity: 1, y: 0 }}
           className="w-full max-w-md text-center space-y-6"
         >
-          <div className="w-20 h-20 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-            <CheckCircle className="w-10 h-10 text-green-700" />
+          <div className="w-20 h-20 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
+            <CheckCircle className="w-10 h-10 text-blue-700" />
           </div>
 
           <h1 className="text-2xl font-bold text-black dark:text-white">
@@ -218,7 +218,7 @@ function ResetPasswordContent() {
 
           <div className="pt-4">
             <Link href="/login">
-              <Button className="w-full bg-green-800 hover:bg-green-700">
+              <Button className="w-full bg-blue-800 hover:bg-blue-700">
                 Continue to Login
               </Button>
             </Link>
@@ -242,7 +242,7 @@ function ResetPasswordContent() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-0">
           <span className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            <span className="text-green-600 dark:text-green-400">Verdify</span>Trades
+            <span className="text-blue-600 dark:text-blue-400">Trade</span>Verdify
           </span>
         </Link>
 
@@ -265,7 +265,7 @@ function ResetPasswordContent() {
               id="new_password"
               type={showPassword ? "text" : "password"}
               {...register("new_password")}
-              className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 text-black dark:text-white focus:outline-none transition-all ${
+              className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 text-black dark:text-white focus:outline-none transition-all ${
                 errors.new_password
                   ? "border-red-500"
                   : "border-gray-300 dark:border-gray-600/50"
@@ -302,7 +302,7 @@ function ResetPasswordContent() {
               id="confirm_password"
               type={showConfirmPassword ? "text" : "password"}
               {...register("confirm_password")}
-              className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 text-black dark:text-white focus:outline-none transition-all ${
+              className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 text-black dark:text-white focus:outline-none transition-all ${
                 errors.confirm_password
                   ? "border-red-500"
                   : "border-gray-300 dark:border-gray-600/50"
@@ -336,7 +336,7 @@ function ResetPasswordContent() {
           <Button
             disabled={loading}
             type="submit"
-            className="w-full py-6 bg-green-800 hover:bg-green-700 text-white rounded-md"
+            className="w-full py-6 bg-blue-800 hover:bg-blue-700 text-white rounded-md"
           >
             {!loading ? (
               <span>Reset Password</span>
@@ -347,7 +347,7 @@ function ResetPasswordContent() {
 
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
             Remember your password?{" "}
-            <Link href="/login" className="text-green-600 hover:underline">
+            <Link href="/login" className="text-blue-600 hover:underline">
               Sign in
             </Link>
           </p>
@@ -363,7 +363,7 @@ export default function ResetPasswordPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-transparent">
-          <PulseLoader color="#27ae60" size={15} />
+          <PulseLoader color="#2563eb" size={15} />
         </div>
       }
     >

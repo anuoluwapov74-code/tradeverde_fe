@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Cookies Policy — VerdifyTrades",
-  description: "Learn how VerdifyTrades uses cookies and similar technologies to improve your experience on our copy trading platform.",
-  alternates: { canonical: "https://verdifytrades.com/cookies-policy" },
+  title: "Cookies Policy — TradeVerdify",
+  description: "Learn how TradeVerdify uses cookies and similar technologies to improve your experience on our copy trading platform.",
+  alternates: { canonical: "https://tradeverdify.com/cookies-policy" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Cookies Policy — VerdifyTrades",
-    description: "How VerdifyTrades uses cookies on our copy trading platform.",
-    url: "https://verdifytrades.com/cookies-policy",
+    title: "Cookies Policy — TradeVerdify",
+    description: "How TradeVerdify uses cookies on our copy trading platform.",
+    url: "https://tradeverdify.com/cookies-policy",
   },
 };
 
@@ -40,7 +40,7 @@ export default function CookiesPolicy() {
                 1. Introduction
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                This Cookies Policy explains how VerdifyTrades uses cookies and similar
+                This Cookies Policy explains how TradeVerdify uses cookies and similar
                 tracking technologies when you visit our website and use our platform.
                 By continuing to browse or use our services, you agree to the use of
                 cookies as described in this policy. We encourage you to read this policy
@@ -85,7 +85,7 @@ export default function CookiesPolicy() {
                   href="https://www.allaboutcookies.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   www.allaboutcookies.org
                 </a>
@@ -99,7 +99,7 @@ export default function CookiesPolicy() {
                 4. Your Consent
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                By using the VerdifyTrades website and platform, you consent to the placement
+                By using the TradeVerdify website and platform, you consent to the placement
                 of cookies on your device as described in this policy. When you first
                 visit our website, you will be presented with a cookie consent banner
                 that allows you to accept or customize your cookie preferences. You may
@@ -116,7 +116,7 @@ export default function CookiesPolicy() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Session cookies are temporary cookies that are stored on your device only
                 during your browsing session. They are deleted automatically when you
-                close your browser. VerdifyTrades uses session cookies to maintain your login
+                close your browser. TradeVerdify uses session cookies to maintain your login
                 state, remember your preferences during a single session, ensure the
                 security of your account while you are logged in, and enable the
                 functionality of our trading platform in real time.
@@ -130,7 +130,7 @@ export default function CookiesPolicy() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Persistent cookies remain on your device for a set period of time or until
-                you manually delete them. VerdifyTrades uses persistent cookies to remember
+                you manually delete them. TradeVerdify uses persistent cookies to remember
                 your login credentials (if you choose &ldquo;remember me&rdquo;), store your
                 language and display preferences, analyze how you use our platform to
                 improve our services, and deliver relevant content based on your interests
@@ -144,7 +144,7 @@ export default function CookiesPolicy() {
                 7. Third Party Cookies
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                In addition to our own cookies, VerdifyTrades may allow third-party service
+                In addition to our own cookies, TradeVerdify may allow third-party service
                 providers to place cookies on your device. These third-party cookies are
                 used for analytics services (e.g., Google Analytics) to help us
                 understand how visitors interact with our website, advertising and
@@ -161,7 +161,7 @@ export default function CookiesPolicy() {
                 8. Use of Web Beacons
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                In addition to cookies, VerdifyTrades may use web beacons (also known as
+                In addition to cookies, TradeVerdify may use web beacons (also known as
                 pixel tags, clear GIFs, or tracking pixels) on our website and in our
                 emails. Web beacons are tiny, invisible graphic images that allow us to
                 track how users interact with our website and emails. We use web beacons
@@ -184,7 +184,7 @@ export default function CookiesPolicy() {
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 To opt out or manage your cookie preferences, please email us at{" "}
-                <span className="text-green-600">support@verdifytrades.com</span>. Our team
+                <span className="text-blue-600">support@tradeverdify.com</span>. Our team
                 will assist you with updating your preferences promptly.
               </p>
             </section>
@@ -201,7 +201,7 @@ export default function CookiesPolicy() {
               </p>
               <Link
                 href="/"
-                className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-600/50"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50"
               >
                 Go Back Home
               </Link>

@@ -310,7 +310,7 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-green-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
       </div>
     );
   }
@@ -321,7 +321,7 @@ export default function SettingsPage() {
         <p className="text-red-500 dark:text-red-400 text-lg">{error}</p>
         <button
           onClick={fetchUserSettings}
-          className="px-6 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors"
+          className="px-6 py-2 bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors"
         >
           Retry
         </button>
@@ -360,9 +360,9 @@ export default function SettingsPage() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mb-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg"
+              className="mb-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg"
             >
-              <p className="text-green-600 dark:text-green-400 text-sm">
+              <p className="text-blue-600 dark:text-blue-400 text-sm">
                 {successMessage}
               </p>
             </motion.div>
@@ -390,7 +390,7 @@ export default function SettingsPage() {
                   ? "tv-card text-gray-300 hover:opacity-80"
                   : ""
               }`}
-              style={activeTab === tab ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+              style={activeTab === tab ? { background: "#3b82f6", color: "#000f24" } : undefined}
             >
               {tab === "profile" && <User className="w-4 h-4" />}
               {tab === "security" && <Shield className="w-4 h-4" />}
@@ -425,7 +425,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => openEditModal("name")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors self-start sm:self-auto"
+                    className="px-4 py-2 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors self-start sm:self-auto"
                   >
                     Edit
                   </button>
@@ -459,7 +459,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => openEditModal("phone")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors self-start sm:self-auto"
+                    className="px-4 py-2 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors self-start sm:self-auto"
                   >
                     Edit
                   </button>
@@ -479,7 +479,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => openEditModal("country")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors self-start sm:self-auto"
+                    className="px-4 py-2 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors self-start sm:self-auto"
                   >
                     Edit
                   </button>
@@ -496,7 +496,7 @@ export default function SettingsPage() {
                     <div
                       className={`text-lg font-semibold ${
                         userSettings.profile.is_verified
-                          ? "text-green-500"
+                          ? "text-blue-500"
                           : "text-amber-500"
                       }`}
                     >
@@ -565,7 +565,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => openEditModal("password")}
-                    className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors whitespace-nowrap self-start sm:self-auto"
+                    className="px-4 py-2 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors whitespace-nowrap self-start sm:self-auto"
                   >
                     Change Password
                   </button>
@@ -576,8 +576,8 @@ export default function SettingsPage() {
               <div className="tv-card p-5 rounded-lg">
                 <div className="flex flex-col gap-4">
                   <div className="flex items-start gap-3">
-                    <div className="p-2 bg-green-600/10 dark:bg-green-500/20 rounded-lg">
-                      <Shield className="w-5 h-5 text-green-600" />
+                    <div className="p-2 bg-blue-600/10 dark:bg-blue-500/20 rounded-lg">
+                      <Shield className="w-5 h-5 text-blue-600" />
                     </div>
                     <div className="flex-1">
                       <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
@@ -596,14 +596,14 @@ export default function SettingsPage() {
                       <div
                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           twoFactorEnabled
-                            ? "bg-green-500/10 text-green-600 dark:bg-green-500/20 dark:text-green-400"
+                            ? "bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
                             : "bg-gray-500/10 text-gray-600 dark:bg-gray-500/20 dark:text-gray-400"
                         }`}
                       >
                         {twoFactorEnabled ? "Enabled" : "Disabled"}
                       </div>
                       {twoFactorEnabled && (
-                        <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
+                        <div className="flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400">
                           <Lock className="w-3 h-3" />
                           <span>Protected</span>
                         </div>
@@ -614,7 +614,7 @@ export default function SettingsPage() {
                       <button
                         onClick={handleEnable2FA}
                         disabled={toggling2FA}
-                        className="px-4 py-2 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap self-start sm:self-auto"
+                        className="px-4 py-2 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap self-start sm:self-auto"
                       >
                         {toggling2FA ? (
                           <span className="flex items-center gap-2">
@@ -636,8 +636,8 @@ export default function SettingsPage() {
                   </div>
 
                   {twoFactorEnabled && (
-                    <div className="bg-green-600/5 dark:bg-green-500/10 border border-green-500/20 rounded-lg p-3">
-                      <p className="text-xs text-green-700 dark:text-green-300">
+                    <div className="bg-blue-600/5 dark:bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                      <p className="text-xs text-blue-700 dark:text-blue-300">
                         <strong>Tip:</strong> Keep your email secure as it will
                         be used to receive 2FA codes during login.
                       </p>
@@ -685,9 +685,9 @@ export default function SettingsPage() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="mb-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg"
+                    className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg"
                   >
-                    <p className="text-green-600 dark:text-green-400 text-sm">
+                    <p className="text-blue-600 dark:text-blue-400 text-sm">
                       {successMessage}
                     </p>
                   </motion.div>
@@ -781,7 +781,7 @@ export default function SettingsPage() {
                             firstName: e.target.value,
                           })
                         }
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                       />
                     </div>
                     <div>
@@ -797,7 +797,7 @@ export default function SettingsPage() {
                             lastName: e.target.value,
                           })
                         }
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                       />
                     </div>
                   </div>
@@ -805,7 +805,7 @@ export default function SettingsPage() {
                     <button
                       onClick={handleUpdate}
                       disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {updating ? (
                         <span className="flex items-center justify-center gap-2">
@@ -843,14 +843,14 @@ export default function SettingsPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                      className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                     />
                   </div>
                   <div className="flex gap-3 mt-5">
                     <button
                       onClick={handleUpdate}
                       disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {updating ? (
                         <span className="flex items-center justify-center gap-2">
@@ -888,14 +888,14 @@ export default function SettingsPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, country: e.target.value })
                       }
-                      className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                      className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                     />
                   </div>
                   <div className="flex gap-3 mt-5">
                     <button
                       onClick={handleUpdate}
                       disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {updating ? (
                         <span className="flex items-center justify-center gap-2">
@@ -937,7 +937,7 @@ export default function SettingsPage() {
                             oldPassword: e.target.value,
                           })
                         }
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                       />
                     </div>
                     <div>
@@ -953,7 +953,7 @@ export default function SettingsPage() {
                             newPassword: e.target.value,
                           })
                         }
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                       />
                     </div>
                     <div>
@@ -969,7 +969,7 @@ export default function SettingsPage() {
                             confirmPassword: e.target.value,
                           })
                         }
-                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C9A7] border border-[rgba(255,255,255,0.1)]"
+                        className="w-full px-3 py-2.5 text-sm bg-[rgba(255,255,255,0.05)] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] border border-[rgba(255,255,255,0.1)]"
                       />
                     </div>
                   </div>
@@ -977,7 +977,7 @@ export default function SettingsPage() {
                     <button
                       onClick={handleUpdate}
                       disabled={updating}
-                      className="flex-1 py-2.5 text-sm bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 text-sm bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {updating ? (
                         <span className="flex items-center justify-center gap-2">

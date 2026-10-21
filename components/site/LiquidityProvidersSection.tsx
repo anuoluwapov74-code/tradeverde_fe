@@ -217,7 +217,7 @@ const LiquidityProvidersSection = () => {
       className="py-8 md:py-14 relative"
       style={{
         background:
-          "linear-gradient(135deg, #071a0e 0%, #0d3320 50%, #145a32 100%)",
+          "linear-gradient(135deg, #060f24 0%, #0b1f45 50%, #133a7a 100%)",
       }}
     >
       <div className="container mx-auto px-4">
@@ -226,7 +226,7 @@ const LiquidityProvidersSection = () => {
             LIQUIDITY PROVIDERS
           </h2>
           <h5 className="text-white text-base md:text-lg lg:text-xl opacity-90">
-            VerdifyTrades currently has a variety of liquidity providers, including
+            TradeVerdify currently has a variety of liquidity providers, including
             but not limited to:
           </h5>
         </div>
@@ -281,7 +281,7 @@ const LiquidityProvidersSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="/register"
-              className="px-8 py-3 bg-linear-to-r from-green-600 to-green-700 text-white rounded-full font-semibold hover:shadow-xl hover:shadow-green-600/25 transition-all duration-300 hover:-translate-y-0.5 text-sm"
+              className="px-8 py-3 bg-linear-to-r from-blue-600 to-blue-700 text-white rounded-full font-semibold hover:shadow-xl hover:shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 text-sm"
             >
               Get Started
             </a>

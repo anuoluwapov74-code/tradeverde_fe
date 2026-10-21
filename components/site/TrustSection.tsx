@@ -47,8 +47,8 @@ interface TrustBadgeProps {
 }
 
 const TrustBadge = ({ icon, title, description }: TrustBadgeProps) => (
-  <div className="group flex flex-col items-center rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-600/5 lg:p-8">
-    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-green-50 dark:bg-green-500/10 text-primary transition-transform duration-300 group-hover:scale-110">
+  <div className="group flex flex-col items-center rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/5 lg:p-8">
+    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-500/10 text-primary transition-transform duration-300 group-hover:scale-110">
       {icon}
     </div>
     <h3 className="mb-1.5 text-sm font-bold lg:text-base">{title}</h3>

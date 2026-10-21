@@ -211,11 +211,11 @@ export default function NotificationsPage() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "trade":
-        return "bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-500";
+        return "bg-blue-500/10 dark:bg-blue-500/20 text-blue-500";
       case "deposit":
-        return "bg-green-600/10 dark:bg-green-500/20 text-green-600";
+        return "bg-blue-600/10 dark:bg-blue-500/20 text-blue-600";
       case "withdrawal":
-        return "bg-green-500/10 dark:bg-green-500/20 text-green-500";
+        return "bg-blue-500/10 dark:bg-blue-500/20 text-blue-500";
       case "alert":
         return "bg-purple-500/10 dark:bg-purple-500/20 text-purple-500";
       case "system":
@@ -290,7 +290,7 @@ export default function NotificationsPage() {
               <button
                 onClick={markAllAsRead}
                 disabled={markingAllRead}
-                className="px-4 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg font-medium transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-4 py-2 bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg font-medium transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {markingAllRead ? (
                   <>
@@ -314,8 +314,8 @@ export default function NotificationsPage() {
                 onClick={() => setFilter(option.value)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   filter === option.value
-                    ? "bg-[#00C9A7] text-[#001a0f]"
-                    : "tv-card text-gray-300 hover:opacity-80 border-[rgba(0,201,167,0.14)]"
+                    ? "bg-[#3b82f6] text-[#000f24]"
+                    : "tv-card text-gray-300 hover:opacity-80 border-[rgba(59,130,246,0.14)]"
                 }`}
               >
                 {option.label}
@@ -332,14 +332,14 @@ export default function NotificationsPage() {
         {/* Loading State */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : error ? (
           <div className="text-center py-12">
             <p className="text-red-500 text-lg mb-4">{error}</p>
             <button
               onClick={fetchNotifications}
-              className="px-6 py-2 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] rounded-lg transition-colors"
+              className="px-6 py-2 bg-[#3b82f6] hover:opacity-90 text-[#000f24] rounded-lg transition-colors"
             >
               Retry
             </button>
@@ -378,8 +378,8 @@ export default function NotificationsPage() {
                     onClick={() => handleNotificationClick(notification)}
                     className={`rounded-xl p-5 border transition-all duration-300 cursor-pointer ${
                       notification.read
-                        ? "border-[rgba(0,201,167,0.14)] bg-[rgba(0,201,167,0.04)] hover:border-[rgba(0,201,167,0.3)]"
-                        : "border-[#00C9A7] bg-[rgba(0,201,167,0.08)] hover:border-[#00C9A7]"
+                        ? "border-[rgba(59,130,246,0.14)] bg-[rgba(59,130,246,0.04)] hover:border-[rgba(59,130,246,0.3)]"
+                        : "border-[#3b82f6] bg-[rgba(59,130,246,0.08)] hover:border-[#3b82f6]"
                     }`}
                   >
                     <div className="flex gap-4">
@@ -406,7 +406,7 @@ export default function NotificationsPage() {
                           </h3>
                           <div className="flex items-center gap-2 flex-shrink-0">
                             {!notification.read && (
-                              <span className="w-2.5 h-2.5 bg-green-600 rounded-full"></span>
+                              <span className="w-2.5 h-2.5 bg-blue-600 rounded-full"></span>
                             )}
                           </div>
                         </div>
@@ -441,7 +441,7 @@ export default function NotificationsPage() {
                           <span className="text-xs text-gray-500 dark:text-gray-500">
                             {formatDate(notification.created_at)}
                           </span>
-                          <span className="text-xs text-green-600 hover:text-green-700 font-medium">
+                          <span className="text-xs text-blue-600 hover:text-blue-700 font-medium">
                             View Details →
                           </span>
                         </div>
@@ -478,7 +478,7 @@ export default function NotificationsPage() {
             >
               <div
                 className="rounded-2xl max-w-3xl w-full max-h-[95vh] flex flex-col overflow-hidden shadow-2xl"
-                style={{ background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }}
+                style={{ background: "#0a1428", border: "1px solid rgba(59,130,246,0.14)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
@@ -604,7 +604,7 @@ export default function NotificationsPage() {
                   {/* Close Button */}
                   <button
                     onClick={closeModal}
-                    className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-colors"
+                    className="w-full py-3 bg-[#3b82f6] hover:opacity-90 text-[#000f24] font-semibold rounded-lg transition-colors"
                   >
                     Close
                   </button>

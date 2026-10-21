@@ -44,12 +44,12 @@ export default function UserProfileMenu({
         exit={{ opacity: 0, y: -10, scale: 0.95 }}
         transition={{ duration: 0.2 }}
         className="absolute right-0 mt-2 w-64 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden z-50"
-        style={{ background: "rgba(13,26,18,0.97)", border: "1px solid rgba(0,201,167,0.14)" }}
+        style={{ background: "rgba(13,20,36,0.97)", border: "1px solid rgba(59,130,246,0.14)" }}
       >
         {/* User Info */}
-        <div className="px-4 py-4 border-b border-[rgba(0,201,167,0.1)]">
+        <div className="px-4 py-4 border-b border-[rgba(59,130,246,0.1)]">
           <div className="flex items-center space-x-3 mb-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center text-white font-semibold text-xs">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white font-semibold text-xs">
               {user
                 ? `${user.first_name?.[0] || ""}${user.last_name?.[0] || ""}`.toUpperCase()
                 : ""}
@@ -67,7 +67,7 @@ export default function UserProfileMenu({
             onClick={() => {
               router.push("/settings");
             }}
-            className="flex items-center space-x-1.5 text-[11px] text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition-colors font-medium"
+            className="flex items-center space-x-1.5 text-[11px] text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium"
           >
             <Edit className="w-3 h-3" />
             <span>Edit profile</span>
@@ -80,10 +80,10 @@ export default function UserProfileMenu({
             onClick={() => {
               router.push("/");
             }}
-            className="w-full px-4 py-2.5 flex items-center space-x-2.5 text-gray-700 dark:text-gray-300 hover:bg-[rgba(0,201,167,0.04)] transition-colors"
+            className="w-full px-4 py-2.5 flex items-center space-x-2.5 text-gray-700 dark:text-gray-300 hover:bg-[rgba(59,130,246,0.04)] transition-colors"
           >
             <Info className="w-3.5 h-3.5" />
-            <span className="text-xs font-medium">About VerdifyTrades</span>
+            <span className="text-xs font-medium">About TradeVerdify</span>
           </button>
 
           <button

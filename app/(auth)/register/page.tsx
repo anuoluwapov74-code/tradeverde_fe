@@ -277,19 +277,19 @@ function RegisterPageContent() {
             href="/"
             className="flex text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1"
           >
-            <span className="text-green-600 dark:text-green-400">Verdify</span><span className="text-gray-900 dark:text-white">Trades</span>
+            <span className="text-blue-600 dark:text-blue-400">Trade</span><span className="text-gray-900 dark:text-white">Verdify</span>
           </Link>
 
           {/* Theme toggle */}
           {mounted && (
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="p-2 ml-auto rounded-md border fixed top-5 right-1 border-gray-300 dark:border-gray-600/50 hover:bg-gray-100 dark:hover:bg-[#0d3320]/50 transition-all"
+              className="p-2 ml-auto rounded-md border fixed top-5 right-1 border-gray-300 dark:border-gray-600/50 hover:bg-gray-100 dark:hover:bg-[#0b1f45]/50 transition-all"
             >
               {theme === "light" ? (
-                <Moon className="w-4 h-4 text-green-600" />
+                <Moon className="w-4 h-4 text-blue-600" />
               ) : (
-                <Sun className="w-4 h-4 text-green-500" />
+                <Sun className="w-4 h-4 text-blue-500" />
               )}
             </button>
           )}
@@ -299,17 +299,17 @@ function RegisterPageContent() {
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30 rounded-lg p-4"
+              className="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-lg p-4"
             >
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 dark:bg-green-500/20 rounded-full">
-                  <Gift className="w-5 h-5 text-green-700" />
+                <div className="p-2 bg-blue-100 dark:bg-blue-500/20 rounded-full">
+                  <Gift className="w-5 h-5 text-blue-700" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-green-900 dark:text-green-700">
+                  <p className="text-sm font-semibold text-blue-900 dark:text-blue-700">
                     🎉 Referred by {referrerName}!
                   </p>
-                  <p className="text-xs text-green-800 dark:text-green-600">
+                  <p className="text-xs text-blue-800 dark:text-blue-600">
                     You&apos;ll get special bonuses when you join
                   </p>
                 </div>
@@ -337,7 +337,7 @@ function RegisterPageContent() {
               Already a member?{" "}
               <Link
                 href="/login"
-                className=" text-green-600 underline"
+                className=" text-blue-600 underline"
               >
                 Sign In here
               </Link>
@@ -353,7 +353,7 @@ function RegisterPageContent() {
                   id="firstName"
                   type="text"
                   {...register("firstName")}
-                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 focus:outline-none transition-all ${
+                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 focus:outline-none transition-all ${
                     errors.firstName
                       ? "border-red-500"
                       : "border-gray-300 dark:border-gray-600/50"
@@ -382,7 +382,7 @@ function RegisterPageContent() {
                   id="lastName"
                   type="text"
                   {...register("lastName")}
-                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 focus:outline-none transition-all ${
+                  className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 focus:outline-none transition-all ${
                     errors.lastName
                       ? "border-red-500"
                       : "border-gray-300 dark:border-gray-600/50"
@@ -413,7 +413,7 @@ function RegisterPageContent() {
                 id="email"
                 type="email"
                 {...register("email")}
-                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 focus:outline-none transition-all ${
+                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 focus:outline-none transition-all ${
                   errors.email
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600/50"
@@ -532,7 +532,7 @@ function RegisterPageContent() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
-                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 focus:outline-none transition-all ${
+                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 focus:outline-none transition-all ${
                   errors.password
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600/50"
@@ -589,10 +589,10 @@ function RegisterPageContent() {
                   return (
                     <div key={rule.label} className="flex items-center gap-1.5">
                       <span
-                        className={`w-1.5 h-1.5 rounded-full ${pass ? "bg-green-500" : "bg-gray-300 dark:bg-gray-600"}`}
+                        className={`w-1.5 h-1.5 rounded-full ${pass ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-600"}`}
                       />
                       <span
-                        className={`text-xs ${pass ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500"}`}
+                        className={`text-xs ${pass ? "text-blue-600 dark:text-blue-400" : "text-gray-400 dark:text-gray-500"}`}
                       >
                         {rule.label}
                       </span>
@@ -609,7 +609,7 @@ function RegisterPageContent() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-green-800 hover:bg-green-700 text-white py-6 rounded-md"
+              className="w-full bg-blue-800 hover:bg-blue-700 text-white py-6 rounded-md"
             >
               {!loading ? (
                 <span>Create Account</span>
@@ -630,7 +630,7 @@ function RegisterPageContent() {
             {/* Google Button */}
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 dark:border-gray-600/50 rounded-md bg-white dark:bg-[#0d3320]/50 hover:bg-gray-50 dark:hover:bg-[#0d3320]/80 transition-all"
+              className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 dark:border-gray-600/50 rounded-md bg-white dark:bg-[#0b1f45]/50 hover:bg-gray-50 dark:hover:bg-[#0b1f45]/80 transition-all"
             >
               <svg width="20" height="20" viewBox="0 0 24 24">
                 <path
@@ -661,14 +661,14 @@ function RegisterPageContent() {
                 By signing up you agree to{" "}
                 <Link
                   href="/privacy-policy"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Terms and Condition
                 </Link>{" "}
                 &{" "}
                 <Link
                   href="/privacy-policy"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Privacy Policy
                 </Link>
@@ -691,7 +691,7 @@ function RegisterPageContent() {
       </div>
 
       {/* Right side visual */}
-      <div className="hidden flex-1 items-center justify-center bg-gradient-to-br from-[#071a0e] via-[#1e6e3c] to-[#071a0e] dark:from-[#071a0e] dark:via-[#0d3320] dark:to-[#071a0e] p-8 rounded-l-3xl">
+      <div className="hidden flex-1 items-center justify-center bg-gradient-to-br from-[#060f24] via-[#1e4f9c] to-[#060f24] dark:from-[#060f24] dark:via-[#0b1f45] dark:to-[#060f24] p-8 rounded-l-3xl">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}

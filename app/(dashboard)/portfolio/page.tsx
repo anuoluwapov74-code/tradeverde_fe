@@ -35,42 +35,42 @@ const sg = {
   cardBorder: "1px solid rgba(0,0,0,0.07)",
   cardShadow: "0 28px 80px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.05)",
   heroBg: "#fff",
-  darkText: "#0a1a0f",
-  mutedText: "rgba(10,26,15,0.45)",
-  fadedText: "rgba(10,26,15,0.3)",
-  accent: "#059669",
-  accentDark: "#059669",
-  accentBright: "#10b981",
-  statBg: "#f5fbf7",
-  statBorder: "1px solid rgba(5,150,105,0.12)",
-  divider: "rgba(5,150,105,0.1)",
-  pillBg: "rgba(5,150,105,0.08)",
-  pillBorder: "rgba(5,150,105,0.2)",
-  iconBg: "rgba(5,150,105,0.1)",
-  iconGrad: "linear-gradient(135deg, #059669, #047857)",
+  darkText: "#0a0f1a",
+  mutedText: "rgba(10,15,26,0.45)",
+  fadedText: "rgba(10,15,26,0.3)",
+  accent: "#2563eb",
+  accentDark: "#2563eb",
+  accentBright: "#3b82f6",
+  statBg: "#f5f8fd",
+  statBorder: "1px solid rgba(37,99,235,0.12)",
+  divider: "rgba(37,99,235,0.1)",
+  pillBg: "rgba(37,99,235,0.08)",
+  pillBorder: "rgba(37,99,235,0.2)",
+  iconBg: "rgba(37,99,235,0.1)",
+  iconGrad: "linear-gradient(135deg, #2563eb, #1d4ed8)",
   sectionBg: "#fff",
 };
 
 // ── Dark palette ──
 const dk = {
-  cardBg: "#111e1b",
+  cardBg: "#111a2b",
   cardBorder: "1px solid rgba(255,255,255,0.06)",
   cardShadow: "0 28px 80px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.35)",
-  heroBg: "#111e1b",
+  heroBg: "#111a2b",
   darkText: "#ffffff",
   mutedText: "rgba(255,255,255,0.45)",
   fadedText: "rgba(255,255,255,0.3)",
-  accent: "#00C9A7",
-  accentDark: "#00C9A7",
-  accentBright: "#00C9A7",
-  statBg: "#0a1512",
-  statBorder: "1px solid rgba(0,201,167,0.1)",
-  divider: "rgba(0,201,167,0.1)",
-  pillBg: "rgba(0,201,167,0.1)",
-  pillBorder: "rgba(0,201,167,0.25)",
-  iconBg: "rgba(0,201,167,0.12)",
-  iconGrad: "linear-gradient(135deg, #059669, #047857)",
-  sectionBg: "#0a1512",
+  accent: "#3b82f6",
+  accentDark: "#3b82f6",
+  accentBright: "#3b82f6",
+  statBg: "#0a1220",
+  statBorder: "1px solid rgba(59,130,246,0.1)",
+  divider: "rgba(59,130,246,0.1)",
+  pillBg: "rgba(59,130,246,0.1)",
+  pillBorder: "rgba(59,130,246,0.25)",
+  iconBg: "rgba(59,130,246,0.12)",
+  iconGrad: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+  sectionBg: "#0a1220",
 };
 
 export default function PortfolioPage() {
@@ -221,29 +221,29 @@ export default function PortfolioPage() {
               <div className="px-6 py-6" style={{ background: p.heroBg }}>
                 <div className="flex items-center justify-between mb-6">
                   <div className="space-y-1.5">
-                    <div className="h-4 w-28 rounded-md bg-emerald-300/30 dark:bg-emerald-600/20" />
-                    <div className="h-3 w-16 rounded-md bg-emerald-300/20 dark:bg-emerald-600/15" />
+                    <div className="h-4 w-28 rounded-md bg-blue-300/30 dark:bg-blue-600/20" />
+                    <div className="h-3 w-16 rounded-md bg-blue-300/20 dark:bg-blue-600/15" />
                   </div>
-                  <div className="h-6 w-14 rounded-full bg-emerald-300/30 dark:bg-emerald-600/20" />
+                  <div className="h-6 w-14 rounded-full bg-blue-300/30 dark:bg-blue-600/20" />
                 </div>
-                <div className="h-3 w-24 rounded bg-emerald-300/20 dark:bg-emerald-600/15 mb-2" />
-                <div className="h-10 w-52 rounded-lg bg-emerald-300/30 dark:bg-emerald-600/25 mb-4" />
-                <div className="h-4 w-60 rounded bg-emerald-300/20 dark:bg-emerald-600/15 mb-4" />
+                <div className="h-3 w-24 rounded bg-blue-300/20 dark:bg-blue-600/15 mb-2" />
+                <div className="h-10 w-52 rounded-lg bg-blue-300/30 dark:bg-blue-600/25 mb-4" />
+                <div className="h-4 w-60 rounded bg-blue-300/20 dark:bg-blue-600/15 mb-4" />
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
                   <div className="space-y-1.5">
-                    <div className="h-2.5 w-10 rounded bg-emerald-300/20 dark:bg-emerald-600/15" />
-                    <div className="h-4 w-24 rounded bg-emerald-300/30 dark:bg-emerald-600/20" />
+                    <div className="h-2.5 w-10 rounded bg-blue-300/20 dark:bg-blue-600/15" />
+                    <div className="h-4 w-24 rounded bg-blue-300/30 dark:bg-blue-600/20" />
                   </div>
                   <div className="space-y-1.5">
-                    <div className="h-2.5 w-14 rounded bg-emerald-300/20 dark:bg-emerald-600/15" />
-                    <div className="h-4 w-24 rounded bg-emerald-300/30 dark:bg-emerald-600/20" />
+                    <div className="h-2.5 w-14 rounded bg-blue-300/20 dark:bg-blue-600/15" />
+                    <div className="h-4 w-24 rounded bg-blue-300/30 dark:bg-blue-600/20" />
                   </div>
                 </div>
               </div>
               <div className="h-[120px]" style={{ background: p.heroBg }} />
               <div className="grid grid-cols-4 gap-2 px-4 pb-5 pt-4" style={{ background: p.heroBg }}>
                 {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="h-[62px] rounded-[14px] bg-emerald-300/25 dark:bg-emerald-600/15" />
+                  <div key={i} className="h-[62px] rounded-[14px] bg-blue-300/25 dark:bg-blue-600/15" />
                 ))}
               </div>
             </div>
@@ -261,10 +261,10 @@ export default function PortfolioPage() {
               </div>
               <div className="h-12 rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-white/10" />
               <div className="rounded-2xl overflow-hidden border border-gray-100 dark:border-white/[0.06]">
-                <div className="px-4 py-3 border-b border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#111e1b]">
+                <div className="px-4 py-3 border-b border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#111a2b]">
                   <div className="h-3 w-32 rounded bg-gray-200 dark:bg-gray-700" />
                 </div>
-                <div className="px-4 py-1 bg-white dark:bg-[#111e1b] divide-y divide-gray-50 dark:divide-white/[0.05]">
+                <div className="px-4 py-1 bg-white dark:bg-[#111a2b] divide-y divide-gray-50 dark:divide-white/[0.05]">
                   {[0, 1, 2].map((i) => (
                     <div key={i} className="flex items-center justify-between py-3">
                       <div className="flex items-center gap-2.5">
@@ -292,7 +292,7 @@ export default function PortfolioPage() {
             className="overflow-hidden relative"
             style={{
               borderRadius: 28,
-              background: "linear-gradient(135deg, #0a1512 0%, #0d1a15 60%, #111e1b 100%)",
+              background: "linear-gradient(135deg, #0a1220 0%, #0d1527 60%, #111a2b 100%)",
               border: dk.cardBorder,
             }}
           >
@@ -300,29 +300,29 @@ export default function PortfolioPage() {
             <div className="absolute pointer-events-none" style={{
               top: -15, right: -15,
               width: 190, height: 150,
-              background: "radial-gradient(ellipse at center, rgba(0,201,167,0.2) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse at center, rgba(59,130,246,0.2) 0%, transparent 70%)",
               borderRadius: "50%",
             }} />
             {/* Bottom-left spotlight */}
             <div className="absolute pointer-events-none" style={{
               bottom: -15, left: -15,
               width: 160, height: 125,
-              background: "radial-gradient(ellipse at center, rgba(0,201,167,0.1) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse at center, rgba(59,130,246,0.1) 0%, transparent 70%)",
               borderRadius: "50%",
             }} />
             <div className="relative px-5 pt-5 pb-5">
               <div className="flex items-center justify-between mb-5">
                 <div className="flex flex-col gap-1">
                   <span className="text-[15px] font-bold leading-none">
-                    <span style={{ color: "#00C9A7" }}>Verdify</span>
-                    <span style={{ color: dk.darkText }}>Trades</span>
+                    <span style={{ color: "#3b82f6" }}>Trade</span>
+                    <span style={{ color: dk.darkText }}>Verdify</span>
                   </span>
                   {isVerified && (
-                    <div className="flex items-center gap-1 rounded-full px-2 py-0.5 w-fit" style={{ background: "rgba(0,201,167,0.15)" }}>
+                    <div className="flex items-center gap-1 rounded-full px-2 py-0.5 w-fit" style={{ background: "rgba(59,130,246,0.15)" }}>
                       <svg className="w-2.5 h-2.5" viewBox="0 0 12 12" fill="none">
-                        <path d="M2 6L5 9L10 3" stroke="#00C9A7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M2 6L5 9L10 3" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span className="text-[10px] font-semibold" style={{ color: "#00C9A7" }}>Verified</span>
+                      <span className="text-[10px] font-semibold" style={{ color: "#3b82f6" }}>Verified</span>
                     </div>
                   )}
                 </div>
@@ -331,8 +331,8 @@ export default function PortfolioPage() {
                   style={{ background: dk.pillBg, border: `1px solid ${dk.pillBorder}` }}
                 >
                   <span className="relative flex w-1.5 h-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00C9A7] opacity-75" />
-                    <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-[#00C9A7]" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3b82f6] opacity-75" />
+                    <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
                   </span>
                   <span className="text-[11px] font-semibold" style={{ color: dk.accentDark }}>LIVE</span>
                 </div>
@@ -404,9 +404,9 @@ export default function PortfolioPage() {
                       x2="60"  y2="59"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop offset="0%"   stopColor="#00C9A7" stopOpacity="0.18" />
-                      <stop offset="45%"  stopColor="#00C9A7" stopOpacity="0.05" />
-                      <stop offset="100%" stopColor="#00C9A7" stopOpacity="0" />
+                      <stop offset="0%"   stopColor="#3b82f6" stopOpacity="0.18" />
+                      <stop offset="45%"  stopColor="#3b82f6" stopOpacity="0.05" />
+                      <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                     </linearGradient>
 
                     {/* Dual-blur neon glow: outer aura + inner halo + crisp line on top */}
@@ -430,7 +430,7 @@ export default function PortfolioPage() {
                   {/* Glowing line */}
                   <path
                     d="M0.0,48.6 L10.7,47.7 L21.3,49.0 L32.0,45.8 L42.7,46.4 L53.3,43.8 L64.0,44.9 L74.7,41.6 L85.3,42.7 L96.0,39.9 L106.7,40.8 L117.3,38.4 L128.0,39.5 L138.7,36.2 L149.3,36.9 L160.0,33.4 L170.7,34.7 L181.3,31.2 L192.0,29.5 L202.7,26.9 L213.3,27.6 L224.0,23.9 L234.7,22.2 L245.3,18.9 L256.0,17.4 L266.7,13.5 L277.3,11.8 L288.0,7.0"
-                    stroke="#00C9A7"
+                    stroke="#3b82f6"
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -454,8 +454,8 @@ export default function PortfolioPage() {
               style={{
                 display: "flex", flexDirection: "column", alignItems: "center",
                 gap: "5px", padding: "12px 4px", borderRadius: "14px",
-                background: "rgb(0,201,167)", border: "none",
-                boxShadow: "rgba(0,201,167,0.27) 0px 4px 14px", cursor: "pointer",
+                background: "rgb(59,130,246)", border: "none",
+                boxShadow: "rgba(59,130,246,0.27) 0px 4px 14px", cursor: "pointer",
               }}
             >
               <span style={{ fontSize: "17px", color: "rgb(255,255,255)", lineHeight: 1 }}>↓</span>
@@ -518,13 +518,13 @@ export default function PortfolioPage() {
               <span className="text-[9px] font-semibold" style={{ color: p.mutedText }}>Portfolio Growth</span>
               <span className="text-[9px] font-bold" style={{ color: p.accentDark }}>{fmtCompact(target)} target</span>
             </div>
-            <div className="h-1.5 rounded-full overflow-hidden" style={{ background: isDark ? "rgba(39,174,96,0.12)" : "rgba(5,150,105,0.1)" }}>
+            <div className="h-1.5 rounded-full overflow-hidden" style={{ background: isDark ? "rgba(37,99,235,0.12)" : "rgba(37,99,235,0.1)" }}>
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressWidth}%` }}
                 transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
                 className="h-full rounded-full"
-                style={{ background: "linear-gradient(90deg, #059669, #34d399)" }}
+                style={{ background: "linear-gradient(90deg, #2563eb, #60a5fa)" }}
               />
             </div>
           </motion.div>

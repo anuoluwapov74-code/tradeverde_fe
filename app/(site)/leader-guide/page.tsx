@@ -5,13 +5,13 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Leader Trader Guide — VerdifyTrades",
-  description: "Everything you need to know about becoming a top Leader Trader on VerdifyTrades. Set your strategy, manage copiers, and maximise your earnings as a VerdifyTrades expert.",
-  alternates: { canonical: "https://verdifytrades.com/leader-guide" },
+  title: "Leader Trader Guide — TradeVerdify",
+  description: "Everything you need to know about becoming a top Leader Trader on TradeVerdify. Set your strategy, manage copiers, and maximise your earnings as a TradeVerdify expert.",
+  alternates: { canonical: "https://tradeverdify.com/leader-guide" },
   openGraph: {
-    title: "VerdifyTrades Leader Trader Guide",
-    description: "How to become a top Leader Trader and earn on VerdifyTrades.",
-    url: "https://verdifytrades.com/leader-guide",
+    title: "TradeVerdify Leader Trader Guide",
+    description: "How to become a top Leader Trader and earn on TradeVerdify.",
+    url: "https://tradeverdify.com/leader-guide",
   },
 };
 
@@ -26,7 +26,7 @@ export default function LeaderGuide() {
               Leader Guide
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Your complete guide to becoming a successful signal leader on VerdifyTrades
+              Your complete guide to becoming a successful signal leader on TradeVerdify
             </p>
           </div>
           <div className="space-y-12">
@@ -36,13 +36,13 @@ export default function LeaderGuide() {
                 What is a Leader?
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                A Leader on VerdifyTrades is an experienced trader who shares their trading signals with
+                A Leader on TradeVerdify is an experienced trader who shares their trading signals with
                 the community. When other users (followers) copy your trades, you earn commissions based
                 on their activity. As a Leader, your trading performance is publicly visible, and your
                 reputation grows as you demonstrate consistent results.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Leaders are the backbone of the VerdifyTrades copy trading ecosystem. They provide the
+                Leaders are the backbone of the TradeVerdify copy trading ecosystem. They provide the
                 strategies and expertise that make copy trading possible for traders of all experience levels.
               </p>
             </section>
@@ -53,27 +53,27 @@ export default function LeaderGuide() {
                 Requirements to Become a Leader
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                To qualify as a Leader on VerdifyTrades, you must meet the following criteria:
+                To qualify as a Leader on TradeVerdify, you must meet the following criteria:
               </p>
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
-                  <span>A verified VerdifyTrades account with completed KYC</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
+                  <span>A verified TradeVerdify account with completed KYC</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Minimum account balance as specified in the current program terms</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Demonstrated trading history with a positive track record</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Agreement to the Leader Terms and Conditions</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Commitment to maintaining responsible trading practices</span>
                 </li>
               </ul>
@@ -85,28 +85,28 @@ export default function LeaderGuide() {
                 Setting Up Your Profile
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Your Leader profile is your public identity on VerdifyTrades. A well-crafted profile
+                Your Leader profile is your public identity on TradeVerdify. A well-crafted profile
                 attracts more followers and builds trust. Here is how to set it up:
               </p>
               <ol className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">1.</span>
+                  <span className="text-blue-600 font-bold">1.</span>
                   <span><strong>Profile photo</strong> — Upload a professional photo or avatar that represents you</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">2.</span>
+                  <span className="text-blue-600 font-bold">2.</span>
                   <span><strong>Display name</strong> — Choose a recognizable name or trading alias</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">3.</span>
+                  <span className="text-blue-600 font-bold">3.</span>
                   <span><strong>Bio</strong> — Write a clear description of your trading style, experience, and strategy focus</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">4.</span>
+                  <span className="text-blue-600 font-bold">4.</span>
                   <span><strong>Risk level</strong> — Set your risk classification so followers know what to expect</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">5.</span>
+                  <span className="text-blue-600 font-bold">5.</span>
                   <span><strong>Trading instruments</strong> — Specify the markets and instruments you primarily trade</span>
                 </li>
               </ol>
@@ -155,20 +155,20 @@ export default function LeaderGuide() {
               </p>
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span><strong>Consistency</strong> — Trade regularly and maintain a steady performance. Followers value reliability.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span><strong>Transparency</strong> — Be open about your strategy, risk tolerance, and expected drawdowns.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span><strong>Communication</strong> — Post updates about your market outlook and reasoning behind key trades.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
-                  <span><strong>External promotion</strong> — Share your VerdifyTrades profile on social media and trading communities.</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
+                  <span><strong>External promotion</strong> — Share your TradeVerdify profile on social media and trading communities.</span>
                 </li>
               </ul>
             </section>
@@ -179,19 +179,19 @@ export default function LeaderGuide() {
                 Earning as a Leader
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Leaders earn money through multiple channels on VerdifyTrades:
+                Leaders earn money through multiple channels on TradeVerdify:
               </p>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span><strong>Performance fees</strong> — Earn a percentage of profits generated for your followers</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span><strong>Volume-based commissions</strong> — Earn based on the trading volume your followers generate</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span><strong>Your own trading</strong> — Continue to profit from your own successful trades</span>
                 </li>
               </ul>
@@ -204,19 +204,19 @@ export default function LeaderGuide() {
               </h2>
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span>Always use stop-losses on your trades to protect both your capital and your followers&apos; capital</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span>Avoid over-leveraging — high-risk strategies may yield short-term gains but damage long-term trust</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span>Diversify your portfolio across instruments and time frames</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#10003;</span>
+                  <span className="text-blue-600 font-bold">&#10003;</span>
                   <span>Keep a trading journal and share insights with your followers</span>
                 </li>
               </ul>
@@ -229,24 +229,24 @@ export default function LeaderGuide() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 As a Leader, responsible risk management is not just good practice — it is your
-                responsibility. Your followers trust you with their capital, and VerdifyTrades monitors
+                responsibility. Your followers trust you with their capital, and TradeVerdify monitors
                 leader behavior to protect the community.
               </p>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Never risk more than 2-5% of your account on a single trade</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Always set stop-losses and take-profit levels</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Monitor your AutoGuard&trade; risk score and keep it within acceptable levels</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">&#8226;</span>
+                  <span className="text-blue-600 font-bold">&#8226;</span>
                   <span>Be mindful of correlated positions that increase overall portfolio risk</span>
                 </li>
               </ul>
@@ -259,10 +259,10 @@ export default function LeaderGuide() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 Ready to share your trading expertise and earn from your skills? Apply to become
-                a VerdifyTrades Leader and start building your following today.
+                a TradeVerdify Leader and start building your following today.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/register" className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-600/50">
+                <Link href="/register" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50">
                   Get Started
                 </Link>
                 <Link href="/" className="inline-block bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300">

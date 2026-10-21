@@ -69,8 +69,8 @@ export default function ForgotPasswordPage() {
           animate={{ opacity: 1, y: 0 }}
           className="w-full max-w-md text-center space-y-6"
         >
-          <div className="w-20 h-20 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-            <Mail className="w-10 h-10 text-green-700" />
+          <div className="w-20 h-20 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
+            <Mail className="w-10 h-10 text-blue-700" />
           </div>
 
           <h1 className="text-2xl font-bold text-black dark:text-white">
@@ -85,7 +85,7 @@ export default function ForgotPasswordPage() {
 
           <div className="pt-4">
             <Link href="/login">
-              <Button className="w-full p-5 bg-green-800 hover:bg-green-700">
+              <Button className="w-full p-5 bg-blue-800 hover:bg-blue-700">
                 Back to Login
               </Button>
             </Link>
@@ -95,7 +95,7 @@ export default function ForgotPasswordPage() {
             Didn&apos;t receive the email?{" "}
             <button
               onClick={() => setEmailSent(false)}
-              className="text-green-600 hover:underline"
+              className="text-blue-600 hover:underline"
             >
               Try again
             </button>
@@ -120,13 +120,13 @@ export default function ForgotPasswordPage() {
           href="/"
           className="flex text-2xl md:text-4xl font-extrabold justify-center"
         >
-          <span className="text-green-600 dark:text-green-400">Verdify</span><span className="text-gray-900 dark:text-white">Trades</span>
+          <span className="text-blue-600 dark:text-blue-400">Trade</span><span className="text-gray-900 dark:text-white">Verdify</span>
         </Link>
 
         <div className="space-y-2">
           <Link
             href="/login"
-            className="inline-flex items-center text-sm text-green-600 hover:underline"
+            className="inline-flex items-center text-sm text-blue-600 hover:underline"
           >
             <ArrowLeft className="w-4 h-4 mr-1" />
             Back to Login
@@ -149,7 +149,7 @@ export default function ForgotPasswordPage() {
               id="email"
               type="email"
               {...register("email")}
-              className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 text-black dark:text-white focus:outline-none transition-all ${
+              className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 text-black dark:text-white focus:outline-none transition-all ${
                 errors.email
                   ? "border-red-500"
                   : "border-gray-300 dark:border-gray-600/50"
@@ -176,7 +176,7 @@ export default function ForgotPasswordPage() {
           <Button
             disabled={loading}
             type="submit"
-            className="w-full py-6 bg-green-800 hover:bg-green-700 text-white rounded-md"
+            className="w-full py-6 bg-blue-800 hover:bg-blue-700 text-white rounded-md"
           >
             {!loading ? (
               <span>Send Reset Link</span>
@@ -187,7 +187,7 @@ export default function ForgotPasswordPage() {
 
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
             Remember your password?{" "}
-            <Link href="/login" className="text-green-600 hover:underline">
+            <Link href="/login" className="text-blue-600 hover:underline">
               Sign in
             </Link>
           </p>

@@ -135,7 +135,7 @@ export default function SignalsPage() {
   const getRiskColor = (risk: string) => {
     switch (risk.toLowerCase()) {
       case "low":
-        return "text-green-500 bg-green-500/10";
+        return "text-blue-500 bg-blue-500/10";
       case "medium":
         return "text-yellow-500 bg-yellow-500/10";
       case "high":
@@ -167,8 +167,8 @@ export default function SignalsPage() {
             </div>
 
             {/* Balance Display */}
-            <div className="bg-green-600/10 dark:bg-green-500/20 border-2 border-green-600 rounded-xl px-6 py-4">
-              <div className="text-xs md:text-sm text-green-600 dark:text-green-400 mb-1">
+            <div className="bg-blue-600/10 dark:bg-blue-500/20 border-2 border-blue-600 rounded-xl px-6 py-4">
+              <div className="text-xs md:text-sm text-blue-600 dark:text-blue-400 mb-1">
                 Wallet Balance
               </div>
               <div className="text-base sm:text-sm font-bold text-gray-900 dark:text-white">
@@ -186,26 +186,26 @@ export default function SignalsPage() {
               onClick={() => setActiveTab("all")}
               className={`pb-3 px-4 font-medium transition-colors relative ${
                 activeTab === "all"
-                  ? "text-green-600 dark:text-green-400"
+                  ? "text-blue-600 dark:text-blue-400"
                   : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
               }`}
             >
               All Signals
               {activeTab === "all" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-blue-400" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400" />
               )}
             </button>
             <button
               onClick={() => setActiveTab("purchased")}
               className={`pb-3 px-4 font-medium transition-colors relative ${
                 activeTab === "purchased"
-                  ? "text-green-600 dark:text-green-400"
+                  ? "text-blue-600 dark:text-blue-400"
                   : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
               }`}
             >
               Purchased Signals
               {activeTab === "purchased" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-blue-400" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400" />
               )}
             </button>
           </div>
@@ -214,7 +214,7 @@ export default function SignalsPage() {
         {/* Loading State */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
           <>
@@ -226,7 +226,7 @@ export default function SignalsPage() {
                     key={signal.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="tv-card rounded-2xl p-6 hover:border-[#00C9A7] transition-all"
+                    className="tv-card rounded-2xl p-6 hover:border-[#3b82f6] transition-all"
                   >
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
@@ -261,7 +261,7 @@ export default function SignalsPage() {
                         <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                           Strength
                         </div>
-                        <div className="text-sm font-bold text-green-600">
+                        <div className="text-sm font-bold text-blue-600">
                           {parseFloat(signal.signal_strength).toFixed(0)}%
                         </div>
                       </div>
@@ -303,7 +303,7 @@ export default function SignalsPage() {
                           ? "bg-gray-200 dark:bg-white/10 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                           : "hover:opacity-90"
                       }`}
-                      style={!signal.is_purchased ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+                      style={!signal.is_purchased ? { background: "#3b82f6", color: "#000f24" } : undefined}
                     >
                       {signal.is_purchased ? "Already Purchased" : "Purchase Signal"}
                     </button>
@@ -363,7 +363,7 @@ export default function SignalsPage() {
                             <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                               Target Price
                             </div>
-                            <div className="text-sm font-semibold text-green-500">
+                            <div className="text-sm font-semibold text-blue-500">
                               {purchase.current_signal.target_price}
                             </div>
                           </div>
@@ -467,7 +467,7 @@ export default function SignalsPage() {
                     disabled={
                       purchasing || parseFloat(userBalance) < parseFloat(selectedSignal.price)
                     }
-                    className="flex-1 py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 py-3 bg-[#3b82f6] hover:opacity-90 text-[#000f24] font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {purchasing ? "Processing..." : "Confirm Purchase"}
                   </button>
@@ -503,8 +503,8 @@ export default function SignalsPage() {
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
             >
               <div className="rounded-2xl max-w-md w-full p-6 text-center">
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-10 h-10 text-green-500" />
+                <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-10 h-10 text-blue-500" />
                 </div>
                 <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2">
                   Purchase Successful!
@@ -518,7 +518,7 @@ export default function SignalsPage() {
                     setSelectedSignal(null);
                     setActiveTab("purchased");
                   }}
-                  className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-all"
+                  className="w-full py-3 bg-[#3b82f6] hover:opacity-90 text-[#000f24] font-semibold rounded-lg transition-all"
                 >
                   View Purchased Signals
                 </button>

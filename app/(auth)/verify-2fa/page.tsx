@@ -118,12 +118,12 @@ function Verify2FAContent() {
           {/* Logo */}
           <Link href="/" className="inline-block mb-4">
             <span className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-              <span className="text-green-600 dark:text-green-400">Verdify</span>Trades
+              <span className="text-blue-600 dark:text-blue-400">Trade</span>Verdify
             </span>
           </Link>
 
-          <div className="w-20 h-20 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-            <ShieldCheck className="w-10 h-10 text-green-700 dark:text-green-400" />
+          <div className="w-20 h-20 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
+            <ShieldCheck className="w-10 h-10 text-blue-700 dark:text-blue-400" />
           </div>
 
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -148,7 +148,7 @@ function Verify2FAContent() {
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-14 h-14 text-center text-2xl font-bold border-2 rounded-lg bg-white dark:bg-[#0d3320]/50 border-gray-300 dark:border-gray-600/50 text-gray-900 dark:text-white focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/30 transition-all"
+                className="w-14 h-14 text-center text-2xl font-bold border-2 rounded-lg bg-white dark:bg-[#0b1f45]/50 border-gray-300 dark:border-gray-600/50 text-gray-900 dark:text-white focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all"
               />
             ))}
           </div>
@@ -156,7 +156,7 @@ function Verify2FAContent() {
           <Button
             onClick={handleVerify}
             disabled={loading}
-            className="w-full py-6 bg-green-800 hover:bg-green-700 text-white rounded-md"
+            className="w-full py-6 bg-blue-800 hover:bg-blue-700 text-white rounded-md"
           >
             {!loading ? (
               <span>Verify &amp; Sign In</span>
@@ -170,7 +170,7 @@ function Verify2FAContent() {
             <button
               onClick={handleResend}
               disabled={resending}
-              className="text-green-600 hover:underline disabled:opacity-50"
+              className="text-blue-600 hover:underline disabled:opacity-50"
             >
               {resending ? "Sending..." : "Resend code"}
             </button>
@@ -178,7 +178,7 @@ function Verify2FAContent() {
 
           <Link
             href="/login"
-            className="inline-flex items-center text-sm text-green-600 hover:underline"
+            className="inline-flex items-center text-sm text-blue-600 hover:underline"
           >
             <ArrowLeft className="w-4 h-4 mr-1" />
             Back to Login
@@ -194,7 +194,7 @@ export default function Verify2FAPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center">
-          <PulseLoader color="#27ae60" size={15} />
+          <PulseLoader color="#2563eb" size={15} />
         </div>
       }
     >

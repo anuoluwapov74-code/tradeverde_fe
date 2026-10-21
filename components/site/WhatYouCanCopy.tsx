@@ -63,31 +63,31 @@ const CopyCard = ({ icon, title, description, accentColor }: CopyCardProps) => {
     switch (accentColor) {
       case "blue":
         return {
-          iconBg: "bg-green-50 dark:bg-green-500/10",
-          iconColor: "text-green-700 dark:text-green-400",
-          border: "group-hover:border-green-500/30",
-          glow: "group-hover:shadow-green-600/5",
+          iconBg: "bg-blue-50 dark:bg-blue-500/10",
+          iconColor: "text-blue-700 dark:text-blue-400",
+          border: "group-hover:border-blue-500/30",
+          glow: "group-hover:shadow-blue-600/5",
         };
       case "cyan":
         return {
-          iconBg: "bg-emerald-50 dark:bg-emerald-500/10",
-          iconColor: "text-emerald-700 dark:text-emerald-400",
-          border: "group-hover:border-emerald-500/30",
-          glow: "group-hover:shadow-emerald-500/5",
+          iconBg: "bg-blue-50 dark:bg-blue-500/10",
+          iconColor: "text-blue-700 dark:text-blue-400",
+          border: "group-hover:border-blue-500/30",
+          glow: "group-hover:shadow-blue-500/5",
         };
       case "indigo":
         return {
-          iconBg: "bg-teal-50 dark:bg-teal-500/10",
-          iconColor: "text-teal-700 dark:text-teal-400",
-          border: "group-hover:border-teal-500/30",
-          glow: "group-hover:shadow-teal-500/5",
+          iconBg: "bg-sky-50 dark:bg-sky-500/10",
+          iconColor: "text-sky-700 dark:text-sky-400",
+          border: "group-hover:border-sky-500/30",
+          glow: "group-hover:shadow-sky-500/5",
         };
       default:
         return {
-          iconBg: "bg-green-50 dark:bg-green-500/10",
-          iconColor: "text-green-700 dark:text-green-400",
-          border: "group-hover:border-green-500/30",
-          glow: "group-hover:shadow-green-600/5",
+          iconBg: "bg-blue-50 dark:bg-blue-500/10",
+          iconColor: "text-blue-700 dark:text-blue-400",
+          border: "group-hover:border-blue-500/30",
+          glow: "group-hover:shadow-blue-600/5",
         };
     }
   };

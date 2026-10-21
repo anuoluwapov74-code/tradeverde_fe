@@ -85,7 +85,7 @@ function SidebarGrid({
               transition-all duration-200
               ${
                 isActive
-                  ? "text-[#00C9A7] bg-[rgba(0,201,167,0.08)] border border-[rgba(0,201,167,0.2)]"
+                  ? "text-[#3b82f6] bg-[rgba(59,130,246,0.08)] border border-[rgba(59,130,246,0.2)]"
                   : "text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-[rgba(255,255,255,0.05)] border border-transparent"
               }
             `}
@@ -126,14 +126,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         exit={{ x: -320 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
         className="fixed inset-y-0 left-0 w-72 z-50 shadow-2xl overflow-y-auto"
-        style={isDark ? { background: "#0b1a12" } : { background: "#ffffff" }}
+        style={isDark ? { background: "#0a1428" } : { background: "#ffffff" }}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className={`flex items-center justify-between p-5 border-b ${isDark ? "border-[rgba(0,201,167,0.12)]" : "border-gray-200"}`}>
+          <div className={`flex items-center justify-between p-5 border-b ${isDark ? "border-[rgba(59,130,246,0.12)]" : "border-gray-200"}`}>
             <Link href="/portfolio" className="flex items-center">
               <span className="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                <span className="text-green-600 dark:text-green-400">Verdify</span>Trades
+                <span className="text-blue-600 dark:text-blue-400">Trade</span>Verdify
               </span>
             </Link>
 
@@ -209,7 +209,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
 
           {/* Bottom Section */}
-          <div className={`p-3 border-t ${isDark ? "border-[rgba(0,201,167,0.12)]" : "border-gray-200"}`}>
+          <div className={`p-3 border-t ${isDark ? "border-[rgba(59,130,246,0.12)]" : "border-gray-200"}`}>
             <div className="px-3 py-2.5 rounded-lg tv-inner">
               <p className="text-[10px] font-medium text-gray-600 dark:text-gray-300 mb-0.5">
                 Need help?

@@ -208,7 +208,7 @@ export default function ExploreTraders() {
     <div className="w-full min-h-screen rounded-2xl ">
       {/* ========== HERO BANNER (image1) ========== */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <div className="relative bg-lime-400 dark:bg-lime-500 rounded-2xl overflow-hidden px-6 sm:px-10 py-10 sm:py-14 min-h-[220px] sm:min-h-[280px]">
+        <div className="relative bg-sky-400 dark:bg-sky-500 rounded-2xl overflow-hidden px-6 sm:px-10 py-10 sm:py-14 min-h-[220px] sm:min-h-[280px]">
           {/* Background chart line SVG */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none"
@@ -290,7 +290,7 @@ export default function ExploreTraders() {
                   >
                     <path
                       d="M1,8 L4,6 L8,7 L12,3 L15,1"
-                      stroke="#166534"
+                      stroke="#1e40af"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                     />
@@ -317,7 +317,7 @@ export default function ExploreTraders() {
             placeholder="Type to search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[rgba(0,201,167,0.04)] border border-[rgba(0,201,167,0.14)] rounded-xl pl-12 pr-10 py-3.5 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C9A7]/30 focus:border-[#00C9A7] transition-all"
+            className="w-full bg-[rgba(59,130,246,0.04)] border border-[rgba(59,130,246,0.14)] rounded-xl pl-12 pr-10 py-3.5 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3b82f6]/30 focus:border-[#3b82f6] transition-all"
           />
           {searchQuery && (
             <button
@@ -369,7 +369,7 @@ export default function ExploreTraders() {
             {/* Loading */}
             {loading && (
               <div className="flex justify-center items-center py-20">
-                <PulseLoader color="#27ae60" size={15} />
+                <PulseLoader color="#2563eb" size={15} />
               </div>
             )}
 
@@ -452,10 +452,10 @@ export default function ExploreTraders() {
                         >
                           <Link
                             href={`/explore-traders/${trader.id}`}
-                            className="group block tv-card rounded-xl overflow-hidden hover:shadow-lg hover:border-[#00C9A7] transition-all h-full"
+                            className="group block tv-card rounded-xl overflow-hidden hover:shadow-lg hover:border-[#3b82f6] transition-all h-full"
                           >
                             {/* Card Header - Dark top section */}
-                            <div className="bg-gray-800 dark:bg-[#071a0e] px-4 py-4">
+                            <div className="bg-gray-800 dark:bg-[#060f24] px-4 py-4">
                               <div className="flex items-center gap-3">
                                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-600 dark:border-gray-500 bg-gray-700 shrink-0">
                                   {trader.avatar_url ? (
@@ -491,11 +491,11 @@ export default function ExploreTraders() {
                               </div>
                               {/* Badges */}
                               <div className="flex flex-wrap gap-2 mt-3">
-                                <span className="px-2.5 py-1 bg-lime-400/20 text-lime-400 text-[10px] font-medium rounded-full">
+                                <span className="px-2.5 py-1 bg-sky-400/20 text-sky-400 text-[10px] font-medium rounded-full">
                                   Trending Investors
                                 </span>
                                 {trader.badge === "gold" && (
-                                  <span className="px-2.5 py-1 bg-lime-400/20 text-lime-400 text-[10px] font-medium rounded-full">
+                                  <span className="px-2.5 py-1 bg-sky-400/20 text-sky-400 text-[10px] font-medium rounded-full">
                                     Long track record
                                   </span>
                                 )}
@@ -562,7 +562,7 @@ export default function ExploreTraders() {
                       <Link
                         key={trader.id}
                         href={`/explore-traders/${trader.id}`}
-                        className="group tv-card rounded-xl hover:shadow-lg hover:border-[#00C9A7] transition-all overflow-hidden"
+                        className="group tv-card rounded-xl hover:shadow-lg hover:border-[#3b82f6] transition-all overflow-hidden"
                       >
                         {/* Top section - Avatar and name */}
                         <div className="px-4 pt-4 pb-3">
@@ -645,7 +645,7 @@ export default function ExploreTraders() {
                                 className={`h-1.5 flex-1 rounded-full ${
                                   level <= trader.risk
                                     ? trader.risk <= 3
-                                      ? "bg-green-400"
+                                      ? "bg-blue-400"
                                       : trader.risk <= 6
                                       ? "bg-yellow-400"
                                       : "bg-red-400"
@@ -658,7 +658,7 @@ export default function ExploreTraders() {
 
                         {/* Copy Trader button */}
                         <div className="px-4 pb-4 pt-3">
-                          <div className="w-full py-2.5 border border-gray-200 dark:border-white/10 rounded-lg text-center text-sm font-semibold text-gray-900 dark:text-white group-hover:bg-gray-50 dark:group-hover:bg-[#0d3320] transition-colors">
+                          <div className="w-full py-2.5 border border-gray-200 dark:border-white/10 rounded-lg text-center text-sm font-semibold text-gray-900 dark:text-white group-hover:bg-gray-50 dark:group-hover:bg-[#0b1f45] transition-colors">
                             Copy trader
                           </div>
                         </div>
@@ -700,7 +700,7 @@ export default function ExploreTraders() {
                   {/* Progress bar under tabs */}
                   <div className="h-1 bg-gray-200 dark:bg-gray-700 rounded-full mb-6 overflow-hidden">
                     <div
-                      className="h-full bg-green-600 rounded-full transition-all duration-300"
+                      className="h-full bg-blue-600 rounded-full transition-all duration-300"
                       style={{
                         width: `${
                           ((categories.findIndex(
@@ -725,7 +725,7 @@ export default function ExploreTraders() {
                       </p>
                       <button
                         onClick={() => setActiveCategory("all")}
-                        className="mt-3 text-sm text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-400 font-medium transition-colors"
+                        className="mt-3 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-400 font-medium transition-colors"
                       >
                         View all categories
                       </button>
@@ -736,7 +736,7 @@ export default function ExploreTraders() {
                         <Link
                           key={trader.id}
                           href={`/explore-traders/${trader.id}`}
-                          className="group flex items-center gap-3 sm:gap-4 tv-card rounded-xl p-4 sm:p-5 hover:shadow-lg hover:border-[#00C9A7] transition-all"
+                          className="group flex items-center gap-3 sm:gap-4 tv-card rounded-xl p-4 sm:p-5 hover:shadow-lg hover:border-[#3b82f6] transition-all"
                         >
                           {/* Rank Number */}
                           <div className="shrink-0 w-8 sm:w-12">
@@ -753,7 +753,7 @@ export default function ExploreTraders() {
 
                           {/* Avatar with green ring */}
                           <div className="relative shrink-0">
-                            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full p-0.5 bg-linear-to-br from-lime-400 to-green-500">
+                            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full p-0.5 bg-linear-to-br from-sky-400 to-blue-500">
                               <div className="w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700">
                                 {trader.avatar_url ? (
                                   <Image
@@ -768,7 +768,7 @@ export default function ExploreTraders() {
                                     unoptimized
                                   />
                                 ) : (
-                                  <div className="w-full h-full flex items-center justify-center bg-lime-400 dark:bg-lime-500 text-gray-900 font-bold text-sm sm:text-lg">
+                                  <div className="w-full h-full flex items-center justify-center bg-sky-400 dark:bg-sky-500 text-gray-900 font-bold text-sm sm:text-lg">
                                     {trader.username.charAt(0)}
                                   </div>
                                 )}
@@ -844,7 +844,7 @@ export default function ExploreTraders() {
                   onClick={() =>
                     setOpenFaqIndex(openFaqIndex === index ? null : index)
                   }
-                  className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 dark:hover:bg-[#0d3320]/30 transition-all"
+                  className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 dark:hover:bg-[#0b1f45]/30 transition-all"
                 >
                   <span className="text-sm font-semibold text-gray-900 dark:text-white pr-4">
                     {faq.question}

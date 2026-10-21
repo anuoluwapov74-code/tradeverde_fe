@@ -32,11 +32,11 @@ const ParticlesBackground = () => {
 
     const isDark = theme === "dark";
     const particleColor = isDark
-      ? "rgba(39, 174, 96, 0.6)"
-      : "rgba(30, 132, 73, 0.5)";
+      ? "rgba(37, 99, 235, 0.6)"
+      : "rgba(29, 78, 216, 0.5)";
     const connectionColor = isDark
-      ? "rgba(39, 174, 96,"
-      : "rgba(30, 132, 73,";
+      ? "rgba(37, 99, 235,"
+      : "rgba(29, 78, 216,";
 
     class Particle {
       x: number;
@@ -148,13 +148,13 @@ const TickerTape = () => (
       {[...ticks, ...ticks].map((tick, i) => (
         <React.Fragment key={i}>
           <span className="inline-flex items-center gap-1.5 text-[0.72rem] font-mono">
-            <span className="font-semibold text-[#a9dfbf]">{tick.sym}</span>
+            <span className="font-semibold text-[#bfdbfe]">{tick.sym}</span>
             <span className="text-white/70">{tick.val}</span>
             <span className={tick.up ? "text-[#27ae60]" : "text-[#e74c3c]"}>
               {tick.up ? "▲" : "▼"}{tick.change}
             </span>
           </span>
-          <span className="text-[rgba(39,174,96,0.25)]">|</span>
+          <span className="text-[rgba(37,99,235,0.25)]">|</span>
         </React.Fragment>
       ))}
     </div>
@@ -193,7 +193,7 @@ const HeroSection = () => {
       <ParticlesBackground />
 
       {/* Radial gradient glow behind hero */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-green-500/7 dark:bg-green-500/12 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-500/7 dark:bg-blue-500/12 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Ticker Tape */}
       <TickerTape />
@@ -206,7 +206,7 @@ const HeroSection = () => {
         {/* Integration Badge */}
         <div className="flex justify-center">
           <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/60 dark:bg-white/[0.06] backdrop-blur-md border border-gray-200/60 dark:border-white/[0.08] px-3 sm:px-4 py-1.5 sm:py-2 text-[9px] sm:text-[10px] md:text-xs font-medium shadow-sm">
-            <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-green-500 animate-pulse" />
+            <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 animate-pulse" />
             <span className="text-gray-500 dark:text-gray-400 whitespace-nowrap">
               Integrates with
             </span>
@@ -240,7 +240,7 @@ const HeroSection = () => {
           <h1 className="text-[1.5rem] sm:text-[2.25rem] lg:text-[3.1rem] font-bold leading-[1.1] tracking-tight text-gray-900 dark:text-white lg:leading-[1.08]">
             Copy Futures, Options & Contracts
             <br />
-            <span className="bg-gradient-to-r from-green-700 via-green-500 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 bg-clip-text text-transparent">
               with Precision
             </span>
           </h1>
@@ -256,10 +256,10 @@ const HeroSection = () => {
         <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:mt-10">
           <Link
             href="/register"
-            className="group w-full sm:w-auto relative overflow-hidden rounded-full bg-[var(--primary)] px-8 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-[var(--primary-hover)] hover:shadow-xl hover:shadow-green-500/25 hover:-translate-y-0.5 sm:px-10 sm:py-3.5"
+            className="group w-full sm:w-auto relative overflow-hidden rounded-full bg-[var(--primary)] px-8 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-[var(--primary-hover)] hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5 sm:px-10 sm:py-3.5"
           >
             <span className="relative z-10">Start Copying Now</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-green-700 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
           <Link
             href="/login"
@@ -297,14 +297,14 @@ const HeroMainImage = () => {
       {/* Hero Main Image -- Cluade, Leave this I will be adding an image here */}
       <div className="max-w-2xl">
         <Image
-          src="/images/banner_image.png"
+          src="/images/hero_network_blue.png"
           alt="Network Illustration"
           width={1536}
           height={1024}
           className="rounded-2xl object-contain hidden dark:block"
         />
         <Image
-          src="/images/banner_image.png"
+          src="/images/hero_network_blue.png"
           alt="Network Illustration"
           width={1536}
           height={1024}
@@ -359,7 +359,7 @@ const AvatarNode = ({
       className={`flex items-center justify-center rounded-full bg-[var(--surface)] shadow-sm ${
         primary
           ? "ring-4 ring-[var(--primary)] ring-offset-2 ring-offset-[var(--background)]"
-          : "border-2 border-[var(--border)] dark:border-[rgba(39,174,96,0.3)]"
+          : "border-2 border-[var(--border)] dark:border-[rgba(37,99,235,0.3)]"
       }`}
       style={{ width: size, height: size }}
     >
@@ -418,7 +418,7 @@ const AvatarNode = ({
         )}
         <path
           d="M8 38 Q8 30, 20 28 Q32 30, 32 38"
-          fill={primary ? "#27ae60" : "#145a32"}
+          fill={primary ? "#2563eb" : "#133a7a"}
         />
       </svg>
     </div>

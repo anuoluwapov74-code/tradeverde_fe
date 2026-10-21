@@ -98,7 +98,7 @@ export default function LoginPage() {
             href="/"
             className="flex text-2xl md:text-4xl mb-10 font-extrabold self-center tracking-tight items-center gap-1"
           >
-            <span className="text-green-600 dark:text-green-400">Verdify</span><span className="text-gray-900 dark:text-white">Trades</span>
+            <span className="text-blue-600 dark:text-blue-400">Trade</span><span className="text-gray-900 dark:text-white">Verdify</span>
           </Link>
 
           <div className="flex items-center justify-between">
@@ -113,12 +113,12 @@ export default function LoginPage() {
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                className="p-2 rounded-md border border-gray-300 dark:border-gray-600/50 hover:bg-gray-100 dark:hover:bg-[#0d3320]/50 transition-all"
+                className="p-2 rounded-md border border-gray-300 dark:border-gray-600/50 hover:bg-gray-100 dark:hover:bg-[#0b1f45]/50 transition-all"
               >
                 {theme === "light" ? (
-                  <Moon className="w-4 h-4 text-green-600" />
+                  <Moon className="w-4 h-4 text-blue-600" />
                 ) : (
-                  <Sun className="w-4 h-4 text-green-500" />
+                  <Sun className="w-4 h-4 text-blue-500" />
                 )}
               </button>
             )}
@@ -136,7 +136,7 @@ export default function LoginPage() {
                 id="email"
                 type="email"
                 {...register("email")}
-                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 focus:outline-none transition-all ${
+                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 focus:outline-none transition-all ${
                   errors.email
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600/50"
@@ -166,7 +166,7 @@ export default function LoginPage() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
-                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0d3320]/50 focus:outline-none transition-all ${
+                className={`peer w-full border rounded-md px-3 pt-5 pb-2 bg-white dark:bg-[#0b1f45]/50 focus:outline-none transition-all ${
                   errors.password
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600/50"
@@ -197,10 +197,10 @@ export default function LoginPage() {
               )}
             </div>
 
-            <div className="text-sm text-green-600 hover:underline cursor-pointer">
+            <div className="text-sm text-blue-600 hover:underline cursor-pointer">
               <Link
                 href="/forgot-password"
-                className="text-sm text-green-600 hover:underline"
+                className="text-sm text-blue-600 hover:underline"
               >
                 Forgot password?
               </Link>
@@ -209,7 +209,7 @@ export default function LoginPage() {
             <Button
               disabled={loading}
               type="submit"
-              className="w-full py-6 bg-green-800 hover:bg-green-700 text-white rounded-md"
+              className="w-full py-6 bg-blue-800 hover:bg-blue-700 text-white rounded-md"
             >
               {!loading ? (
                 <span>Login</span>
@@ -230,7 +230,7 @@ export default function LoginPage() {
             {/* Google Button */}
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 dark:border-gray-600/50 rounded-md bg-white dark:bg-[#0d3320]/50 hover:bg-gray-50 dark:hover:bg-[#0d3320]/80 transition-all"
+              className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 dark:border-gray-600/50 rounded-md bg-white dark:bg-[#0b1f45]/50 hover:bg-gray-50 dark:hover:bg-[#0b1f45]/80 transition-all"
             >
               <svg width="20" height="20" viewBox="0 0 24 24">
                 <path
@@ -257,7 +257,7 @@ export default function LoginPage() {
 
             <p className="text-center text-sm">
               New to this community?{" "}
-              <a href="/register" className="text-green-600 underline">
+              <a href="/register" className="text-blue-600 underline">
                 Sign up here
               </a>
             </p>
@@ -266,13 +266,13 @@ export default function LoginPage() {
           
           <div className="text-center mt-1 text-sm space-y-2.5">
             <p className="text-gray-400 dark:text-white">
-              Copyright &copy; {new Date().getFullYear()} VerdifyTrades
+              Copyright &copy; {new Date().getFullYear()} TradeVerdify
             </p>
             {/* <div className="flex items-center justify-center gap-4">
-              <Link className="text-green-600 hover:underline" href={"/"}>
+              <Link className="text-blue-600 hover:underline" href={"/"}>
                 Privacy Policy
               </Link>
-              <Link className="text-green-600 hover:underline" href={"/"}>
+              <Link className="text-blue-600 hover:underline" href={"/"}>
                 Terms of service
               </Link>
             </div> */}
@@ -282,7 +282,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right side: Visual section */}
-      <div className="hidden flex-1 items-center justify-center bg-gradient-to-br from-[#071a0e] via-[#1e6e3c] to-[#071a0e] dark:from-[#071a0e] dark:via-[#0d3320] dark:to-[#071a0e] p-8 rounded-l-3xl">
+      <div className="hidden flex-1 items-center justify-center bg-gradient-to-br from-[#060f24] via-[#1e4f9c] to-[#060f24] dark:from-[#060f24] dark:via-[#0b1f45] dark:to-[#060f24] p-8 rounded-l-3xl">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}

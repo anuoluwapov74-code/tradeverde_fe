@@ -82,7 +82,7 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
     <header
       className="h-14 backdrop-blur-xl border-b sticky top-0 z-30"
       style={isDark
-        ? { background: "rgba(11,26,18,0.97)", borderColor: "rgba(0,201,167,0.1)" }
+        ? { background: "rgba(11,18,32,0.97)", borderColor: "rgba(59,130,246,0.1)" }
         : { background: "rgba(255,255,255,0.97)", borderColor: "rgba(0,0,0,0.08)" }
       }
     >
@@ -100,7 +100,7 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <span className="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-              <span className="text-green-600 dark:text-green-400">Verdify</span>Trades
+              <span className="text-blue-600 dark:text-blue-400">Trade</span>Verdify
             </span>
           </Link>
 
@@ -115,10 +115,10 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
                   className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                     isActive
                       ? "text-gray-900 dark:text-white bg-gray-100 dark:bg-white/10"
-                      : "text-gray-600 dark:text-[#8fa896] hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
+                      : "text-gray-600 dark:text-[#8f9cb3] hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
                   }`}
                 >
-                  <span className={isActive ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-[#4a6655]"}>
+                  <span className={isActive ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-[#4a5a75]"}>
                     {link.icon}
                   </span>
                   <span>{link.name}</span>
@@ -133,10 +133,10 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
                 className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   isMoreActive || showMore
                     ? "text-gray-900 dark:text-white bg-gray-100 dark:bg-white/10"
-                    : "text-gray-600 dark:text-[#8fa896] hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
+                    : "text-gray-600 dark:text-[#8f9cb3] hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
                 }`}
               >
-                <span className={isMoreActive || showMore ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-[#4a6655]"}>
+                <span className={isMoreActive || showMore ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-[#4a5a75]"}>
                   <MoreIcon />
                 </span>
                 <span>More</span>
@@ -154,7 +154,7 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-0 mt-1 w-48 rounded-xl shadow-xl overflow-hidden py-1"
                     style={isDark
-                      ? { background: "#0b1a12", border: "1px solid rgba(0,201,167,0.14)" }
+                      ? { background: "#0a1428", border: "1px solid rgba(59,130,246,0.14)" }
                       : { background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }
                     }
                   >
@@ -167,11 +167,11 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
                           onClick={() => setShowMore(false)}
                           className={`flex items-center space-x-2.5 px-4 py-2.5 text-xs font-medium transition-colors ${
                             isActive
-                              ? "text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-500/10"
-                              : "text-gray-600 dark:text-[#8fa896] hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white"
+                              ? "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10"
+                              : "text-gray-600 dark:text-[#8f9cb3] hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white"
                           }`}
                         >
-                          <span className={isActive ? "text-green-700 dark:text-green-400" : "text-gray-500 dark:text-[#4a6655]"}>
+                          <span className={isActive ? "text-blue-700 dark:text-blue-400" : "text-gray-500 dark:text-[#4a5a75]"}>
                             {link.icon}
                           </span>
                           <span>{link.name}</span>
@@ -194,9 +194,9 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
             >
               {theme === "light" ? (
-                <Moon className="w-4 h-4 text-gray-600 dark:text-[#8fa896]" />
+                <Moon className="w-4 h-4 text-gray-600 dark:text-[#8f9cb3]" />
               ) : (
-                <Sun className="w-4 h-4 text-gray-600 dark:text-[#8fa896]" />
+                <Sun className="w-4 h-4 text-gray-600 dark:text-[#8f9cb3]" />
               )}
             </button>
           )}
@@ -211,9 +211,9 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
               }}
               className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
             >
-              <Bell className="w-4 h-4 text-gray-600 dark:text-[#8fa896]" />
+              <Bell className="w-4 h-4 text-gray-600 dark:text-[#8f9cb3]" />
               {notificationCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-green-700 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-blue-700 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                   {notificationCount}
                 </span>
               )}
@@ -239,15 +239,15 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
               }}
               className="flex items-center space-x-2 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center text-white font-semibold text-[10px]">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white font-semibold text-[10px]">
                 {user
                   ? `${user.first_name?.[0] || ""}${user.last_name?.[0] || ""}`.toUpperCase()
                   : ""}
               </div>
-              <span className="hidden sm:block text-xs font-medium text-gray-700 dark:text-[#8fa896]">
+              <span className="hidden sm:block text-xs font-medium text-gray-700 dark:text-[#8f9cb3]">
                 Hey, {user?.first_name || "User"}!
               </span>
-              <ChevronDown className="hidden sm:block w-3 h-3 text-gray-500 dark:text-[#4a6655]" />
+              <ChevronDown className="hidden sm:block w-3 h-3 text-gray-500 dark:text-[#4a5a75]" />
             </button>
 
             <AnimatePresence>

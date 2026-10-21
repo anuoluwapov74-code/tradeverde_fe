@@ -19,16 +19,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://verdifytrades.com"),
+  metadataBase: new URL("https://tradeverdify.com"),
   title: {
-    default: "VerdifyTrades — Copy Futures, Options & Contracts with Precision",
-    template: "%s | VerdifyTrades",
+    default: "TradeVerdify — Copy Futures, Options & Contracts with Precision",
+    template: "%s | TradeVerdify",
   },
   description:
-    "VerdifyTrades is the premier copy trading platform for futures, options, and contracts. Mirror real-time trades from top-performing experts with AutoGuard™ risk management, AI signals, and zero commission.",
+    "TradeVerdify is the premier copy trading platform for futures, options, and contracts. Mirror real-time trades from top-performing experts with AutoGuard™ risk management, AI signals, and zero commission.",
   keywords: [
-    "VerdifyTrades",
-    "VerdifyTrades copy trading",
+    "TradeVerdify",
+    "TradeVerdify copy trading",
     "copy trading platform",
     "copy futures trading",
     "copy options contracts",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     "futures copy trading",
     "options copy trading",
   ],
-  authors: [{ name: "VerdifyTrades", url: "https://verdifytrades.com" }],
-  creator: "VerdifyTrades",
-  publisher: "VerdifyTrades",
+  authors: [{ name: "TradeVerdify", url: "https://tradeverdify.com" }],
+  creator: "TradeVerdify",
+  publisher: "TradeVerdify",
   category: "Finance",
   robots: {
     index: true,
@@ -60,33 +60,33 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://verdifytrades.com",
+    canonical: "https://tradeverdify.com",
   },
   openGraph: {
     type: "website",
-    url: "https://verdifytrades.com",
-    siteName: "VerdifyTrades",
-    title: "VerdifyTrades — Copy Futures, Options & Contracts with Precision",
+    url: "https://tradeverdify.com",
+    siteName: "TradeVerdify",
+    title: "TradeVerdify — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
     images: [
       {
-        url: "https://verdifytrades.com/opengraph-image.png",
+        url: "https://tradeverdify.com/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "VerdifyTrades — Copy Trading Platform",
+        alt: "TradeVerdify — Copy Trading Platform",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@VerdifyTrades",
-    creator: "@VerdifyTrades",
-    title: "VerdifyTrades — Copy Futures, Options & Contracts with Precision",
+    site: "@TradeVerdify",
+    creator: "@TradeVerdify",
+    title: "TradeVerdify — Copy Futures, Options & Contracts with Precision",
     description:
       "Mirror real-time stock and options trades from top-performing traders. Precision, flexibility, and transparency — straight to your fingertips.",
-    images: ["https://verdifytrades.com/opengraph-image.png"],
+    images: ["https://tradeverdify.com/opengraph-image.png"],
   },
   icons: {
     icon: [

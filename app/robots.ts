@@ -30,6 +30,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://verdifytrades.com/sitemap.xml",
+    sitemap: "https://tradeverdify.com/sitemap.xml",
   };
 }

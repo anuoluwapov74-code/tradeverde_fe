@@ -69,7 +69,7 @@ export default function TransactionHistoryModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-[#0b1a12] border border-gray-200 dark:border-[rgba(0,201,167,0.14)]"
+          className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl bg-white dark:bg-[#0a1428] border border-gray-200 dark:border-[rgba(59,130,246,0.14)]"
         >
           <div className="p-6">
             <div className="flex items-center justify-between mb-5">
@@ -92,7 +92,7 @@ export default function TransactionHistoryModal({
                       ? "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10"
                       : ""
                   }`}
-                  style={filter === f ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+                  style={filter === f ? { background: "#3b82f6", color: "#000f24" } : undefined}
                 >
                   {f === "all" ? "All" : f === "deposit" ? "Deposits" : "Withdrawals"}
                 </button>
@@ -102,7 +102,7 @@ export default function TransactionHistoryModal({
             {/* Transactions List */}
             {loading ? (
               <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-8 h-8 text-green-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
               </div>
             ) : transactions.length === 0 ? (
               <div className="text-center py-12">

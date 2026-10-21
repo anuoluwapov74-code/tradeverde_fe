@@ -72,10 +72,10 @@ export default function TransactionHistoryPage() {
             onClick={() => setFilter(f)}
             className={`flex-1 sm:flex-none px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors text-center ${
               filter !== f
-                ? "bg-white/90 dark:bg-[#0d3320]/80 border border-gray-200/50 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5"
+                ? "bg-white/90 dark:bg-[#0b1f45]/80 border border-gray-200/50 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5"
                 : ""
             }`}
-            style={filter === f ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+            style={filter === f ? { background: "#3b82f6", color: "#000f24" } : undefined}
           >
             <span className="sm:hidden">
               {f === "all" ? "All" : f === "deposit" ? "Deposits" : "Withdrawals"}
@@ -96,7 +96,7 @@ export default function TransactionHistoryPage() {
       >
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-8 h-8 text-green-500 animate-spin" />
+            <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
           </div>
         ) : transactions.length === 0 ? (
           <div className="text-center py-16">

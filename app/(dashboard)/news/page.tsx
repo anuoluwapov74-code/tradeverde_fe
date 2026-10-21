@@ -147,7 +147,7 @@ export default function NewsPage() {
               placeholder="Search news..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              className="w-full px-4 py-3 pl-12 bg-[rgba(0,201,167,0.04)] text-white border-2 border-[rgba(0,201,167,0.14)] rounded-lg focus:outline-none focus:border-[#00C9A7] transition-colors placeholder:text-gray-500"
+              className="w-full px-4 py-3 pl-12 bg-[rgba(59,130,246,0.04)] text-white border-2 border-[rgba(59,130,246,0.14)] rounded-lg focus:outline-none focus:border-[#3b82f6] transition-colors placeholder:text-gray-500"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
           </div>
@@ -163,7 +163,7 @@ export default function NewsPage() {
                     ? "tv-card text-gray-300 hover:opacity-80"
                     : ""
                 }`}
-              style={selectedCategory === category ? { background: "#00C9A7", color: "#001a0f" } : undefined}
+              style={selectedCategory === category ? { background: "#3b82f6", color: "#000f24" } : undefined}
               >
                 {category}
               </button>
@@ -174,7 +174,7 @@ export default function NewsPage() {
         {/* Loading State */}
         {isLoading && (
           <div className="flex justify-center items-center py-20">
-            <div className="w-5 h-5 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
         )}
 
@@ -203,13 +203,13 @@ export default function NewsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 onClick={() => setSelectedId(news.id)}
-                className="tv-card rounded-2xl overflow-hidden hover:border-[#00C9A7] transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-[#00C9A7]/10"
+                className="tv-card rounded-2xl overflow-hidden hover:border-[#3b82f6] transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-[#3b82f6]/10"
               >
                 {/* Image */}
                 <div className="relative h-48">
                   <NewsImage src={news.image_url} alt={news.title} className="w-full h-full" />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-full">
+                    <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
                       {news.category}
                     </span>
                   </div>
@@ -248,7 +248,7 @@ export default function NewsPage() {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#3b82f6] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -259,7 +259,7 @@ export default function NewsPage() {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#00C9A7] transition-colors"
+              className="p-2 rounded-lg tv-card text-gray-400 disabled:opacity-40 hover:border-[#3b82f6] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -287,7 +287,7 @@ export default function NewsPage() {
               onClick={() => setSelectedId(null)}
             >
               <div
-                className="rounded-2xl max-w-4xl w-full h-[95vh] flex flex-col overflow-hidden bg-white dark:bg-[#0b1a12] shadow-2xl"
+                className="rounded-2xl max-w-4xl w-full h-[95vh] flex flex-col overflow-hidden bg-white dark:bg-[#0a1428] shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
@@ -305,7 +305,7 @@ export default function NewsPage() {
                   <div className="relative h-64 sm:h-80">
                     <NewsImage src={selectedNews.image_url} alt={selectedNews.title} className="w-full h-full" />
                     <div className="absolute bottom-4 left-4 flex gap-2">
-                      <span className="px-3 py-1 bg-green-600 text-white text-sm font-semibold rounded-full">
+                      <span className="px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
                         {selectedNews.category}
                       </span>
                       {selectedNews.is_featured && (
@@ -407,7 +407,7 @@ export default function NewsPage() {
                     {/* Close Button */}
                     <button
                       onClick={() => setSelectedId(null)}
-                      className="w-full py-3 bg-[#00C9A7] hover:opacity-90 text-[#001a0f] font-semibold rounded-lg transition-colors"
+                      className="w-full py-3 bg-[#3b82f6] hover:opacity-90 text-[#000f24] font-semibold rounded-lg transition-colors"
                     >
                       Close
                     </button>

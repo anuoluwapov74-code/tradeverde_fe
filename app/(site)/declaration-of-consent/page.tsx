@@ -5,14 +5,14 @@ import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
-  title: "Declaration of Consent — VerdifyTrades",
-  description: "VerdifyTrades's declaration of consent document covering data processing, marketing communications, and user rights under applicable privacy regulations.",
-  alternates: { canonical: "https://verdifytrades.com/declaration-of-consent" },
+  title: "Declaration of Consent — TradeVerdify",
+  description: "TradeVerdify's declaration of consent document covering data processing, marketing communications, and user rights under applicable privacy regulations.",
+  alternates: { canonical: "https://tradeverdify.com/declaration-of-consent" },
   robots: { index: true, follow: false },
   openGraph: {
-    title: "Declaration of Consent — VerdifyTrades",
-    description: "VerdifyTrades consent document for data processing and user rights.",
-    url: "https://verdifytrades.com/declaration-of-consent",
+    title: "Declaration of Consent — TradeVerdify",
+    description: "TradeVerdify consent document for data processing and user rights.",
+    url: "https://tradeverdify.com/declaration-of-consent",
   },
 };
 
@@ -40,10 +40,10 @@ export default function DeclarationOfConsent() {
                 1. Your Consent Matters
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                At VerdifyTrades, we believe in transparency and informed consent. This
+                At TradeVerdify, we believe in transparency and informed consent. This
                 Declaration of Consent outlines the specific consents you provide when
                 you register for an account, use our services, and interact with our
-                platform. By using VerdifyTrades, you acknowledge and agree to the consents
+                platform. By using TradeVerdify, you acknowledge and agree to the consents
                 described below. We encourage you to read this document carefully and
                 contact us if you have any questions.
               </p>
@@ -55,38 +55,38 @@ export default function DeclarationOfConsent() {
                 2. Consent to Terms and Policies
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                By creating an account with VerdifyTrades, you confirm that you have read,
+                By creating an account with TradeVerdify, you confirm that you have read,
                 understood, and agree to be bound by our{" "}
                 <Link
                   href="/terms-of-service"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Terms of Service
                 </Link>
                 ,{" "}
                 <Link
                   href="/privacy-policy"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Privacy Policy
                 </Link>
                 ,{" "}
                 <Link
                   href="/cookies-policy"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Cookies Policy
                 </Link>
                 ,{" "}
                 <Link
                   href="/risk-disclaimer"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Risk Disclaimer
                 </Link>
                 , and all other applicable policies and agreements. You acknowledge that
                 these documents form a legally binding agreement between you and
-                VerdifyTrades.
+                TradeVerdify.
               </p>
             </section>
 
@@ -97,7 +97,7 @@ export default function DeclarationOfConsent() {
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 You consent to the collection, processing, storage, and use of your
-                personal data by VerdifyTrades as described in our Privacy Policy. This
+                personal data by TradeVerdify as described in our Privacy Policy. This
                 includes but is not limited to:
               </p>
               <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed space-y-2">
@@ -129,7 +129,7 @@ export default function DeclarationOfConsent() {
                 4. Consent to Communications
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                You consent to receiving communications from VerdifyTrades, including but not
+                You consent to receiving communications from TradeVerdify, including but not
                 limited to account notifications, transaction confirmations, security
                 alerts, service updates, regulatory notices, and marketing communications.
                 You may opt out of non-essential marketing communications at any time by
@@ -147,7 +147,7 @@ export default function DeclarationOfConsent() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 You consent to the use of electronic signatures, records, and
                 communications in connection with your account and transactions with
-                VerdifyTrades. You agree that electronic signatures and records shall have
+                TradeVerdify. You agree that electronic signatures and records shall have
                 the same legal effect, validity, and enforceability as manually executed
                 signatures and paper-based records. You also agree to receive all account
                 statements, confirmations, disclosures, and other communications in
@@ -165,7 +165,7 @@ export default function DeclarationOfConsent() {
                 described in our{" "}
                 <Link
                   href="/cookies-policy"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Cookies Policy
                 </Link>
@@ -182,7 +182,7 @@ export default function DeclarationOfConsent() {
                 7. Consent to Identity Verification
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                You consent to VerdifyTrades conducting identity verification checks as
+                You consent to TradeVerdify conducting identity verification checks as
                 required by anti-money laundering (AML) and know-your-customer (KYC)
                 regulations. This may include verifying your identity through
                 government-issued identification documents, conducting background checks
@@ -199,9 +199,9 @@ export default function DeclarationOfConsent() {
                 8. Consent to Recording
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                You consent to VerdifyTrades recording and monitoring telephone
+                You consent to TradeVerdify recording and monitoring telephone
                 conversations, electronic communications, and other interactions between
-                you and VerdifyTrades. These recordings may be used to verify instructions,
+                you and TradeVerdify. These recordings may be used to verify instructions,
                 resolve disputes, ensure compliance with regulatory requirements, improve
                 the quality of our services, and serve as evidence in legal or regulatory
                 proceedings. Recordings will be retained in accordance with applicable
@@ -220,7 +220,7 @@ export default function DeclarationOfConsent() {
                 consents may affect our ability to provide services to you and may result
                 in the closure of your account. To withdraw your consent, please contact
                 our support team at{" "}
-                <span className="text-green-600">support@verdifytrades.com</span>. We will
+                <span className="text-blue-600">support@tradeverdify.com</span>. We will
                 process your request in accordance with applicable laws and inform you of
                 any consequences of the withdrawal.
               </p>
@@ -232,7 +232,7 @@ export default function DeclarationOfConsent() {
                 10. Consent for Minors
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                VerdifyTrades services are only available to individuals who are at least 18
+                TradeVerdify services are only available to individuals who are at least 18
                 years of age (or the age of legal majority in your jurisdiction). By
                 creating an account, you confirm that you meet this age requirement. If we
                 become aware that we have collected personal information from a minor
@@ -247,7 +247,7 @@ export default function DeclarationOfConsent() {
                 11. Updates to This Declaration
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                VerdifyTrades may update this Declaration of Consent from time to time to
+                TradeVerdify may update this Declaration of Consent from time to time to
                 reflect changes in our practices, services, or legal requirements. We will
                 notify you of any material changes by posting the updated declaration on
                 our website and, where appropriate, by sending you a notification. Your
@@ -269,7 +269,7 @@ export default function DeclarationOfConsent() {
               </p>
               <Link
                 href="/"
-                className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-600/50"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50"
               >
                 Go Back Home
               </Link>

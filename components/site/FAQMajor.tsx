@@ -293,7 +293,7 @@ interface FAQItemProps {
 }
 
 const FAQItem = ({ question, content, isOpen, onToggle }: FAQItemProps) => (
-  <div className="group rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-green-600/5">
+  <div className="group rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/5">
     <button
       onClick={onToggle}
       className="flex w-full items-start justify-between gap-4 p-5 text-left"
@@ -305,7 +305,7 @@ const FAQItem = ({ question, content, isOpen, onToggle }: FAQItemProps) => (
         className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
           isOpen
             ? "bg-primary text-white rotate-45 scale-110"
-            : "bg-gray-100 dark:bg-white/8 text-gray-500 dark:text-gray-400 group-hover:bg-green-50 dark:group-hover:bg-green-600/10"
+            : "bg-gray-100 dark:bg-white/8 text-gray-500 dark:text-gray-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-600/10"
         }`}
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -329,7 +329,7 @@ const FAQItem = ({ question, content, isOpen, onToggle }: FAQItemProps) => (
               <ul key={i} className="ml-4 space-y-1.5 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                 {block.items.map((item, j) => (
                   <li key={j} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
                     {item}
                   </li>
                 ))}
@@ -341,7 +341,7 @@ const FAQItem = ({ question, content, isOpen, onToggle }: FAQItemProps) => (
               <ol key={i} className="ml-4 space-y-1.5 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                 {block.items.map((item, j) => (
                   <li key={j} className="flex items-start gap-2">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-600/20 text-xs font-bold text-green-700 dark:text-green-400">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-600/20 text-xs font-bold text-blue-700 dark:text-blue-400">
                       {j + 1}
                     </span>
                     {item}
@@ -395,7 +395,7 @@ const FAQMajor = ({ showHeader = true }: FAQMajorProps) => {
               onClick={() => handleTabChange(idx)}
               className={`rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200 ${
                 activeTab === idx
-                  ? "bg-green-600 text-white shadow-md shadow-green-600/25"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-600/25"
                   : "bg-gray-100 dark:bg-white/6 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10"
               }`}
             >

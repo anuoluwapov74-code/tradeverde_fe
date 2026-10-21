@@ -43,9 +43,9 @@ const StatsSection = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Globally Regulated Badge */}
         <div className="mb-6 flex items-center justify-center gap-3 lg:mb-16">
-          <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-500/10 lg:h-14 lg:w-14">
+          <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-500/10 lg:h-14 lg:w-14">
             <svg
-              className="h-5 w-5 sm:h-6 sm:w-6 text-green-700 dark:text-green-400 lg:h-7 lg:w-7"
+              className="h-5 w-5 sm:h-6 sm:w-6 text-blue-700 dark:text-blue-400 lg:h-7 lg:w-7"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -94,7 +94,7 @@ const StatCard = ({
         hasBorders ? "border-x border-gray-200 dark:border-white/10" : ""
       }`}
     >
-      <div className="mb-1 text-2xl font-bold leading-none tracking-tight bg-gradient-to-r from-green-700 to-green-500 dark:from-green-500 dark:to-emerald-400 bg-clip-text text-transparent sm:text-3xl sm:mb-2 lg:text-5xl">
+      <div className="mb-1 text-2xl font-bold leading-none tracking-tight bg-gradient-to-r from-blue-700 to-blue-500 dark:from-blue-500 dark:to-blue-400 bg-clip-text text-transparent sm:text-3xl sm:mb-2 lg:text-5xl">
         {count}
         {suffix}
       </div>

@@ -138,17 +138,17 @@ const TraderCard = ({
   totalCopiers,
   riskLevel,
 }: TraderCardProps) => (
-  <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-green-600/[0.06]">
+  <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 dark:border-white/8 bg-white/70 dark:bg-white/3 backdrop-blur-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/[0.06]">
     {/* Header with Avatar */}
     <div className="border-b border-gray-100 dark:border-white/[0.06] p-6">
       <div className="flex items-center gap-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-green-600 to-green-700 text-base font-bold text-white shadow-md shadow-green-600/20">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-blue-600 to-blue-700 text-base font-bold text-white shadow-md shadow-blue-600/20">
           {name.charAt(0).toUpperCase()}
         </div>
         <div className="flex-1 min-w-0">
           <div className="truncate text-sm font-bold">{name}</div>
           <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
             <span className="truncate text-xs text-gray-500 dark:text-gray-400">
               {role}
             </span>
@@ -164,7 +164,7 @@ const TraderCard = ({
         <div>
           <div className="mb-1 flex items-center justify-center gap-1">
             <span className="text-lg font-bold">{copiers.toLocaleString()}</span>
-            <svg className="h-3.5 w-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <svg className="h-3.5 w-3.5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
           </div>
@@ -185,7 +185,7 @@ const TraderCard = ({
         <div>
           <div className="mb-1 flex items-center justify-center gap-1">
             <span className="text-lg font-bold">{totalCopiers.toLocaleString()}</span>
-            <svg className="h-3.5 w-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <svg className="h-3.5 w-3.5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
           </div>
@@ -196,13 +196,13 @@ const TraderCard = ({
       {/* Risk Level */}
       <div className="mb-4 flex items-center justify-between rounded-xl bg-gray-50 dark:bg-white/[0.04] px-4 py-2.5">
         <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Risk level</span>
-        <span className="rounded-full bg-green-100 dark:bg-green-600/15 px-3 py-0.5 text-xs font-semibold text-green-800 dark:text-green-300">
+        <span className="rounded-full bg-blue-100 dark:bg-blue-600/15 px-3 py-0.5 text-xs font-semibold text-blue-800 dark:text-blue-300">
           {riskLevel}
         </span>
       </div>
 
       {/* Copy Button */}
-      <Link href="/login" className="flex items-center justify-center w-full rounded-xl bg-primary py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-hover hover:shadow-lg hover:shadow-green-600/25 hover:-translate-y-0.5">
+      <Link href="/login" className="flex items-center justify-center w-full rounded-xl bg-primary py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-hover hover:shadow-lg hover:shadow-blue-600/25 hover:-translate-y-0.5">
         Copy Trader
       </Link>
     </div>
