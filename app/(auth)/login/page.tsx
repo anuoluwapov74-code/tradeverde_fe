@@ -64,6 +64,14 @@ export default function LoginPage() {
         return;
       }
 
+      // 2FA is enabled for this account — the backend hasn't set auth
+      // cookies yet, it only sent a code. Route to the verify screen
+      // instead of treating this as a completed login.
+      if (result?.requires_2fa) {
+        router.push(`/verify-2fa?email=${encodeURIComponent(data.email)}`);
+        return;
+      }
+
       // Login - cookie is set by backend
       toast.success("Login successful");
 
