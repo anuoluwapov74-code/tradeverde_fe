@@ -3,7 +3,7 @@ import { Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
-import Script from "next/script";
+import SmartsuppChat from "@/components/SmartsuppChat";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://tradeverdify.com"),
   title: {
     default: "TradeVerdify — Copy Futures, Options & Contracts with Precision",
-    template: "%s | TradeVerdify",
+    template: "TradeVerdify | %s",
   },
   description:
     "TradeVerdify is the premier copy trading platform for futures, options, and contracts. Mirror real-time trades from top-performing experts with AutoGuard™ risk management, AI signals, and zero commission.",
@@ -120,12 +120,8 @@ export default function RootLayout({
           <Toaster richColors position="top-right" />
         </ThemeProvider>
 
-        {/* LiveChat - Jovo */}
-
-        <Script
-          src="//code.jivosite.com/widget/wJDi5CwGBq"
-          strategy="afterInteractive"
-        />
+        {/* LiveChat - Smartsupp */}
+        <SmartsuppChat project="TradeVerdify" website="tradeverdify.com" color="#2563eb" />
       </body>
     </html>
   );
