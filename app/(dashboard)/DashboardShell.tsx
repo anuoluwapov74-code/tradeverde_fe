@@ -112,6 +112,11 @@ export default function DashboardShell({ children }: DashboardShellProps) {
   return (
     <SWRConfig
       value={{
+        // Fresh cache per dashboard mount. Logout is a client-side
+        // router.push, so without this the next user to sign in on the same
+        // tab could be served the previous user's cached per-user data —
+        // e.g. their special deposit wallet addresses — before revalidation.
+        provider: () => new Map(),
         fetcher: swrFetcher,
         revalidateOnFocus: true,
         revalidateOnReconnect: true,

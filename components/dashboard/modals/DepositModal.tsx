@@ -303,7 +303,10 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 <div className="space-y-2.5 max-h-[45vh] overflow-y-auto pr-1 mt-3">
                   {wallets.map((wallet) => (
                     <div
-                      key={wallet.id}
+                      // Keyed by currency, not id: the list merges the user's
+                      // special wallets with general admin wallets (two tables
+                      // whose ids can collide), but each currency appears once.
+                      key={wallet.currency}
                       className="rounded-xl p-3.5 bg-[rgba(59,130,246,0.06)] dark:bg-[rgba(59,130,246,0.04)] border border-[rgba(59,130,246,0.2)] dark:border-[rgba(59,130,246,0.14)]"
                     >
                       <div className="flex items-center gap-3 mb-3">
